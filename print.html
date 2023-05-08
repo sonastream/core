@@ -1,0 +1,1512 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Sona Protocol</title>
+        <meta name="robots" content="noindex" />
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="book.css">
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="index.html">Home</a></li><li class="chapter-item affix "><li class="part-title">contracts</li><li class="chapter-item "><a href="contracts/access/index.html">❱ access</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="contracts/access/SonaAdmin.sol/contract.SonaAdmin.html">SonaAdmin</a></li><li class="chapter-item "><a href="contracts/access/SonaMinter.sol/abstract.SonaMinter.html">SonaMinter</a></li></ol></li><li class="chapter-item "><a href="contracts/interfaces/index.html">❱ interfaces</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="contracts/interfaces/IRewardGateway.sol/interface.IRewardGateway.html">IRewardGateway</a></li><li class="chapter-item "><a href="contracts/interfaces/ISonaReserveAuction.sol/interface.ISonaReserveAuction.html">ISonaReserveAuction</a></li><li class="chapter-item "><a href="contracts/interfaces/ISonaRewardToken.sol/interface.ISonaRewardToken.html">ISonaRewardToken</a></li><li class="chapter-item "><a href="contracts/interfaces/IWETH.sol/interface.IWETH.html">IWETH</a></li></ol></li><li class="chapter-item "><a href="contracts/test/index.html">❱ test</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="contracts/test/access/index.html">❱ access</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="contracts/test/access/SonaAdmin.t.sol/contract.SonaAdminTest.html">SonaAdminTest</a></li></ol></li><li class="chapter-item "><a href="contracts/test/mock/index.html">❱ mock</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="contracts/test/mock/ERC20Mock.sol/contract.ERC20ReturnTrueMock.html">ERC20ReturnTrueMock</a></li><li class="chapter-item "><a href="contracts/test/mock/ERC20Mock.sol/contract.ERC20ReturnFalseMock.html">ERC20ReturnFalseMock</a></li><li class="chapter-item "><a href="contracts/test/mock/ERC20Mock.sol/contract.ERC20NoReturnMock.html">ERC20NoReturnMock</a></li><li class="chapter-item "><a href="contracts/test/mock/MockWeth9.sol/contract.MockWeth9.html">MockWeth9</a></li></ol></li><li class="chapter-item "><a href="contracts/test/SonaReserveAuction.t.sol/contract.SonaReserveAuctionTest.html">SonaReserveAuctionTest</a></li><li class="chapter-item "><a href="contracts/test/SonaRewardToken.t.sol/contract.SonaRewardTokenTest.html">SonaRewardTokenTest</a></li><li class="chapter-item "><a href="contracts/test/SonaRewards.t.sol/contract.SonaTestRewards.html">SonaTestRewards</a></li><li class="chapter-item "><a href="contracts/test/Util.sol/contract.Util.html">Util</a></li></ol></li><li class="chapter-item "><a href="contracts/utils/index.html">❱ utils</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="contracts/utils/AddressableTokenId.sol/library.AddressableTokenId.html">AddressableTokenId</a></li><li class="chapter-item "><a href="contracts/utils/ZeroCheck.sol/library.ZeroCheck.html">ZeroCheck</a></li></ol></li><li class="chapter-item "><a href="contracts/SonaReserveAuction.sol/contract.SonaReserveAuction.html">SonaReserveAuction</a></li><li class="chapter-item "><a href="contracts/SonaRewardToken.sol/contract.SonaRewardToken.html">SonaRewardToken</a></li><li class="chapter-item "><a href="contracts/SonaRewards.sol/contract.SonaRewards.html">SonaRewards</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Sona Protocol</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/sonastream/core" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="sona-protocol"><a class="header" href="#sona-protocol">Sona Protocol <img src="https://img.shields.io/badge/solidity-%3E%3D%200.8.16-lime" alt="Solidity Version" /></a></h1>
+<div align="left">
+  <h4>
+    <a href="https://sona.stream">
+      Website
+    </a>
+    <span> | </span>
+    <a href="https://docs.sona.stream">
+      Documentation
+    </a>
+    <span> | </span>
+    <a href="https://github.com/sonastream/core/releases">
+      Releases
+    </a>
+    <span> | </span>
+    <a href="https://twitter.com/sonastream">
+      Twitter
+    </a>
+  </h4>
+</div>
+<blockquote>
+<p><strong>Warning</strong></p>
+<p>These contracts are <strong>unaudited</strong> and are not recommended for a mainnet deploy unless otherwise stated.</p>
+</blockquote>
+<h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
+<ul>
+<li><a href="index.html#sona-protocol-">Sona Protocol </a>
+<ul>
+<li><a href="index.html#table-of-contents">Table of Contents</a></li>
+<li><a href="index.html#requirements">Requirements</a></li>
+<li><a href="index.html#contracts">Contracts</a></li>
+<li><a href="index.html#getting-started">Getting Started</a>
+<ul>
+<li><a href="index.html#installation">Installation</a></li>
+<li><a href="index.html#commands">Commands</a></li>
+<li><a href="index.html#headers">Headers</a></li>
+<li><a href="index.html#testing">Testing</a></li>
+<li><a href="index.html#coverage">Coverage</a></li>
+<li><a href="index.html#environment">Environment</a></li>
+<li><a href="index.html#deploying">Deploying</a></li>
+<li><a href="index.html#foundry-and-type-definitions">Foundry and type definitions</a></li>
+</ul>
+</li>
+<li><a href="index.html#analyzers">Analyzers</a></li>
+<li><a href="index.html#maintainers">Maintainers</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="requirements"><a class="header" href="#requirements">Requirements</a></h2>
+<ul>
+<li><a href="https://pnpm.io/installation">pnpm</a></li>
+<li><a href="https://www.python.org/downloads/">Python3</a></li>
+<li><a href="https://github.com/pypa/pipx">pipx</a></li>
+<li><a href="https://github.com/foundry-rs/foundry">Foundry</a> | Or run <code>./foundry_install.sh</code></li>
+<li>git</li>
+<li>make</li>
+<li><a href="https://github.com/crytic/slither">Slither</a></li>
+<li>Solc 0.8.16</li>
+<li>Rust</li>
+<li><a href="https://github.com/0xKitsune/solstat#currently-identified-optimizations-vulnerabilities-and-qa">Solstat</a></li>
+</ul>
+<h2 id="contracts"><a class="header" href="#contracts">Contracts</a></h2>
+<pre><code class="language-bash">./contracts
+├── SonaReserveAuction.sol
+├── SonaRewardToken.sol
+├── SonaRewards.sol
+├── access/
+│   ├── SonaAdmin.sol
+│   └── SonaMinter.sol
+├── interfaces
+│   ├── IRewardGateway.sol
+│   ├── ISonaReserveAuction.sol
+│   ├── ISonaRewardToken.sol
+│   └── IWETH.sol
+├── test/
+│   ├── SonaReserveAuction.t.sol
+│   ├── SonaRewardToken.t.sol
+│   ├── SonaRewards.t.sol
+│   ├── Util.sol
+│   ├── access/
+│   │   └── SonaAdmin.t.sol
+│   └── mock/
+│       ├── ERC20Mock.sol
+│       └── MockWeth9.sol
+└── utils/
+    ├── AddressableTokenId.sol
+    └── ZeroCheck.sol
+</code></pre>
+<h2 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h2>
+<h3 id="installation"><a class="header" href="#installation">Installation</a></h3>
+<ul>
+<li>With git installed, run <code>git clone https://github.com/sonastream/core.git</code></li>
+<li><code>cd</code> in to <code>core</code></li>
+<li>Run <code>make install</code></li>
+</ul>
+<h3 id="commands"><a class="header" href="#commands">Commands</a></h3>
+<p>To see all commands that can be run with <code>make</code>, check out the makefile command <a href="./Makefile.html">table</a></p>
+<h3 id="headers"><a class="header" href="#headers">Headers</a></h3>
+<ul>
+<li>Install https://github.com/transmissions11/headers</li>
+<li>Run <code>headers &lt;insert-header&gt;</code></li>
+<li>Paste from your clipboard</li>
+</ul>
+<h3 id="testing"><a class="header" href="#testing">Testing</a></h3>
+<p>To run tests, run the command <code>make test</code>. To change the logs verbosity, update the makefile' command with less or more <code>v</code></p>
+<h3 id="coverage"><a class="header" href="#coverage">Coverage</a></h3>
+<p>To get the test coverage, run <code>make cover</code></p>
+<h3 id="environment"><a class="header" href="#environment">Environment</a></h3>
+<p>Fill in your <code>.env</code> at your root with:</p>
+<pre><code>RPC_URL=
+OWNER=
+ETHERSCAN_KEY=
+TREASURY=
+REDISTRIBUTION=
+AUTHORIZER=
+PRIVATE_KEY=
+</code></pre>
+<h3 id="deploying"><a class="header" href="#deploying">Deploying</a></h3>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Environment</th></tr></thead><tbody>
+<tr><td>make deploy_local</td><td>Local anvil (http://localhost:8545)</td></tr>
+<tr><td>make deploy_testnet</td><td>Testnet</td></tr>
+<tr><td>make deploy</td><td>Mainnet</td></tr>
+<tr><td>make deploy_goerli</td><td>Goerli</td></tr>
+</tbody></table>
+</div>
+<blockquote>
+<p><strong>Important</strong></p>
+<p>To see more <code>make</code> command definitions, check out this <a href="./Makefile.html">document</a></p>
+</blockquote>
+<h3 id="foundry-and-type-definitions"><a class="header" href="#foundry-and-type-definitions">Foundry and type definitions</a></h3>
+<p>When updating foundry modules, commit your changes locally and run <code>forge install &lt;package-name&gt;</code>. Then, update the remappings across the following files to allow builds, security scanning and goto definitions to work properly:</p>
+<ul>
+<li>slitherConfig.json</li>
+<li>.vscode/settings.json</li>
+<li>remappings.txt</li>
+</ul>
+<h2 id="analyzers"><a class="header" href="#analyzers">Analyzers</a></h2>
+<p>The repo comes with two static analyzers for checking for security vulnerabiltiies and gas optimizations
+| Command | Environment |
+|---------|-------------|
+| make analyze | Runs solstat and outputs a report to <code>reports/solstat_report.md</code> |
+| make sec | Runs slither and outputs a report to stdout |</p>
+<h2 id="maintainers"><a class="header" href="#maintainers">Maintainers</a></h2>
+<ul>
+<li><a href="https://github.com/partyscript">@partyscript</a></li>
+<li><a href="https://github.com/topocount">@topocount</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contents"><a class="header" href="#contents">Contents</a></h1>
+<ul>
+<li><a href="contracts/access/SonaAdmin.sol/contract.SonaAdmin.html">SonaAdmin</a></li>
+<li><a href="contracts/access/SonaMinter.sol/abstract.SonaMinter.html">SonaMinter</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sonaadmin"><a class="header" href="#sonaadmin">SonaAdmin</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/access/SonaAdmin.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+UUPSUpgradeable, AccessControl</p>
+<h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
+<h3 id="_admin_role"><a class="header" href="#_admin_role">_ADMIN_ROLE</a></h3>
+<p><em>The bytes that represent an admin role</em></p>
+<pre><code class="language-solidity">bytes32 internal constant _ADMIN_ROLE = keccak256(&quot;ADMIN_ROLE&quot;);
+</code></pre>
+<h3 id="__gap"><a class="header" href="#__gap">__gap</a></h3>
+<p><em>This empty reserved space is put in place to allow future versions to add new
+variables without shifting down storage in the inheritance chain.
+See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps</em></p>
+<pre><code class="language-solidity">uint256[50] private __gap;
+</code></pre>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<h3 id="onlysonaadmin"><a class="header" href="#onlysonaadmin">onlySonaAdmin</a></h3>
+<p><em>Modifier that ensures the calling wallet has the admin role</em></p>
+<pre><code class="language-solidity">modifier onlySonaAdmin();
+</code></pre>
+<h3 id="issonaadmin"><a class="header" href="#issonaadmin">isSonaAdmin</a></h3>
+<p><em>Checks if the specified address is a Sona admin</em></p>
+<pre><code class="language-solidity">function isSonaAdmin(address account) public view returns (bool);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>account</code></td><td><code>address</code></td><td>The address to check</td></tr>
+</tbody></table>
+</div>
+<h3 id="_authorizeupgrade"><a class="header" href="#_authorizeupgrade">_authorizeUpgrade</a></h3>
+<p><em>SonaAdmin is authorized for upgrades</em></p>
+<pre><code class="language-solidity">function _authorizeUpgrade(address newImplementation) internal override onlySonaAdmin;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sonaminter"><a class="header" href="#sonaminter">SonaMinter</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/access/SonaMinter.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+<a href="contracts/access/SonaMinter.sol//contracts/access/SonaAdmin.sol/contract.SonaAdmin.html">SonaAdmin</a>, ERC721</p>
+<h2 id="state-variables-1"><a class="header" href="#state-variables-1">State Variables</a></h2>
+<h3 id="_minter_role"><a class="header" href="#_minter_role">_MINTER_ROLE</a></h3>
+<p><em>The bytes that represent an admin role</em></p>
+<pre><code class="language-solidity">bytes32 internal constant _MINTER_ROLE = keccak256(&quot;MINTER_ROLE&quot;);
+</code></pre>
+<h3 id="__gap-1"><a class="header" href="#__gap-1">__gap</a></h3>
+<p><em>This empty reserved space is put in place to allow future versions to add new
+variables without shifting down storage in the inheritance chain.
+See https://docs.openzeppelin.com/contracts/4.x/upgradeable#storage_gaps</em></p>
+<pre><code class="language-solidity">uint256[50] private __gap;
+</code></pre>
+<h2 id="functions-1"><a class="header" href="#functions-1">Functions</a></h2>
+<h3 id="initialize"><a class="header" href="#initialize">initialize</a></h3>
+<p><em>to be called in the child initializer</em></p>
+<pre><code class="language-solidity">function initialize(address _minter) public onlyInitializing;
+</code></pre>
+<h3 id="onlysonaminter"><a class="header" href="#onlysonaminter">onlySonaMinter</a></h3>
+<p><em>Modifier that ensures the caller has the minter role</em></p>
+<pre><code class="language-solidity">modifier onlySonaMinter();
+</code></pre>
+<h3 id="supportsinterface"><a class="header" href="#supportsinterface">supportsInterface</a></h3>
+<p><em>Resolves conflict between ERC721AUpgradable and AccessControl so we don't have to do it on a per contract basis.</em></p>
+<pre><code class="language-solidity">function supportsInterface(bytes4 interfaceId) public view virtual override(ERC721, AccessControl) returns (bool);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contents-1"><a class="header" href="#contents-1">Contents</a></h1>
+<ul>
+<li><a href="contracts/interfaces/IRewardGateway.sol/interface.IRewardGateway.html">IRewardGateway</a></li>
+<li><a href="contracts/interfaces/ISonaReserveAuction.sol/interface.ISonaReserveAuction.html">ISonaReserveAuction</a></li>
+<li><a href="contracts/interfaces/ISonaRewardToken.sol/interface.ISonaRewardToken.html">ISonaRewardToken</a></li>
+<li><a href="contracts/interfaces/IWETH.sol/interface.IWETH.html">IWETH</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="irewardgateway"><a class="header" href="#irewardgateway">IRewardGateway</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/interfaces/IRewardGateway.sol">Git Source</a></p>
+<h2 id="functions-2"><a class="header" href="#functions-2">Functions</a></h2>
+<h3 id="getrewardsforperiod"><a class="header" href="#getrewardsforperiod">getRewardsforPeriod</a></h3>
+<pre><code class="language-solidity">function getRewardsforPeriod(uint256 _tokenId, uint64 _start, uint64 _end) external view;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="isonareserveauction"><a class="header" href="#isonareserveauction">ISonaReserveAuction</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/interfaces/ISonaReserveAuction.sol">Git Source</a></p>
+<h2 id="functions-3"><a class="header" href="#functions-3">Functions</a></h2>
+<h3 id="createreserveauction"><a class="header" href="#createreserveauction">createReserveAuction</a></h3>
+<pre><code class="language-solidity">function createReserveAuction(MetadataBundle[2] calldata _bundles, Signature[2] calldata _signatures, address _currencyAddress, uint256 _reservePrice) external;
+</code></pre>
+<h3 id="cancelreserveauction"><a class="header" href="#cancelreserveauction">cancelReserveAuction</a></h3>
+<pre><code class="language-solidity">function cancelReserveAuction(uint256 _tokenId) external;
+</code></pre>
+<h3 id="settlereserveauction"><a class="header" href="#settlereserveauction">settleReserveAuction</a></h3>
+<pre><code class="language-solidity">function settleReserveAuction(uint256 _tokenId) external;
+</code></pre>
+<h3 id="updatereserveauctionprice"><a class="header" href="#updatereserveauctionprice">updateReserveAuctionPrice</a></h3>
+<pre><code class="language-solidity">function updateReserveAuctionPrice(uint256 _tokenId, uint256 _reservePrice) external;
+</code></pre>
+<h3 id="updatereserveauctionpriceandcurrency"><a class="header" href="#updatereserveauctionpriceandcurrency">updateReserveAuctionPriceAndCurrency</a></h3>
+<pre><code class="language-solidity">function updateReserveAuctionPriceAndCurrency(address _currency, uint256 _tokenId, uint256 _reservePrice) external;
+</code></pre>
+<h3 id="createbid"><a class="header" href="#createbid">createBid</a></h3>
+<pre><code class="language-solidity">function createBid(uint256 _tokenId, uint256 _bidAmount) external payable;
+</code></pre>
+<h3 id="getauction"><a class="header" href="#getauction">getAuction</a></h3>
+<pre><code class="language-solidity">function getAuction(uint256 _tokenId) external view returns (Auction memory);
+</code></pre>
+<h2 id="events"><a class="header" href="#events">Events</a></h2>
+<h3 id="reserveauctioncreated"><a class="header" href="#reserveauctioncreated">ReserveAuctionCreated</a></h3>
+<p><em>Emitted when a new auction is created</em></p>
+<pre><code class="language-solidity">event ReserveAuctionCreated(uint256 indexed tokenId);
+</code></pre>
+<h3 id="reserveauctioncanceled"><a class="header" href="#reserveauctioncanceled">ReserveAuctionCanceled</a></h3>
+<p><em>Emitted when a new auction is canceled</em></p>
+<pre><code class="language-solidity">event ReserveAuctionCanceled(uint256 indexed tokenId);
+</code></pre>
+<h3 id="reserveauctionsettled"><a class="header" href="#reserveauctionsettled">ReserveAuctionSettled</a></h3>
+<p><em>Emitted when a new auction is settled</em></p>
+<pre><code class="language-solidity">event ReserveAuctionSettled(uint256 indexed tokenId);
+</code></pre>
+<h3 id="reserveauctionpriceupdated"><a class="header" href="#reserveauctionpriceupdated">ReserveAuctionPriceUpdated</a></h3>
+<p><em>Emitted when the reserve price of an auction is updated</em></p>
+<pre><code class="language-solidity">event ReserveAuctionPriceUpdated(uint256 indexed tokenId, Auction auction);
+</code></pre>
+<h3 id="reserveauctionbidplaced"><a class="header" href="#reserveauctionbidplaced">ReserveAuctionBidPlaced</a></h3>
+<p><em>Emitted when a new bid is placed</em></p>
+<pre><code class="language-solidity">event ReserveAuctionBidPlaced(uint256 indexed tokenId, uint256 indexed amount);
+</code></pre>
+<h3 id="reserveauctionpriceandcurrencyupdated"><a class="header" href="#reserveauctionpriceandcurrencyupdated">ReserveAuctionPriceAndCurrencyUpdated</a></h3>
+<p><em>Emitted when the currency of an auction is updated</em></p>
+<pre><code class="language-solidity">event ReserveAuctionPriceAndCurrencyUpdated(uint256 indexed tokenId, Auction auction);
+</code></pre>
+<h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
+<h3 id="sonareserveauction_alreadycanceled"><a class="header" href="#sonareserveauction_alreadycanceled">SonaReserveAuction_AlreadyCanceled</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_AlreadyCanceled();
+</code></pre>
+<h3 id="sonareserveauction_alreadylisted"><a class="header" href="#sonareserveauction_alreadylisted">SonaReserveAuction_AlreadyListed</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_AlreadyListed();
+</code></pre>
+<h3 id="sonareserveauction_notauthorized"><a class="header" href="#sonareserveauction_notauthorized">SonaReserveAuction_NotAuthorized</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_NotAuthorized();
+</code></pre>
+<h3 id="sonareserveauction_bundlesnotauthorized"><a class="header" href="#sonareserveauction_bundlesnotauthorized">SonaReserveAuction_BundlesNotAuthorized</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_BundlesNotAuthorized();
+</code></pre>
+<h3 id="sonareserveauction_transferfailed"><a class="header" href="#sonareserveauction_transferfailed">SonaReserveAuction_TransferFailed</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_TransferFailed();
+</code></pre>
+<h3 id="sonareserveauction_bidtoolow"><a class="header" href="#sonareserveauction_bidtoolow">SonaReserveAuction_BidTooLow</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_BidTooLow();
+</code></pre>
+<h3 id="sonareserveauction_alreadysettled"><a class="header" href="#sonareserveauction_alreadysettled">SonaReserveAuction_AlreadySettled</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_AlreadySettled();
+</code></pre>
+<h3 id="sonareserveauction_duplicate"><a class="header" href="#sonareserveauction_duplicate">SonaReserveAuction_Duplicate</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_Duplicate();
+</code></pre>
+<h3 id="sonareserveauction_reservepricecannotbezero"><a class="header" href="#sonareserveauction_reservepricecannotbezero">SonaReserveAuction_ReservePriceCannotBeZero</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_ReservePriceCannotBeZero();
+</code></pre>
+<h3 id="sonareserveauction_durationoutofbounds"><a class="header" href="#sonareserveauction_durationoutofbounds">SonaReserveAuction_DurationOutOfBounds</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_DurationOutOfBounds();
+</code></pre>
+<h3 id="sonareserveauction_invalidaddress"><a class="header" href="#sonareserveauction_invalidaddress">SonaReserveAuction_InvalidAddress</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_InvalidAddress();
+</code></pre>
+<h3 id="sonareserveauction_invalidcurrency"><a class="header" href="#sonareserveauction_invalidcurrency">SonaReserveAuction_InvalidCurrency</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_InvalidCurrency();
+</code></pre>
+<h3 id="sonareserveauction_invalidtokenids"><a class="header" href="#sonareserveauction_invalidtokenids">SonaReserveAuction_InvalidTokenIds</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_InvalidTokenIds();
+</code></pre>
+<h3 id="sonareserveauction_invalidauction"><a class="header" href="#sonareserveauction_invalidauction">SonaReserveAuction_InvalidAuction</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_InvalidAuction();
+</code></pre>
+<h3 id="sonareserveauction_auctionended"><a class="header" href="#sonareserveauction_auctionended">SonaReserveAuction_AuctionEnded</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_AuctionEnded();
+</code></pre>
+<h3 id="sonareserveauction_auctionislive"><a class="header" href="#sonareserveauction_auctionislive">SonaReserveAuction_AuctionIsLive</a></h3>
+<pre><code class="language-solidity">error SonaReserveAuction_AuctionIsLive();
+</code></pre>
+<h2 id="structs"><a class="header" href="#structs">Structs</a></h2>
+<h3 id="metadatabundle"><a class="header" href="#metadatabundle">MetadataBundle</a></h3>
+<pre><code class="language-solidity">struct MetadataBundle {
+    string arweaveTxId;
+    uint256 tokenId;
+}
+</code></pre>
+<h3 id="signature"><a class="header" href="#signature">Signature</a></h3>
+<pre><code class="language-solidity">struct Signature {
+    uint8 v;
+    bytes32 r;
+    bytes32 s;
+}
+</code></pre>
+<h3 id="auction"><a class="header" href="#auction">Auction</a></h3>
+<pre><code class="language-solidity">struct Auction {
+    uint256 reservePrice;
+    uint256 endingTime;
+    uint256 currentBidAmount;
+    address payable trackSeller;
+    address payable currentBidder;
+    address currency;
+    MetadataBundle[2] bundles;
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="isonarewardtoken"><a class="header" href="#isonarewardtoken">ISonaRewardToken</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/interfaces/ISonaRewardToken.sol">Git Source</a></p>
+<h2 id="functions-4"><a class="header" href="#functions-4">Functions</a></h2>
+<h3 id="mintfromauction"><a class="header" href="#mintfromauction">mintFromAuction</a></h3>
+<pre><code class="language-solidity">function mintFromAuction(uint256 _tokenId, address _artist, address _collector, string memory _artistCid, string memory _collectorCid) external;
+</code></pre>
+<h3 id="updatearweavetxid"><a class="header" href="#updatearweavetxid">updateArweaveTxId</a></h3>
+<pre><code class="language-solidity">function updateArweaveTxId(uint256 _tokenId, string calldata _TxId) external;
+</code></pre>
+<h3 id="burnrewardtoken"><a class="header" href="#burnrewardtoken">burnRewardToken</a></h3>
+<pre><code class="language-solidity">function burnRewardToken(uint256 _tokenId) external;
+</code></pre>
+<h3 id="tokenuri"><a class="header" href="#tokenuri">tokenURI</a></h3>
+<pre><code class="language-solidity">function tokenURI(uint256 _tokenId) external view returns (string memory);
+</code></pre>
+<h3 id="getrewardtokenarweaveid"><a class="header" href="#getrewardtokenarweaveid">getRewardTokenArweaveId</a></h3>
+<pre><code class="language-solidity">function getRewardTokenArweaveId(uint256 _tokenId) external view returns (string memory);
+</code></pre>
+<h3 id="initialize-1"><a class="header" href="#initialize-1">initialize</a></h3>
+<pre><code class="language-solidity">function initialize(string memory _name, string memory _symbol, address _eoaAdmin, address _minter) external;
+</code></pre>
+<h3 id="tokenidexists"><a class="header" href="#tokenidexists">tokenIdExists</a></h3>
+<pre><code class="language-solidity">function tokenIdExists(uint256 _tokenId) external view returns (bool exists);
+</code></pre>
+<h2 id="events-1"><a class="header" href="#events-1">Events</a></h2>
+<h3 id="rewardtokenminted"><a class="header" href="#rewardtokenminted">RewardTokenMinted</a></h3>
+<p><em>Emitted when a new RewardToken is minted.</em></p>
+<pre><code class="language-solidity">event RewardTokenMinted(uint256 tokenId, string cid);
+</code></pre>
+<h3 id="rewardtokenarweavetxidupdated"><a class="header" href="#rewardtokenarweavetxidupdated">RewardTokenArweaveTxIdUpdated</a></h3>
+<p><em>Emitted when a RewardToken's metadata is changed.</em></p>
+<pre><code class="language-solidity">event RewardTokenArweaveTxIdUpdated(uint256 tokenId, string txId);
+</code></pre>
+<h3 id="rewardtokenremoved"><a class="header" href="#rewardtokenremoved">RewardTokenRemoved</a></h3>
+<p><em>Emitted when a RewardToken is removed.</em></p>
+<pre><code class="language-solidity">event RewardTokenRemoved(uint256 tokenId);
+</code></pre>
+<h3 id="initialized"><a class="header" href="#initialized">Initialized</a></h3>
+<p><em>Emitted when a RewardToken minter is initialized</em></p>
+<pre><code class="language-solidity">event Initialized(address owner, string name, string symbol);
+</code></pre>
+<h2 id="errors-1"><a class="header" href="#errors-1">Errors</a></h2>
+<h3 id="sonarewardtoken_doesnotexist"><a class="header" href="#sonarewardtoken_doesnotexist">SonaRewardToken_DoesNotExist</a></h3>
+<pre><code class="language-solidity">error SonaRewardToken_DoesNotExist();
+</code></pre>
+<h3 id="sonarewardtoken_tokeniddoesnotexist"><a class="header" href="#sonarewardtoken_tokeniddoesnotexist">SonaRewardToken_TokenIdDoesNotExist</a></h3>
+<pre><code class="language-solidity">error SonaRewardToken_TokenIdDoesNotExist();
+</code></pre>
+<h3 id="sonarewardtoken_unauthorized"><a class="header" href="#sonarewardtoken_unauthorized">SonaRewardToken_Unauthorized</a></h3>
+<pre><code class="language-solidity">error SonaRewardToken_Unauthorized();
+</code></pre>
+<h3 id="sonarewardtoken_artisteditioneven"><a class="header" href="#sonarewardtoken_artisteditioneven">SonaRewardToken_ArtistEditionEven</a></h3>
+<pre><code class="language-solidity">error SonaRewardToken_ArtistEditionEven();
+</code></pre>
+<h3 id="sonarewardtoken_noartistintokenid"><a class="header" href="#sonarewardtoken_noartistintokenid">SonaRewardToken_NoArtistInTokenId</a></h3>
+<pre><code class="language-solidity">error SonaRewardToken_NoArtistInTokenId();
+</code></pre>
+<h2 id="structs-1"><a class="header" href="#structs-1">Structs</a></h2>
+<h3 id="rewardtoken"><a class="header" href="#rewardtoken">RewardToken</a></h3>
+<pre><code class="language-solidity">struct RewardToken {
+    string arTxId;
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="iweth"><a class="header" href="#iweth">IWETH</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/interfaces/IWETH.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+IERC20</p>
+<h2 id="functions-5"><a class="header" href="#functions-5">Functions</a></h2>
+<h3 id="deposit"><a class="header" href="#deposit">deposit</a></h3>
+<pre><code class="language-solidity">function deposit() external payable;
+</code></pre>
+<h3 id="withdraw"><a class="header" href="#withdraw">withdraw</a></h3>
+<pre><code class="language-solidity">function withdraw(uint256 wad) external;
+</code></pre>
+<h2 id="events-2"><a class="header" href="#events-2">Events</a></h2>
+<h3 id="deposit-1"><a class="header" href="#deposit-1">Deposit</a></h3>
+<pre><code class="language-solidity">event Deposit(address indexed dst, uint256 wad);
+</code></pre>
+<h3 id="withdrawal"><a class="header" href="#withdrawal">Withdrawal</a></h3>
+<pre><code class="language-solidity">event Withdrawal(address indexed src, uint256 wad);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contents-2"><a class="header" href="#contents-2">Contents</a></h1>
+<ul>
+<li><a href="contracts/test//contracts/test/access">access</a></li>
+<li><a href="contracts/test//contracts/test/mock">mock</a></li>
+<li><a href="contracts/test/SonaReserveAuction.t.sol/contract.SonaReserveAuctionTest.html">SonaReserveAuctionTest</a></li>
+<li><a href="contracts/test/SonaRewardToken.t.sol/contract.SonaRewardTokenTest.html">SonaRewardTokenTest</a></li>
+<li><a href="contracts/test/SonaRewards.t.sol/contract.SonaTestRewards.html">SonaTestRewards</a></li>
+<li><a href="contracts/test/Util.sol/contract.Util.html">Util</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contents-3"><a class="header" href="#contents-3">Contents</a></h1>
+<ul>
+<li><a href="contracts/test/access/SonaAdmin.t.sol/contract.SonaAdminTest.html">SonaAdminTest</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sonaadmintest"><a class="header" href="#sonaadmintest">SonaAdminTest</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/test/access/SonaAdmin.t.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+<a href="contracts/test/access/SonaAdmin.t.sol//contracts/test/Util.sol/contract.Util.html">Util</a>, <a href="contracts/test/access/SonaAdmin.t.sol//contracts/access/SonaAdmin.sol/contract.SonaAdmin.html">SonaAdmin</a></p>
+<h2 id="functions-6"><a class="header" href="#functions-6">Functions</a></h2>
+<h3 id="test_issonaadmin"><a class="header" href="#test_issonaadmin">test_isSonaAdmin</a></h3>
+<pre><code class="language-solidity">function test_isSonaAdmin() public view;
+</code></pre>
+<h3 id="testfail_notallowedtograntadmin"><a class="header" href="#testfail_notallowedtograntadmin">testFail_notAllowedToGrantAdmin</a></h3>
+<pre><code class="language-solidity">function testFail_notAllowedToGrantAdmin() public;
+</code></pre>
+<h3 id="testfail_notallowedtorevokeadmin"><a class="header" href="#testfail_notallowedtorevokeadmin">testFail_notAllowedToRevokeAdmin</a></h3>
+<pre><code class="language-solidity">function testFail_notAllowedToRevokeAdmin() public;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contents-4"><a class="header" href="#contents-4">Contents</a></h1>
+<ul>
+<li><a href="contracts/test/mock/ERC20Mock.sol/contract.ERC20ReturnTrueMock.html">ERC20ReturnTrueMock</a></li>
+<li><a href="contracts/test/mock/ERC20Mock.sol/contract.ERC20ReturnFalseMock.html">ERC20ReturnFalseMock</a></li>
+<li><a href="contracts/test/mock/ERC20Mock.sol/contract.ERC20NoReturnMock.html">ERC20NoReturnMock</a></li>
+<li><a href="contracts/test/mock/MockWeth9.sol/contract.MockWeth9.html">MockWeth9</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="erc20returntruemock"><a class="header" href="#erc20returntruemock">ERC20ReturnTrueMock</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/test/mock/ERC20Mock.sol">Git Source</a></p>
+<h2 id="state-variables-2"><a class="header" href="#state-variables-2">State Variables</a></h2>
+<h3 id="balanceof"><a class="header" href="#balanceof">balanceOf</a></h3>
+<pre><code class="language-solidity">mapping(address =&gt; uint256) public balanceOf;
+</code></pre>
+<h3 id="allowance"><a class="header" href="#allowance">allowance</a></h3>
+<pre><code class="language-solidity">mapping(address =&gt; mapping(address =&gt; uint256)) public allowance;
+</code></pre>
+<h2 id="functions-7"><a class="header" href="#functions-7">Functions</a></h2>
+<h3 id="transfer"><a class="header" href="#transfer">transfer</a></h3>
+<pre><code class="language-solidity">function transfer(address to, uint256 amount) public returns (bool);
+</code></pre>
+<h3 id="transferfrom"><a class="header" href="#transferfrom">transferFrom</a></h3>
+<pre><code class="language-solidity">function transferFrom(address from, address to, uint256 amount) public returns (bool);
+</code></pre>
+<h2 id="events-3"><a class="header" href="#events-3">Events</a></h2>
+<h3 id="transfer-1"><a class="header" href="#transfer-1">Transfer</a></h3>
+<pre><code class="language-solidity">event Transfer(address indexed from, address indexed to, uint256 value);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="erc20returnfalsemock"><a class="header" href="#erc20returnfalsemock">ERC20ReturnFalseMock</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/test/mock/ERC20Mock.sol">Git Source</a></p>
+<h2 id="functions-8"><a class="header" href="#functions-8">Functions</a></h2>
+<h3 id="transferfrom-1"><a class="header" href="#transferfrom-1">transferFrom</a></h3>
+<pre><code class="language-solidity">function transferFrom(address, address, uint256) public pure returns (bool);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="erc20noreturnmock"><a class="header" href="#erc20noreturnmock">ERC20NoReturnMock</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/test/mock/ERC20Mock.sol">Git Source</a></p>
+<h2 id="functions-9"><a class="header" href="#functions-9">Functions</a></h2>
+<h3 id="transferfrom-2"><a class="header" href="#transferfrom-2">transferFrom</a></h3>
+<pre><code class="language-solidity">function transferFrom(address, address, uint256) public pure;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="mockweth9"><a class="header" href="#mockweth9">MockWeth9</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/test/mock/MockWeth9.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+<a href="contracts/test/mock/MockWeth9.sol//contracts/interfaces/IWETH.sol/interface.IWETH.html">IWETH</a></p>
+<h2 id="state-variables-3"><a class="header" href="#state-variables-3">State Variables</a></h2>
+<h3 id="name"><a class="header" href="#name">name</a></h3>
+<pre><code class="language-solidity">string public name = &quot;Mock Wrapped Ether&quot;;
+</code></pre>
+<h3 id="symbol"><a class="header" href="#symbol">symbol</a></h3>
+<pre><code class="language-solidity">string public symbol = &quot;mWETH&quot;;
+</code></pre>
+<h3 id="decimals"><a class="header" href="#decimals">decimals</a></h3>
+<pre><code class="language-solidity">uint8 public decimals = 18;
+</code></pre>
+<h3 id="balanceof-1"><a class="header" href="#balanceof-1">balanceOf</a></h3>
+<pre><code class="language-solidity">mapping(address =&gt; uint256) public balanceOf;
+</code></pre>
+<h3 id="allowance-1"><a class="header" href="#allowance-1">allowance</a></h3>
+<pre><code class="language-solidity">mapping(address =&gt; mapping(address =&gt; uint256)) public allowance;
+</code></pre>
+<h2 id="functions-10"><a class="header" href="#functions-10">Functions</a></h2>
+<h3 id="receive"><a class="header" href="#receive">receive</a></h3>
+<pre><code class="language-solidity">receive() external payable;
+</code></pre>
+<h3 id="deposit-2"><a class="header" href="#deposit-2">deposit</a></h3>
+<pre><code class="language-solidity">function deposit() public payable virtual;
+</code></pre>
+<h3 id="withdraw-1"><a class="header" href="#withdraw-1">withdraw</a></h3>
+<pre><code class="language-solidity">function withdraw(uint256 wad) public virtual;
+</code></pre>
+<h3 id="totalsupply"><a class="header" href="#totalsupply">totalSupply</a></h3>
+<pre><code class="language-solidity">function totalSupply() public view virtual returns (uint256);
+</code></pre>
+<h3 id="approve"><a class="header" href="#approve">approve</a></h3>
+<pre><code class="language-solidity">function approve(address guy, uint256 wad) public virtual returns (bool);
+</code></pre>
+<h3 id="transfer-2"><a class="header" href="#transfer-2">transfer</a></h3>
+<pre><code class="language-solidity">function transfer(address dst, uint256 wad) public virtual returns (bool);
+</code></pre>
+<h3 id="transferfrom-3"><a class="header" href="#transferfrom-3">transferFrom</a></h3>
+<pre><code class="language-solidity">function transferFrom(address src, address dst, uint256 wad) public virtual returns (bool);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sonareserveauctiontest"><a class="header" href="#sonareserveauctiontest">SonaReserveAuctionTest</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/test/SonaReserveAuction.t.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+<a href="contracts/test/SonaReserveAuction.t.sol//contracts/test/Util.sol/contract.Util.html">Util</a>, <a href="contracts/test/SonaReserveAuction.t.sol//contracts/SonaReserveAuction.sol/contract.SonaReserveAuction.html">SonaReserveAuction</a></p>
+<h2 id="state-variables-4"><a class="header" href="#state-variables-4">State Variables</a></h2>
+<h3 id="auction-1"><a class="header" href="#auction-1">auction</a></h3>
+<pre><code class="language-solidity">SonaReserveAuction public auction;
+</code></pre>
+<h3 id="trackaddress"><a class="header" href="#trackaddress">trackAddress</a></h3>
+<pre><code class="language-solidity">address public trackAddress;
+</code></pre>
+<h3 id="treasuryrecipient"><a class="header" href="#treasuryrecipient">treasuryRecipient</a></h3>
+<pre><code class="language-solidity">address public treasuryRecipient = makeAddr(&quot;treasuryRecipient&quot;);
+</code></pre>
+<h3 id="redistributionrecipient"><a class="header" href="#redistributionrecipient">redistributionRecipient</a></h3>
+<pre><code class="language-solidity">address public redistributionRecipient = makeAddr(&quot;redistributionRecipient&quot;);
+</code></pre>
+<h3 id="trackminter"><a class="header" href="#trackminter">trackMinter</a></h3>
+<pre><code class="language-solidity">address public trackMinter = makeAddr(&quot;trackMinter&quot;);
+</code></pre>
+<h3 id="rootowner"><a class="header" href="#rootowner">rootOwner</a></h3>
+<pre><code class="language-solidity">address public rootOwner = makeAddr(&quot;rootOwner&quot;);
+</code></pre>
+<h3 id="bidder"><a class="header" href="#bidder">bidder</a></h3>
+<pre><code class="language-solidity">address public bidder = makeAddr(&quot;bidder&quot;);
+</code></pre>
+<h3 id="secondbidder"><a class="header" href="#secondbidder">secondBidder</a></h3>
+<pre><code class="language-solidity">address public secondBidder = makeAddr(&quot;secondBidder&quot;);
+</code></pre>
+<h3 id="nonethtoken"><a class="header" href="#nonethtoken">nonEthToken</a></h3>
+<pre><code class="language-solidity">address public nonEthToken = makeAddr(&quot;nonEthToken&quot;);
+</code></pre>
+<h3 id="authorizer"><a class="header" href="#authorizer">authorizer</a></h3>
+<pre><code class="language-solidity">address public authorizer = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
+</code></pre>
+<h3 id="tokenid"><a class="header" href="#tokenid">tokenId</a></h3>
+<pre><code class="language-solidity">uint256 public tokenId = (uint256(uint160(trackMinter)) &lt;&lt; 96) | 69;
+</code></pre>
+<h3 id="mockweth"><a class="header" href="#mockweth">mockWeth</a></h3>
+<pre><code class="language-solidity">MockWeth9 public mockWeth = new MockWeth9();
+</code></pre>
+<h2 id="functions-11"><a class="header" href="#functions-11">Functions</a></h2>
+<h3 id="setup"><a class="header" href="#setup">setUp</a></h3>
+<pre><code class="language-solidity">function setUp() public;
+</code></pre>
+<h3 id="test_revertswithinvalidaddress"><a class="header" href="#test_revertswithinvalidaddress">test_revertsWithInvalidAddress</a></h3>
+<pre><code class="language-solidity">function test_revertsWithInvalidAddress() public;
+</code></pre>
+<h3 id="_createsignedbundles"><a class="header" href="#_createsignedbundles">_createSignedBundles</a></h3>
+<pre><code class="language-solidity">function _createSignedBundles() private pure returns (MetadataBundle[2] memory bundles, Signature[2] memory signatures);
+</code></pre>
+<h3 id="test_createreserveauction"><a class="header" href="#test_createreserveauction">test_CreateReserveAuction</a></h3>
+<pre><code class="language-solidity">function test_CreateReserveAuction() public;
+</code></pre>
+<h3 id="test_createreserveauctionmultiplereverts"><a class="header" href="#test_createreserveauctionmultiplereverts">test_CreateReserveAuctionMultipleReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateReserveAuctionMultipleReverts() public;
+</code></pre>
+<h3 id="test_createreserveauctionzeroreservereverts"><a class="header" href="#test_createreserveauctionzeroreservereverts">test_CreateReserveAuctionZeroReserveReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateReserveAuctionZeroReserveReverts() public;
+</code></pre>
+<h3 id="test_createreserveauctionwithinvalidartistbundlereverts"><a class="header" href="#test_createreserveauctionwithinvalidartistbundlereverts">test_CreateReserveAuctionWithInvalidArtistBundleReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateReserveAuctionWithInvalidArtistBundleReverts() public;
+</code></pre>
+<h3 id="test_createreserveauctionwithinvalidcollectorbundlereverts"><a class="header" href="#test_createreserveauctionwithinvalidcollectorbundlereverts">test_CreateReserveAuctionWithInvalidCollectorBundleReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateReserveAuctionWithInvalidCollectorBundleReverts() public;
+</code></pre>
+<h3 id="xtest_createreserveauctionwithinvalidartisttokenidreverts"><a class="header" href="#xtest_createreserveauctionwithinvalidartisttokenidreverts">xtest_CreateReserveAuctionWithInvalidArtistTokenIdReverts</a></h3>
+<pre><code class="language-solidity">function xtest_CreateReserveAuctionWithInvalidArtistTokenIdReverts() public;
+</code></pre>
+<h3 id="xtest_createreserveauctionwithinvalidcollectortokenidreverts"><a class="header" href="#xtest_createreserveauctionwithinvalidcollectortokenidreverts">xtest_CreateReserveAuctionWithInvalidCollectorTokenIdReverts</a></h3>
+<pre><code class="language-solidity">function xtest_CreateReserveAuctionWithInvalidCollectorTokenIdReverts() public;
+</code></pre>
+<h3 id="test_createreserveauctionwithinvalidcallerreverts"><a class="header" href="#test_createreserveauctionwithinvalidcallerreverts">test_CreateReserveAuctionWithInvalidCallerReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateReserveAuctionWithInvalidCallerReverts() public;
+</code></pre>
+<h3 id="test_createbid"><a class="header" href="#test_createbid">test_CreateBid</a></h3>
+<pre><code class="language-solidity">function test_CreateBid() public;
+</code></pre>
+<h3 id="test_createbidwithinvalidauctionreverts"><a class="header" href="#test_createbidwithinvalidauctionreverts">test_CreateBidWithInvalidAuctionReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateBidWithInvalidAuctionReverts() public;
+</code></pre>
+<h3 id="test_createbidwithzerobidreverts"><a class="header" href="#test_createbidwithzerobidreverts">test_CreateBidWithZeroBidReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateBidWithZeroBidReverts() public;
+</code></pre>
+<h3 id="test_createbidwithlowbidreverts"><a class="header" href="#test_createbidwithlowbidreverts">test_CreateBidWithLowBidReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateBidWithLowBidReverts() public;
+</code></pre>
+<h3 id="test_createbidwithsamebidder"><a class="header" href="#test_createbidwithsamebidder">test_CreateBidWithSameBidder</a></h3>
+<pre><code class="language-solidity">function test_CreateBidWithSameBidder() public;
+</code></pre>
+<h3 id="test_createlowbidwithsamebidderreverts"><a class="header" href="#test_createlowbidwithsamebidderreverts">test_CreateLowBidWithSameBidderReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateLowBidWithSameBidderReverts() public;
+</code></pre>
+<h3 id="test_createmultiplebidsreturnsoriginalerc20bidderfunds"><a class="header" href="#test_createmultiplebidsreturnsoriginalerc20bidderfunds">test_CreateMultipleBidsReturnsOriginalERC20BidderFunds</a></h3>
+<pre><code class="language-solidity">function test_CreateMultipleBidsReturnsOriginalERC20BidderFunds() public;
+</code></pre>
+<h3 id="test_createmultiplebidsreturnsoriginalethbidderfunds"><a class="header" href="#test_createmultiplebidsreturnsoriginalethbidderfunds">test_CreateMultipleBidsReturnsOriginalETHBidderFunds</a></h3>
+<pre><code class="language-solidity">function test_CreateMultipleBidsReturnsOriginalETHBidderFunds() public;
+</code></pre>
+<h3 id="test_createbidwithonexpiredauctionreverts"><a class="header" href="#test_createbidwithonexpiredauctionreverts">test_CreateBidWithOnExpiredAuctionReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateBidWithOnExpiredAuctionReverts() public;
+</code></pre>
+<h3 id="test_cancelauction"><a class="header" href="#test_cancelauction">test_CancelAuction</a></h3>
+<pre><code class="language-solidity">function test_CancelAuction() public;
+</code></pre>
+<h3 id="test_updatereserveauctionpricewithzeroreverts"><a class="header" href="#test_updatereserveauctionpricewithzeroreverts">test_UpdateReserveAuctionPriceWithZeroReverts</a></h3>
+<pre><code class="language-solidity">function test_UpdateReserveAuctionPriceWithZeroReverts() public;
+</code></pre>
+<h3 id="test_updatereserveauctionprice"><a class="header" href="#test_updatereserveauctionprice">test_UpdateReserveAuctionPrice</a></h3>
+<pre><code class="language-solidity">function test_UpdateReserveAuctionPrice() public;
+</code></pre>
+<h3 id="test_updatereserveauctionpriceauctionalreadylive"><a class="header" href="#test_updatereserveauctionpriceauctionalreadylive">test_UpdateReserveAuctionPriceAuctionAlreadyLive</a></h3>
+<pre><code class="language-solidity">function test_UpdateReserveAuctionPriceAuctionAlreadyLive() public;
+</code></pre>
+<h3 id="test_updatereserveauctionpricewithinvalidcallerreverts"><a class="header" href="#test_updatereserveauctionpricewithinvalidcallerreverts">test_UpdateReserveAuctionPriceWithInvalidCallerReverts</a></h3>
+<pre><code class="language-solidity">function test_UpdateReserveAuctionPriceWithInvalidCallerReverts() public;
+</code></pre>
+<h3 id="test_createduplicatefailsaftersettlement"><a class="header" href="#test_createduplicatefailsaftersettlement">test_CreateDuplicateFailsAfterSettlement</a></h3>
+<pre><code class="language-solidity">function test_CreateDuplicateFailsAfterSettlement() public;
+</code></pre>
+<h3 id="test_settlereserveauction"><a class="header" href="#test_settlereserveauction">test_SettleReserveAuction</a></h3>
+<pre><code class="language-solidity">function test_SettleReserveAuction() public;
+</code></pre>
+<h3 id="test_settlereserveauctionwhilelivereverts"><a class="header" href="#test_settlereserveauctionwhilelivereverts">test_SettleReserveAuctionWhileLiveReverts</a></h3>
+<pre><code class="language-solidity">function test_SettleReserveAuctionWhileLiveReverts() public;
+</code></pre>
+<h3 id="test_settlereserveauctioninvalidcallerreverts"><a class="header" href="#test_settlereserveauctioninvalidcallerreverts">test_SettleReserveAuctionInvalidCallerReverts</a></h3>
+<pre><code class="language-solidity">function test_SettleReserveAuctionInvalidCallerReverts() public;
+</code></pre>
+<h3 id="test_cancelinvalidreserveauctionreverts"><a class="header" href="#test_cancelinvalidreserveauctionreverts">test_CancelInvalidReserveAuctionReverts</a></h3>
+<pre><code class="language-solidity">function test_CancelInvalidReserveAuctionReverts() public;
+</code></pre>
+<h3 id="test_cancelreserveauctioninvalidcallerreverts"><a class="header" href="#test_cancelreserveauctioninvalidcallerreverts">test_CancelReserveAuctionInvalidCallerReverts</a></h3>
+<pre><code class="language-solidity">function test_CancelReserveAuctionInvalidCallerReverts() public;
+</code></pre>
+<h3 id="test_cancelreserveauctionstilllivereverts"><a class="header" href="#test_cancelreserveauctionstilllivereverts">test_CancelReserveAuctionStillLiveReverts</a></h3>
+<pre><code class="language-solidity">function test_CancelReserveAuctionStillLiveReverts() public;
+</code></pre>
+<h3 id="test_createreserveauctionwitherc20currency"><a class="header" href="#test_createreserveauctionwitherc20currency">test_CreateReserveAuctionWithERC20Currency</a></h3>
+<pre><code class="language-solidity">function test_CreateReserveAuctionWithERC20Currency() public;
+</code></pre>
+<h3 id="test_createbiderc20"><a class="header" href="#test_createbiderc20">test_CreateBidERC20</a></h3>
+<pre><code class="language-solidity">function test_CreateBidERC20() public;
+</code></pre>
+<h3 id="test_createbidwithbrokenerc20reverts"><a class="header" href="#test_createbidwithbrokenerc20reverts">test_CreateBidWithBrokenERC20Reverts</a></h3>
+<pre><code class="language-solidity">function test_CreateBidWithBrokenERC20Reverts() public;
+</code></pre>
+<h3 id="test_createbidwithinvaliderc20permissionsreverts"><a class="header" href="#test_createbidwithinvaliderc20permissionsreverts">test_CreateBidWithInvalidERC20PermissionsReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateBidWithInvalidERC20PermissionsReverts() public;
+</code></pre>
+<h3 id="test_createbiderc20withethreverts"><a class="header" href="#test_createbiderc20withethreverts">test_CreateBidERC20WithEthReverts</a></h3>
+<pre><code class="language-solidity">function test_CreateBidERC20WithEthReverts() public;
+</code></pre>
+<h3 id="test_updatereserveauctionpriceandcurrency"><a class="header" href="#test_updatereserveauctionpriceandcurrency">test_UpdateReserveAuctionPriceAndCurrency</a></h3>
+<pre><code class="language-solidity">function test_UpdateReserveAuctionPriceAndCurrency() public;
+</code></pre>
+<h3 id="test_updatereserveauctionpriceandcurrencyauctionzeropricereverts"><a class="header" href="#test_updatereserveauctionpriceandcurrencyauctionzeropricereverts">test_UpdateReserveAuctionPriceAndCurrencyAuctionZeroPriceReverts</a></h3>
+<pre><code class="language-solidity">function test_UpdateReserveAuctionPriceAndCurrencyAuctionZeroPriceReverts() public;
+</code></pre>
+<h3 id="test_updatereserveauctionpriceandcurrencyauctionalreadylive"><a class="header" href="#test_updatereserveauctionpriceandcurrencyauctionalreadylive">test_UpdateReserveAuctionPriceAndCurrencyAuctionAlreadyLive</a></h3>
+<pre><code class="language-solidity">function test_UpdateReserveAuctionPriceAndCurrencyAuctionAlreadyLive() public;
+</code></pre>
+<h3 id="test_updatereserveauctionpriceandcurrencywithinvalidcallerreverts"><a class="header" href="#test_updatereserveauctionpriceandcurrencywithinvalidcallerreverts">test_UpdateReserveAuctionPriceAndCurrencyWithInvalidCallerReverts</a></h3>
+<pre><code class="language-solidity">function test_UpdateReserveAuctionPriceAndCurrencyWithInvalidCallerReverts() public;
+</code></pre>
+<h3 id="testfuzz_settlereserveauctionsendswethfundstorecipients"><a class="header" href="#testfuzz_settlereserveauctionsendswethfundstorecipients">testFuzz_SettleReserveAuctionSendsWethFundsToRecipients</a></h3>
+<pre><code class="language-solidity">function testFuzz_SettleReserveAuctionSendsWethFundsToRecipients(uint256 _reservePrice, uint256 _bidAmount) public;
+</code></pre>
+<h3 id="testfuzz_settlereserveauctionsendserc20fundstorecipients"><a class="header" href="#testfuzz_settlereserveauctionsendserc20fundstorecipients">testFuzz_SettleReserveAuctionSendsERC20FundsToRecipients</a></h3>
+<pre><code class="language-solidity">function testFuzz_SettleReserveAuctionSendsERC20FundsToRecipients(uint256 _reservePrice, uint256 _bidAmount) public;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sonarewardtokentest"><a class="header" href="#sonarewardtokentest">SonaRewardTokenTest</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/test/SonaRewardToken.t.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+<a href="contracts/test/SonaRewardToken.t.sol//contracts/test/Util.sol/contract.Util.html">Util</a>, ERC721Holder</p>
+<h2 id="state-variables-5"><a class="header" href="#state-variables-5">State Variables</a></h2>
+<h3 id="treasuryrecipient-1"><a class="header" href="#treasuryrecipient-1">treasuryRecipient</a></h3>
+<pre><code class="language-solidity">address public treasuryRecipient = makeAddr(&quot;treasuryRecipient&quot;);
+</code></pre>
+<h3 id="redistributionrecipient-1"><a class="header" href="#redistributionrecipient-1">redistributionRecipient</a></h3>
+<pre><code class="language-solidity">address public redistributionRecipient = makeAddr(&quot;redistributionRecipient&quot;);
+</code></pre>
+<h3 id="rewardtokenrecipient"><a class="header" href="#rewardtokenrecipient">rewardTokenRecipient</a></h3>
+<pre><code class="language-solidity">address public rewardTokenRecipient = makeAddr(&quot;rewardTokenRecipient&quot;);
+</code></pre>
+<h3 id="auctioninitializer"><a class="header" href="#auctioninitializer">auctionInitializer</a></h3>
+<pre><code class="language-solidity">address public auctionInitializer = makeAddr(&quot;auctionInitializer&quot;);
+</code></pre>
+<h3 id="_tokenid"><a class="header" href="#_tokenid">_tokenId</a></h3>
+<pre><code class="language-solidity">uint256 private _tokenId = (uint256(uint160(address(this))) &lt;&lt; 96) | 3;
+</code></pre>
+<h3 id="_artisttokenid"><a class="header" href="#_artisttokenid">_artistTokenId</a></h3>
+<pre><code class="language-solidity">uint256 private _artistTokenId = (uint256(uint160(address(this))) &lt;&lt; 96) | 2;
+</code></pre>
+<h3 id="rewardtoken-1"><a class="header" href="#rewardtoken-1">rewardToken</a></h3>
+<pre><code class="language-solidity">SonaRewardToken public rewardToken;
+</code></pre>
+<h2 id="functions-12"><a class="header" href="#functions-12">Functions</a></h2>
+<h3 id="setup-1"><a class="header" href="#setup-1">setUp</a></h3>
+<pre><code class="language-solidity">function setUp() public;
+</code></pre>
+<h3 id="test_unauthorizedmintreverts"><a class="header" href="#test_unauthorizedmintreverts">test_UnauthorizedMintReverts</a></h3>
+<pre><code class="language-solidity">function test_UnauthorizedMintReverts(address badMinter) public;
+</code></pre>
+<h3 id="test_initializedparams"><a class="header" href="#test_initializedparams">test_initializedParams</a></h3>
+<pre><code class="language-solidity">function test_initializedParams() public;
+</code></pre>
+<h3 id="test_invalidtokenidontokenuriexistsreverts"><a class="header" href="#test_invalidtokenidontokenuriexistsreverts">test_InvalidTokenIDOnTokenURIExistsReverts</a></h3>
+<pre><code class="language-solidity">function test_InvalidTokenIDOnTokenURIExistsReverts() public;
+</code></pre>
+<h3 id="test_updaterewardtokencid"><a class="header" href="#test_updaterewardtokencid">test_UpdateRewardTokenCID</a></h3>
+<pre><code class="language-solidity">function test_UpdateRewardTokenCID() public;
+</code></pre>
+<h3 id="test_burnrewardtoken"><a class="header" href="#test_burnrewardtoken">test_BurnRewardToken</a></h3>
+<pre><code class="language-solidity">function test_BurnRewardToken() public;
+</code></pre>
+<h3 id="test_mintsucceeds"><a class="header" href="#test_mintsucceeds">test_MintSucceeds</a></h3>
+<pre><code class="language-solidity">function test_MintSucceeds() public;
+</code></pre>
+<h3 id="test_mintfails"><a class="header" href="#test_mintfails">test_MintFails</a></h3>
+<pre><code class="language-solidity">function test_MintFails() public;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sonatestrewards"><a class="header" href="#sonatestrewards">SonaTestRewards</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/test/SonaRewards.t.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+<a href="contracts/test/SonaRewards.t.sol//contracts/test/Util.sol/contract.Util.html">Util</a>, <a href="contracts/test/SonaRewards.t.sol//contracts/SonaRewards.sol/contract.SonaRewards.html">SonaRewards</a></p>
+<h2 id="state-variables-6"><a class="header" href="#state-variables-6">State Variables</a></h2>
+<h3 id="rewardsbase"><a class="header" href="#rewardsbase">rewardsBase</a></h3>
+<pre><code class="language-solidity">SonaRewards public rewardsBase;
+</code></pre>
+<h3 id="rewards"><a class="header" href="#rewards">rewards</a></h3>
+<pre><code class="language-solidity">SonaRewards public rewards;
+</code></pre>
+<h3 id="proxy"><a class="header" href="#proxy">proxy</a></h3>
+<pre><code class="language-solidity">ERC1967Proxy public proxy;
+</code></pre>
+<h3 id="wethrewardsbase"><a class="header" href="#wethrewardsbase">wEthRewardsBase</a></h3>
+<pre><code class="language-solidity">SonaRewards public wEthRewardsBase;
+</code></pre>
+<h3 id="wethrewards"><a class="header" href="#wethrewards">wEthRewards</a></h3>
+<pre><code class="language-solidity">SonaRewards public wEthRewards;
+</code></pre>
+<h3 id="wethproxy"><a class="header" href="#wethproxy">wEthProxy</a></h3>
+<pre><code class="language-solidity">ERC1967Proxy public wEthProxy;
+</code></pre>
+<h3 id="rewardadmin"><a class="header" href="#rewardadmin">rewardAdmin</a></h3>
+<pre><code class="language-solidity">address public rewardAdmin = makeAddr(&quot;rewardAdmin&quot;);
+</code></pre>
+<h3 id="rewardholder"><a class="header" href="#rewardholder">rewardHolder</a></h3>
+<pre><code class="language-solidity">address public rewardHolder = makeAddr(&quot;rewardHolder&quot;);
+</code></pre>
+<h3 id="m"><a class="header" href="#m">m</a></h3>
+<pre><code class="language-solidity">Merkle public m = new Merkle();
+</code></pre>
+<h3 id="mockrewardtoken"><a class="header" href="#mockrewardtoken">mockRewardToken</a></h3>
+<pre><code class="language-solidity">ERC20ReturnTrueMock public mockRewardToken = new ERC20ReturnTrueMock();
+</code></pre>
+<h3 id="mockweth-1"><a class="header" href="#mockweth-1">mockWeth</a></h3>
+<pre><code class="language-solidity">MockWeth9 public mockWeth = new MockWeth9();
+</code></pre>
+<h3 id="_holders"><a class="header" href="#_holders">_holders</a></h3>
+<pre><code class="language-solidity">address[] private _holders = [rewardHolder, rewardHolder, rewardHolder, rewardHolder];
+</code></pre>
+<h3 id="_nftqtys"><a class="header" href="#_nftqtys">_nftQtys</a></h3>
+<pre><code class="language-solidity">uint96[] private _nftQtys = [1, 1, 1, 1];
+</code></pre>
+<h3 id="_mockurl"><a class="header" href="#_mockurl">_mockUrl</a></h3>
+<pre><code class="language-solidity">string private _mockUrl = &quot;https://mockurl.com/{address}/{data}.json&quot;;
+</code></pre>
+<h3 id="mockrewardstoken"><a class="header" href="#mockrewardstoken">mockRewardsToken</a></h3>
+<pre><code class="language-solidity">ERC721ConsecutiveEnumerableMock public mockRewardsToken = new ERC721ConsecutiveEnumerableMock(&quot;Mock Tracks&quot;, &quot;MOCK&quot;, _holders, _nftQtys);
+</code></pre>
+<h2 id="functions-13"><a class="header" href="#functions-13">Functions</a></h2>
+<h3 id="setup-2"><a class="header" href="#setup-2">setUp</a></h3>
+<pre><code class="language-solidity">function setUp() public;
+</code></pre>
+<h3 id="test_initfail"><a class="header" href="#test_initfail">test_InitFail</a></h3>
+<pre><code class="language-solidity">function test_InitFail() public;
+</code></pre>
+<h3 id="test_receivefail"><a class="header" href="#test_receivefail">test_ReceiveFail</a></h3>
+<pre><code class="language-solidity">function test_ReceiveFail() public;
+</code></pre>
+<h3 id="testfuzz_addroot"><a class="header" href="#testfuzz_addroot">testFuzz_AddRoot</a></h3>
+<pre><code class="language-solidity">function testFuzz_AddRoot(bytes32 _root, uint64 _start, uint64 _end) public;
+</code></pre>
+<h3 id="testfuzz_claimmanyrewards"><a class="header" href="#testfuzz_claimmanyrewards">testFuzz_ClaimManyRewards</a></h3>
+<pre><code class="language-solidity">function testFuzz_ClaimManyRewards(uint8 _treeCount, uint256 _amount) public;
+</code></pre>
+<h3 id="test_claimrewards"><a class="header" href="#test_claimrewards">test_ClaimRewards</a></h3>
+<pre><code class="language-solidity">function test_ClaimRewards() public;
+</code></pre>
+<h3 id="testfuzz_nonholderreverts"><a class="header" href="#testfuzz_nonholderreverts">testFuzz_nonHolderReverts</a></h3>
+<pre><code class="language-solidity">function testFuzz_nonHolderReverts(address nonHolder) public;
+</code></pre>
+<h3 id="test_revertontransfererror"><a class="header" href="#test_revertontransfererror">test_RevertOnTransferError</a></h3>
+<pre><code class="language-solidity">function test_RevertOnTransferError() public;
+</code></pre>
+<h3 id="test_claimlookup"><a class="header" href="#test_claimlookup">test_ClaimLookup</a></h3>
+<pre><code class="language-solidity">function test_ClaimLookup() public;
+</code></pre>
+<h3 id="_setupclaims"><a class="header" href="#_setupclaims">_setUpClaims</a></h3>
+<pre><code class="language-solidity">function _setUpClaims(SonaRewards _rewards) private returns (uint256 tokenId, uint256[] memory rootIds, bytes32[][] memory proofs, uint256[] memory amounts);
+</code></pre>
+<h2 id="events-4"><a class="header" href="#events-4">Events</a></h2>
+<h3 id="transfer-3"><a class="header" href="#transfer-3">Transfer</a></h3>
+<pre><code class="language-solidity">event Transfer(address indexed from, address indexed to, uint256 value);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="util"><a class="header" href="#util">Util</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/test/Util.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+Test</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="contents-5"><a class="header" href="#contents-5">Contents</a></h1>
+<ul>
+<li><a href="contracts/utils/AddressableTokenId.sol/library.AddressableTokenId.html">AddressableTokenId</a></li>
+<li><a href="contracts/utils/ZeroCheck.sol/library.ZeroCheck.html">ZeroCheck</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="addressabletokenid"><a class="header" href="#addressabletokenid">AddressableTokenId</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/utils/AddressableTokenId.sol">Git Source</a></p>
+<h2 id="state-variables-7"><a class="header" href="#state-variables-7">State Variables</a></h2>
+<h3 id="_addressmask"><a class="header" href="#_addressmask">_ADDRESSMASK</a></h3>
+<pre><code class="language-solidity">uint256 private constant _ADDRESSMASK = 0xffffffffffffffffffffffffffffffffffffffff000000000000000000000000;
+</code></pre>
+<h3 id="_idmask"><a class="header" href="#_idmask">_IDMASK</a></h3>
+<pre><code class="language-solidity">uint256 private constant _IDMASK = 0x0000000000000000000000000000000000000000ffffffffffffffffffffffff;
+</code></pre>
+<h2 id="functions-14"><a class="header" href="#functions-14">Functions</a></h2>
+<h3 id="getaddress"><a class="header" href="#getaddress">getAddress</a></h3>
+<p><em>convert a tokenId to its artist's address</em></p>
+<pre><code class="language-solidity">function getAddress(uint256 tokenId) internal pure returns (address tokenAddress);
+</code></pre>
+<h3 id="getartistedition"><a class="header" href="#getartistedition">getArtistEdition</a></h3>
+<p><em>artistEditions are always even</em></p>
+<pre><code class="language-solidity">function getArtistEdition(uint256 tokenId) internal pure returns (uint256 artistTokenId);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zerocheck"><a class="header" href="#zerocheck">ZeroCheck</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/utils/ZeroCheck.sol">Git Source</a></p>
+<h2 id="functions-15"><a class="header" href="#functions-15">Functions</a></h2>
+<h3 id="iszero"><a class="header" href="#iszero">isZero</a></h3>
+<pre><code class="language-solidity">function isZero(address _addr) public pure returns (bool isAddrZero);
+</code></pre>
+<h3 id="isnotzero"><a class="header" href="#isnotzero">isNotZero</a></h3>
+<pre><code class="language-solidity">function isNotZero(address _addr) public pure returns (bool isAddrNotZero);
+</code></pre>
+<h3 id="revertifzero"><a class="header" href="#revertifzero">revertIfZero</a></h3>
+<pre><code class="language-solidity">function revertIfZero(address _addr, bytes4 _selector) public pure;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sonareserveauction"><a class="header" href="#sonareserveauction">SonaReserveAuction</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/SonaReserveAuction.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+<a href="contracts/SonaReserveAuction.sol//contracts/interfaces/ISonaReserveAuction.sol/interface.ISonaReserveAuction.html">ISonaReserveAuction</a>, Initializable, <a href="contracts/SonaReserveAuction.sol//contracts/access/SonaAdmin.sol/contract.SonaAdmin.html">SonaAdmin</a></p>
+<h2 id="state-variables-8"><a class="header" href="#state-variables-8">State Variables</a></h2>
+<h3 id="_auction_duration"><a class="header" href="#_auction_duration">_AUCTION_DURATION</a></h3>
+<pre><code class="language-solidity">uint256 private constant _AUCTION_DURATION = 24 hours;
+</code></pre>
+<h3 id="_auction_extension_duration"><a class="header" href="#_auction_extension_duration">_AUCTION_EXTENSION_DURATION</a></h3>
+<pre><code class="language-solidity">uint256 private constant _AUCTION_EXTENSION_DURATION = 15 minutes;
+</code></pre>
+<h3 id="_auction_extension_bps"><a class="header" href="#_auction_extension_bps">_AUCTION_EXTENSION_BPS</a></h3>
+<pre><code class="language-solidity">uint256 private constant _AUCTION_EXTENSION_BPS = 500;
+</code></pre>
+<h3 id="_auction_redistribution_fee_bps"><a class="header" href="#_auction_redistribution_fee_bps">_AUCTION_REDISTRIBUTION_FEE_BPS</a></h3>
+<pre><code class="language-solidity">uint256 private constant _AUCTION_REDISTRIBUTION_FEE_BPS = 500;
+</code></pre>
+<h3 id="_auction_treasury_fee_bps"><a class="header" href="#_auction_treasury_fee_bps">_AUCTION_TREASURY_FEE_BPS</a></h3>
+<pre><code class="language-solidity">uint256 private constant _AUCTION_TREASURY_FEE_BPS = 200;
+</code></pre>
+<h3 id="_eip712domain_typehash"><a class="header" href="#_eip712domain_typehash">_EIP712DOMAIN_TYPEHASH</a></h3>
+<pre><code class="language-solidity">bytes32 private constant _EIP712DOMAIN_TYPEHASH = keccak256(&quot;EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)&quot;);
+</code></pre>
+<h3 id="_metadatabundle_typehash"><a class="header" href="#_metadatabundle_typehash">_METADATABUNDLE_TYPEHASH</a></h3>
+<pre><code class="language-solidity">bytes32 private constant _METADATABUNDLE_TYPEHASH = keccak256(&quot;MetadataBundle(string arweaveTxId,uint256 tokenId)&quot;);
+</code></pre>
+<h3 id="_treasuryfeerecipient"><a class="header" href="#_treasuryfeerecipient">_treasuryFeeRecipient</a></h3>
+<pre><code class="language-solidity">address private _treasuryFeeRecipient;
+</code></pre>
+<h3 id="_redistributionfeerecipient"><a class="header" href="#_redistributionfeerecipient">_redistributionFeeRecipient</a></h3>
+<pre><code class="language-solidity">address private _redistributionFeeRecipient;
+</code></pre>
+<h3 id="rewardtoken-2"><a class="header" href="#rewardtoken-2">rewardToken</a></h3>
+<pre><code class="language-solidity">ISonaRewardToken public rewardToken;
+</code></pre>
+<h3 id="_domain_separator"><a class="header" href="#_domain_separator">_DOMAIN_SEPARATOR</a></h3>
+<pre><code class="language-solidity">bytes32 private _DOMAIN_SEPARATOR;
+</code></pre>
+<h3 id="_authorizer"><a class="header" href="#_authorizer">_authorizer</a></h3>
+<pre><code class="language-solidity">address private _authorizer;
+</code></pre>
+<h3 id="_weth"><a class="header" href="#_weth">_weth</a></h3>
+<pre><code class="language-solidity">IWETH private _weth;
+</code></pre>
+<h3 id="auctions"><a class="header" href="#auctions">auctions</a></h3>
+<pre><code class="language-solidity">mapping(uint256 =&gt; Auction) public auctions;
+</code></pre>
+<h3 id="_uriexists"><a class="header" href="#_uriexists">_uriExists</a></h3>
+<pre><code class="language-solidity">mapping(bytes32 =&gt; bool) private _uriExists;
+</code></pre>
+<h2 id="functions-16"><a class="header" href="#functions-16">Functions</a></h2>
+<h3 id="onlysonaadminorapprovedtokenoperator"><a class="header" href="#onlysonaadminorapprovedtokenoperator">onlySonaAdminOrApprovedTokenOperator</a></h3>
+<p><em>Modifier that ensures the calling wallet has the admin role or is the specified owner</em></p>
+<pre><code class="language-solidity">modifier onlySonaAdminOrApprovedTokenOperator(uint256 _tokenId);
+</code></pre>
+<h3 id="bundlesauthorized"><a class="header" href="#bundlesauthorized">bundlesAuthorized</a></h3>
+<pre><code class="language-solidity">modifier bundlesAuthorized(MetadataBundle[2] calldata bundles, Signature[2] calldata signatures);
+</code></pre>
+<h3 id="constructor"><a class="header" href="#constructor">constructor</a></h3>
+<pre><code class="language-solidity">constructor();
+</code></pre>
+<h3 id="initialize-2"><a class="header" href="#initialize-2">initialize</a></h3>
+<pre><code class="language-solidity">function initialize(address treasuryFeeRecipient_, address redistributionFeeRecipient_, address authorizer_, ISonaRewardToken _rewardTokenBase, address _eoaAdmin, IWETH weth_)
+    public
+    initializer;
+</code></pre>
+<h3 id="supportsinterface-1"><a class="header" href="#supportsinterface-1">supportsInterface</a></h3>
+<pre><code class="language-solidity">function supportsInterface(bytes4 _interfaceId) public view virtual override returns (bool);
+</code></pre>
+<h3 id="createreserveauction-1"><a class="header" href="#createreserveauction-1">createReserveAuction</a></h3>
+<p>Creates a new auction.</p>
+<p><em>Creating a reserve auction does not start it.
+Auctions are started once a bid of the reserve price or higher is placed.</em></p>
+<pre><code class="language-solidity">function createReserveAuction(MetadataBundle[2] calldata _bundles, Signature[2] calldata _signatures, address _currencyAddress, uint256 _reservePrice)
+    external
+    bundlesAuthorized(_bundles, _signatures)
+    onlySonaAdminOrApprovedTokenOperator(_bundles[0].tokenId)
+    onlySonaAdminOrApprovedTokenOperator(_bundles[1].tokenId);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_bundles</code></td><td><code>MetadataBundle[2]</code></td><td></td></tr>
+<tr><td><code>_signatures</code></td><td><code>Signature[2]</code></td><td></td></tr>
+<tr><td><code>_currencyAddress</code></td><td><code>address</code></td><td>The address of the currency bids will be in.</td></tr>
+<tr><td><code>_reservePrice</code></td><td><code>uint256</code></td><td>The reserve price of the auction.</td></tr>
+</tbody></table>
+</div>
+<h3 id="settlereserveauction-1"><a class="header" href="#settlereserveauction-1">settleReserveAuction</a></h3>
+<p><em>Public function to settle the reseerve auction</em></p>
+<pre><code class="language-solidity">function settleReserveAuction(uint256 _tokenId) external onlySonaAdminOrApprovedTokenOperator(_tokenId);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token.</td></tr>
+</tbody></table>
+</div>
+<h3 id="cancelreserveauction-1"><a class="header" href="#cancelreserveauction-1">cancelReserveAuction</a></h3>
+<p><em>Public function to cancel the reserve auction</em></p>
+<pre><code class="language-solidity">function cancelReserveAuction(uint256 _tokenId) external onlySonaAdminOrApprovedTokenOperator(_tokenId);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token.</td></tr>
+</tbody></table>
+</div>
+<h3 id="updatereserveauctionprice-1"><a class="header" href="#updatereserveauctionprice-1">updateReserveAuctionPrice</a></h3>
+<p><em>Public function to update the reserve price of the auction</em></p>
+<pre><code class="language-solidity">function updateReserveAuctionPrice(uint256 _tokenId, uint256 _reservePrice) external onlySonaAdminOrApprovedTokenOperator(_tokenId);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token.</td></tr>
+<tr><td><code>_reservePrice</code></td><td><code>uint256</code></td><td>The reserve price to be updated to</td></tr>
+</tbody></table>
+</div>
+<h3 id="updatereserveauctionpriceandcurrency-1"><a class="header" href="#updatereserveauctionpriceandcurrency-1">updateReserveAuctionPriceAndCurrency</a></h3>
+<p><em>Public function to update the curency and reserve price of the auction</em></p>
+<pre><code class="language-solidity">function updateReserveAuctionPriceAndCurrency(address _currency, uint256 _tokenId, uint256 _reservePrice) external onlySonaAdminOrApprovedTokenOperator(_tokenId);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_currency</code></td><td><code>address</code></td><td>The currency to be updated to</td></tr>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token.</td></tr>
+<tr><td><code>_reservePrice</code></td><td><code>uint256</code></td><td>The reserve price to be updated to</td></tr>
+</tbody></table>
+</div>
+<h3 id="createbid-1"><a class="header" href="#createbid-1">createBid</a></h3>
+<p><em>Public function to bid on a reserve auction</em></p>
+<pre><code class="language-solidity">function createBid(uint256 _tokenId, uint256 _bidAmount) external payable;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token.</td></tr>
+<tr><td><code>_bidAmount</code></td><td><code>uint256</code></td><td>The amount of the bid if the currency is not ETH</td></tr>
+</tbody></table>
+</div>
+<h3 id="getauction-1"><a class="header" href="#getauction-1">getAuction</a></h3>
+<p><em>Public function to fetch an auction</em></p>
+<pre><code class="language-solidity">function getAuction(uint256 _tokenId) external view returns (Auction memory);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token.</td></tr>
+</tbody></table>
+</div>
+<h3 id="_verify"><a class="header" href="#_verify">_verify</a></h3>
+<pre><code class="language-solidity">function _verify(MetadataBundle calldata _bundle, uint8 v, bytes32 r, bytes32 s) internal view returns (bool valid);
+</code></pre>
+<h3 id="_recoveraddress"><a class="header" href="#_recoveraddress">_recoverAddress</a></h3>
+<pre><code class="language-solidity">function _recoverAddress(MetadataBundle calldata _bundle, uint8 v, bytes32 r, bytes32 s) internal view returns (address recovered);
+</code></pre>
+<h3 id="_hash"><a class="header" href="#_hash">_hash</a></h3>
+<pre><code class="language-solidity">function _hash(MetadataBundle calldata bundle) internal pure returns (bytes32);
+</code></pre>
+<h3 id="_settlereserveauction"><a class="header" href="#_settlereserveauction">_settleReserveAuction</a></h3>
+<p><em>Internal function to settle the reserve auction</em></p>
+<pre><code class="language-solidity">function _settleReserveAuction(uint256 _tokenId) private;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token.</td></tr>
+</tbody></table>
+</div>
+<h3 id="_ensurebundleisunique"><a class="header" href="#_ensurebundleisunique">_ensureBundleIsUnique</a></h3>
+<pre><code class="language-solidity">function _ensureBundleIsUnique(MetadataBundle calldata _bundle) internal;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sonarewardtoken"><a class="header" href="#sonarewardtoken">SonaRewardToken</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/SonaRewardToken.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+<a href="contracts/SonaRewardToken.sol//contracts/access/SonaMinter.sol/abstract.SonaMinter.html">SonaMinter</a>, <a href="contracts/SonaRewardToken.sol//contracts/interfaces/ISonaRewardToken.sol/interface.ISonaRewardToken.html">ISonaRewardToken</a></p>
+<h2 id="state-variables-9"><a class="header" href="#state-variables-9">State Variables</a></h2>
+<h3 id="rewardtokens"><a class="header" href="#rewardtokens">rewardTokens</a></h3>
+<pre><code class="language-solidity">mapping(uint256 =&gt; ISonaRewardToken.RewardToken) public rewardTokens;
+</code></pre>
+<h2 id="functions-17"><a class="header" href="#functions-17">Functions</a></h2>
+<h3 id="onlysonaadminorcreator"><a class="header" href="#onlysonaadminorcreator">onlySonaAdminOrCreator</a></h3>
+<p><em>Modifier that ensures the calling contract has the admin role</em></p>
+<pre><code class="language-solidity">modifier onlySonaAdminOrCreator(uint256 _tokenId);
+</code></pre>
+<h3 id="checkexists"><a class="header" href="#checkexists">checkExists</a></h3>
+<p><em>Modifier that ensures the tokenId has been minted and not burned</em></p>
+<pre><code class="language-solidity">modifier checkExists(uint256 _tokenId);
+</code></pre>
+<h3 id="constructor-1"><a class="header" href="#constructor-1">constructor</a></h3>
+<pre><code class="language-solidity">constructor() ERC721(&quot;&quot;, &quot;&quot;);
+</code></pre>
+<h3 id="initialize-3"><a class="header" href="#initialize-3">initialize</a></h3>
+<p><em>Initializes the contract</em></p>
+<pre><code class="language-solidity">function initialize(string calldata _name, string calldata _symbol, address _eoaAdmin, address _minter) external override initializer;
+</code></pre>
+<h3 id="mintfromauction-1"><a class="header" href="#mintfromauction-1">mintFromAuction</a></h3>
+<p>this mint function is called by an auction contract</p>
+<p><em>only an account with the SonaMinter role can call this function</em></p>
+<pre><code class="language-solidity">function mintFromAuction(uint256 _tokenId, address _artist, address _collector, string calldata _artistTxId, string calldata _collectorTxId) external onlySonaMinter;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token that will be minted</td></tr>
+<tr><td><code>_artist</code></td><td><code>address</code></td><td>The address contained in the tokenId</td></tr>
+<tr><td><code>_collector</code></td><td><code>address</code></td><td>The address that won the auction</td></tr>
+<tr><td><code>_artistTxId</code></td><td><code>string</code></td><td>the arweave txId of the artist edition bundle contained on arweave</td></tr>
+<tr><td><code>_collectorTxId</code></td><td><code>string</code></td><td>the arweave txId of the collector edition bundle contained on arweave</td></tr>
+</tbody></table>
+</div>
+<h3 id="updatearweavetxid-1"><a class="header" href="#updatearweavetxid-1">updateArweaveTxId</a></h3>
+<p><em>Updates the IPFS CID for the metadata for a given RewardToken</em></p>
+<pre><code class="language-solidity">function updateArweaveTxId(uint256 _tokenId, string calldata _txId) external checkExists(_tokenId) onlySonaAdminOrCreator(_tokenId);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token that will be updated</td></tr>
+<tr><td><code>_txId</code></td><td><code>string</code></td><td>The metadata's IPFS CID</td></tr>
+</tbody></table>
+</div>
+<h3 id="burnrewardtoken-1"><a class="header" href="#burnrewardtoken-1">burnRewardToken</a></h3>
+<p><em>Removes a RewardToken from the protocol, burning the NFT and striking the data from on-chain memory</em></p>
+<pre><code class="language-solidity">function burnRewardToken(uint256 _tokenId) external checkExists(_tokenId) onlySonaAdminOrCreator(_tokenId);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token that will be deleted</td></tr>
+</tbody></table>
+</div>
+<h3 id="tokenuri-1"><a class="header" href="#tokenuri-1">tokenURI</a></h3>
+<p><em>Get a RewardToken's metadata from IPFS</em></p>
+<pre><code class="language-solidity">function tokenURI(uint256 _tokenId) public view override(ERC721, ISonaRewardToken) checkExists(_tokenId) returns (string memory);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token to fetch</td></tr>
+</tbody></table>
+</div>
+<h3 id="getrewardtokenarweaveid-1"><a class="header" href="#getrewardtokenarweaveid-1">getRewardTokenArweaveId</a></h3>
+<p><em>Returns the arTxId of the RewardToken</em></p>
+<pre><code class="language-solidity">function getRewardTokenArweaveId(uint256 _tokenId) external view checkExists(_tokenId) returns (string memory);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token to fetch</td></tr>
+</tbody></table>
+</div>
+<h3 id="tokenidexists-1"><a class="header" href="#tokenidexists-1">tokenIdExists</a></h3>
+<p>Check if token <code>_tokenId</code> exists</p>
+<pre><code class="language-solidity">function tokenIdExists(uint256 _tokenId) public view returns (bool exists);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token to check</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>exists</code></td><td><code>bool</code></td><td>a boolean</td></tr>
+</tbody></table>
+</div>
+<h3 id="_updatearweavetxid"><a class="header" href="#_updatearweavetxid">_updateArweaveTxId</a></h3>
+<pre><code class="language-solidity">function _updateArweaveTxId(uint256 _tokenId, string calldata _txId) internal;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="sonarewards"><a class="header" href="#sonarewards">SonaRewards</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/88e8324f5582d5bf677842d7880a2be23767accd/contracts/SonaRewards.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+Initializable, <a href="contracts/SonaRewards.sol//contracts/access/SonaAdmin.sol/contract.SonaAdmin.html">SonaAdmin</a></p>
+<h2 id="state-variables-10"><a class="header" href="#state-variables-10">State Variables</a></h2>
+<h3 id="rewardroots"><a class="header" href="#rewardroots">rewardRoots</a></h3>
+<p>A pseudo-array to hold each publish merkle root</p>
+<p><em>This is a cleaner storage pattern for upgradable contracts compared to an actual array</em></p>
+<pre><code class="language-solidity">mapping(uint256 =&gt; RewardRoot) public rewardRoots;
+</code></pre>
+<h3 id="datetimelastclaimed"><a class="header" href="#datetimelastclaimed">dateTimeLastClaimed</a></h3>
+<p>the unix epoch timestamp representing the end of last period rewards were claimed for a given tokenId</p>
+<p><em>this value can only monotonically increase, in order to prevent double claims</em></p>
+<pre><code class="language-solidity">mapping(uint256 =&gt; uint64) public dateTimeLastClaimed;
+</code></pre>
+<h3 id="lastrootid"><a class="header" href="#lastrootid">lastRootId</a></h3>
+<p>The id of the last RewardRoot published</p>
+<pre><code class="language-solidity">uint256 public lastRootId;
+</code></pre>
+<h3 id="_rewardvault"><a class="header" href="#_rewardvault">_rewardVault</a></h3>
+<pre><code class="language-solidity">address private _rewardVault;
+</code></pre>
+<h3 id="_sonarewardtoken"><a class="header" href="#_sonarewardtoken">_sonaRewardToken</a></h3>
+<pre><code class="language-solidity">IERC721 private _sonaRewardToken;
+</code></pre>
+<h3 id="_paymenttoken"><a class="header" href="#_paymenttoken">_paymentToken</a></h3>
+<pre><code class="language-solidity">IERC20 private _paymentToken;
+</code></pre>
+<h3 id="_wethtoken"><a class="header" href="#_wethtoken">_wETHToken</a></h3>
+<pre><code class="language-solidity">IWETH private _wETHToken;
+</code></pre>
+<h3 id="_claimlookupurl"><a class="header" href="#_claimlookupurl">_claimLookupUrl</a></h3>
+<pre><code class="language-solidity">string private _claimLookupUrl;
+</code></pre>
+<h2 id="functions-18"><a class="header" href="#functions-18">Functions</a></h2>
+<h3 id="constructor-2"><a class="header" href="#constructor-2">constructor</a></h3>
+<p><em>a proxiable base contract should not be initializable</em></p>
+<pre><code class="language-solidity">constructor();
+</code></pre>
+<h3 id="initialize-4"><a class="header" href="#initialize-4">initialize</a></h3>
+<p>the constructor-like function used for proxy contracts</p>
+<p><em>Pass in either a non-zero paymentToken_ or wETHToken_ param. One and only one should be non-zero</em></p>
+<pre><code class="language-solidity">function initialize(address _eoaAdmin, IERC721 sonaRewardToken_, IERC20 paymentToken_, IWETH wETHToken_, address rewardVault_, string calldata claimLookupUrl_)
+    public
+    initializer;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_eoaAdmin</code></td><td><code>address</code></td><td>The administrator of proxy upgrades and RewardRoots</td></tr>
+<tr><td><code>sonaRewardToken_</code></td><td><code>IERC721</code></td><td>The address of the SonaRewardToken NFT smart contract</td></tr>
+<tr><td><code>paymentToken_</code></td><td><code>IERC20</code></td><td>The address of the reward token Collectors and Artists earn</td></tr>
+<tr><td><code>wETHToken_</code></td><td><code>IWETH</code></td><td>The address of the wETH token if Collectors and Artists earn ETH</td></tr>
+<tr><td><code>rewardVault_</code></td><td><code>address</code></td><td>The holder of the reward token that has granted this contract enough of an allowance to operate</td></tr>
+<tr><td><code>claimLookupUrl_</code></td><td><code>string</code></td><td>The templated url returned via <code>OffchainLookup</code>. Must be EIP-3668 compliant</td></tr>
+</tbody></table>
+</div>
+<h3 id="receive-1"><a class="header" href="#receive-1">receive</a></h3>
+<p><em>only accept ETH from our registered <code>_wETHToken</code></em></p>
+<pre><code class="language-solidity">receive() external payable;
+</code></pre>
+<h3 id="addroot"><a class="header" href="#addroot">addRoot</a></h3>
+<p>publish a merkle tree root and allow Reward claims</p>
+<p><em>the subsequent start time should be equal to the last published end time for given period</em></p>
+<pre><code class="language-solidity">function addRoot(bytes32 _root, uint64 _start, uint64 _end) public onlySonaAdmin;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_root</code></td><td><code>bytes32</code></td><td>The hash of the merkle root to submit proofs against.</td></tr>
+<tr><td><code>_start</code></td><td><code>uint64</code></td><td>The epoch start time (in seconds) for the reward period</td></tr>
+<tr><td><code>_end</code></td><td><code>uint64</code></td><td>The epoch end time (in seconds) for the reward period</td></tr>
+</tbody></table>
+</div>
+<h3 id="invalidateroot"><a class="header" href="#invalidateroot">invalidateRoot</a></h3>
+<p>prevent claims against a published root</p>
+<pre><code class="language-solidity">function invalidateRoot(uint256 _rootId) public onlySonaAdmin;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_rootId</code></td><td><code>uint256</code></td><td>The index number representing the root to be invalidated</td></tr>
+</tbody></table>
+</div>
+<h3 id="claimlookup"><a class="header" href="#claimlookup">claimLookup</a></h3>
+<p>get the api endpoint and request payload to get merkle claim info</p>
+<p><em>this should always revert and allows for a fast preflight response</em></p>
+<pre><code class="language-solidity">function claimLookup(uint256 _tokenId, uint64 _start, uint64 _end) public view;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The SonaRewardToken token ID</td></tr>
+<tr><td><code>_start</code></td><td><code>uint64</code></td><td>The beginning of the time period to collect rewards for</td></tr>
+<tr><td><code>_end</code></td><td><code>uint64</code></td><td>The end of the time period to collect rewards for</td></tr>
+</tbody></table>
+</div>
+<h3 id="claimrewards"><a class="header" href="#claimrewards">claimRewards</a></h3>
+<p>collect tokens by presenting valid proofs and owning token number <code>_tokenId</code></p>
+<pre><code class="language-solidity">function claimRewards(uint256 _tokenId, uint256[] calldata _rootIds, bytes32[][] calldata _proofs, uint256[] calldata _amounts) public;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The SonaRewardToken for which rewards are being claimed</td></tr>
+<tr><td><code>_rootIds</code></td><td><code>uint256[]</code></td><td>the index numbers of the roots to prove against</td></tr>
+<tr><td><code>_proofs</code></td><td><code>bytes32[][]</code></td><td>the proofs for each respective root</td></tr>
+<tr><td><code>_amounts</code></td><td><code>uint256[]</code></td><td>the amounts to be claimed from each respective root</td></tr>
+</tbody></table>
+</div>
+<h3 id="updateintegrations"><a class="header" href="#updateintegrations">updateIntegrations</a></h3>
+<p>the contract owner can update state variables</p>
+<pre><code class="language-solidity">function updateIntegrations(IERC721 sonaRewardToken_, IERC20 paymentToken_, IWETH wETHToken_, address rewardVault_, string calldata claimLookupUrl_) public onlySonaAdmin;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>sonaRewardToken_</code></td><td><code>IERC721</code></td><td>The address of the SonaRewardToken NFT smart contract</td></tr>
+<tr><td><code>paymentToken_</code></td><td><code>IERC20</code></td><td>The address of the reward token Collectors and Artists earn</td></tr>
+<tr><td><code>wETHToken_</code></td><td><code>IWETH</code></td><td>The address of the wETH token if Collectors and Artists earn ETH</td></tr>
+<tr><td><code>rewardVault_</code></td><td><code>address</code></td><td>The holder of the reward token that has granted this contract enough of an allowance to operate</td></tr>
+<tr><td><code>claimLookupUrl_</code></td><td><code>string</code></td><td>The templated url returned via <code>OffchainLookup</code>. Must be EIP-3668 compliant</td></tr>
+</tbody></table>
+</div>
+<h3 id="_claimrewardsone"><a class="header" href="#_claimrewardsone">_claimRewardsOne</a></h3>
+<pre><code class="language-solidity">function _claimRewardsOne(uint256 _tokenId, uint256 _rootId, bytes32[] calldata _proof, uint256 _amount) internal;
+</code></pre>
+<h3 id="_updateintegrations"><a class="header" href="#_updateintegrations">_updateIntegrations</a></h3>
+<pre><code class="language-solidity">function _updateIntegrations(IERC721 sonaRewardToken_, IERC20 paymentToken_, IWETH wETHToken_, address rewardVault_, string calldata claimLookupUrl_) internal;
+</code></pre>
+<h2 id="events-5"><a class="header" href="#events-5">Events</a></h2>
+<h3 id="integrationsupdated"><a class="header" href="#integrationsupdated">IntegrationsUpdated</a></h3>
+<pre><code class="language-solidity">event IntegrationsUpdated(address sonaRewardToken, address paymentToken, address wETHToken, address rewardVault, string claimLookupUrl);
+</code></pre>
+<h3 id="rewardrootcreated"><a class="header" href="#rewardrootcreated">RewardRootCreated</a></h3>
+<pre><code class="language-solidity">event RewardRootCreated(uint256 indexed rootId, bytes32 indexed hash, uint64 start, uint64 end);
+</code></pre>
+<h3 id="rewardrootinvalidated"><a class="header" href="#rewardrootinvalidated">RewardRootInvalidated</a></h3>
+<pre><code class="language-solidity">event RewardRootInvalidated(uint256 indexed rootId);
+</code></pre>
+<h3 id="rewardsclaimed"><a class="header" href="#rewardsclaimed">RewardsClaimed</a></h3>
+<pre><code class="language-solidity">event RewardsClaimed(uint256 indexed tokenId, address indexed claimant, uint256 indexed rootId, uint256 amount);
+</code></pre>
+<h2 id="errors-2"><a class="header" href="#errors-2">Errors</a></h2>
+<h3 id="rootnonexistent"><a class="header" href="#rootnonexistent">RootNonexistent</a></h3>
+<pre><code class="language-solidity">error RootNonexistent(uint256 rootId);
+</code></pre>
+<h3 id="claimantnotholder"><a class="header" href="#claimantnotholder">ClaimantNotHolder</a></h3>
+<pre><code class="language-solidity">error ClaimantNotHolder(address claimant, uint256 tokenId);
+</code></pre>
+<h3 id="claimlengthmismatch"><a class="header" href="#claimlengthmismatch">ClaimLengthMismatch</a></h3>
+<pre><code class="language-solidity">error ClaimLengthMismatch();
+</code></pre>
+<h3 id="invalidproof"><a class="header" href="#invalidproof">InvalidProof</a></h3>
+<pre><code class="language-solidity">error InvalidProof();
+</code></pre>
+<h3 id="invalidclaimattempt"><a class="header" href="#invalidclaimattempt">InvalidClaimAttempt</a></h3>
+<pre><code class="language-solidity">error InvalidClaimAttempt();
+</code></pre>
+<h3 id="startnotbeforeend"><a class="header" href="#startnotbeforeend">StartNotBeforeEnd</a></h3>
+<pre><code class="language-solidity">error StartNotBeforeEnd(uint64 start, uint64 end);
+</code></pre>
+<h3 id="rewardtransferfailed"><a class="header" href="#rewardtransferfailed">RewardTransferFailed</a></h3>
+<pre><code class="language-solidity">error RewardTransferFailed();
+</code></pre>
+<h3 id="invalidtokeninputs"><a class="header" href="#invalidtokeninputs">InvalidTokenInputs</a></h3>
+<pre><code class="language-solidity">error InvalidTokenInputs(address paymentToken, address wETHToken);
+</code></pre>
+<h3 id="offchainlookup"><a class="header" href="#offchainlookup">OffchainLookup</a></h3>
+<pre><code class="language-solidity">error OffchainLookup(address sender, string[] urls, bytes callData, bytes4 callbackFunction, bytes extraData);
+</code></pre>
+<h2 id="structs-2"><a class="header" href="#structs-2">Structs</a></h2>
+<h3 id="rewardroot"><a class="header" href="#rewardroot">RewardRoot</a></h3>
+<pre><code class="language-solidity">struct RewardRoot {
+    bytes32 hash;
+    uint64 start;
+    uint64 end;
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="solidity.min.js"></script>
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>
