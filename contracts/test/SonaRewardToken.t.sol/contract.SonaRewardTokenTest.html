@@ -149,7 +149,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonarewardtokentest"><a class="header" href="#sonarewardtokentest">SonaRewardTokenTest</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/9e2117106f70fd00519404d43ffbfed3914de91c/contracts/test/SonaRewardToken.t.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/e148ecbee0ac08e77568861d100d62ba9dbfef60/contracts/test/SonaRewardToken.t.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/test/Util.sol/contract.Util.html">Util</a>, ERC721Holder</p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
@@ -190,8 +190,17 @@
 <h3 id="test_updaterewardtokencid"><a class="header" href="#test_updaterewardtokencid">test_UpdateRewardTokenCID</a></h3>
 <pre><code class="language-solidity">function test_UpdateRewardTokenCID() public;
 </code></pre>
-<h3 id="test_burnrewardtoken"><a class="header" href="#test_burnrewardtoken">test_BurnRewardToken</a></h3>
-<pre><code class="language-solidity">function test_BurnRewardToken() public;
+<h3 id="test_burncreatorrewardtoken"><a class="header" href="#test_burncreatorrewardtoken">test_BurnCreatorRewardToken</a></h3>
+<pre><code class="language-solidity">function test_BurnCreatorRewardToken() public;
+</code></pre>
+<h3 id="test_burncollectorrewardtoken"><a class="header" href="#test_burncollectorrewardtoken">test_BurnCollectorRewardToken</a></h3>
+<pre><code class="language-solidity">function test_BurnCollectorRewardToken() public;
+</code></pre>
+<h3 id="test_creatorburncollectortokenfails"><a class="header" href="#test_creatorburncollectortokenfails">test_CreatorBurnCollectorTokenFails</a></h3>
+<pre><code class="language-solidity">function test_CreatorBurnCollectorTokenFails() public;
+</code></pre>
+<h3 id="testfuzz_randomburnerfails"><a class="header" href="#testfuzz_randomburnerfails">testFuzz_randomBurnerFails</a></h3>
+<pre><code class="language-solidity">function testFuzz_randomBurnerFails(address _artistBurner, address _collectorBurner) public;
 </code></pre>
 <h3 id="test_mintsucceeds"><a class="header" href="#test_mintsucceeds">test_MintSucceeds</a></h3>
 <pre><code class="language-solidity">function test_MintSucceeds() public;
