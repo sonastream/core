@@ -149,7 +149,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonareserveauctiontest"><a class="header" href="#sonareserveauctiontest">SonaReserveAuctionTest</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/6d4ba8caa61abd8a2d6060d42f0f3d4b3c528996/contracts/test/SonaReserveAuction.t.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/290c0701abb4ee96e481f2ad69e45c2d1c09d270/contracts/test/SonaReserveAuction.t.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/test/Util.sol/contract.Util.html">Util</a>, <a href="/contracts/SonaReserveAuction.sol/contract.SonaReserveAuction.html">SonaReserveAuction</a></p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
@@ -180,6 +180,12 @@
 <h3 id="nonethtoken"><a class="header" href="#nonethtoken">nonEthToken</a></h3>
 <pre><code class="language-solidity">address public nonEthToken = makeAddr(&quot;nonEthToken&quot;);
 </code></pre>
+<h3 id="mnemonic"><a class="header" href="#mnemonic">mnemonic</a></h3>
+<pre><code class="language-solidity">string public mnemonic = &quot;test test test test test test test test test test test junk&quot;;
+</code></pre>
+<h3 id="authorizerkey"><a class="header" href="#authorizerkey">authorizerKey</a></h3>
+<pre><code class="language-solidity">uint256 public authorizerKey = vm.deriveKey(mnemonic, 0);
+</code></pre>
 <h3 id="authorizer"><a class="header" href="#authorizer">authorizer</a></h3>
 <pre><code class="language-solidity">address public authorizer = 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266;
 </code></pre>
@@ -204,6 +210,15 @@
 </code></pre>
 <h3 id="_createsignedbundles"><a class="header" href="#_createsignedbundles">_createSignedBundles</a></h3>
 <pre><code class="language-solidity">function _createSignedBundles() private view returns (MetadataBundle[2] memory bundles, Signature[2] memory signatures);
+</code></pre>
+<h3 id="_createbundles"><a class="header" href="#_createbundles">_createBundles</a></h3>
+<pre><code class="language-solidity">function _createBundles() private view returns (MetadataBundle[2] memory bundles);
+</code></pre>
+<h3 id="_signbundle"><a class="header" href="#_signbundle">_signBundle</a></h3>
+<pre><code class="language-solidity">function _signBundle(MetadataBundle memory _bundle) private view returns (Signature memory signature);
+</code></pre>
+<h3 id="_getbundlesignatures"><a class="header" href="#_getbundlesignatures">_getBundleSignatures</a></h3>
+<pre><code class="language-solidity">function _getBundleSignatures(MetadataBundle[2] memory _bundles) private view returns (Signature[2] memory signatures);
 </code></pre>
 <h3 id="test_createreserveauction"><a class="header" href="#test_createreserveauction">test_CreateReserveAuction</a></h3>
 <pre><code class="language-solidity">function test_CreateReserveAuction() public;
@@ -325,11 +340,17 @@
 <h3 id="test_updatereserveauctionpriceandcurrencywithinvalidcallerreverts"><a class="header" href="#test_updatereserveauctionpriceandcurrencywithinvalidcallerreverts">test_UpdateReserveAuctionPriceAndCurrencyWithInvalidCallerReverts</a></h3>
 <pre><code class="language-solidity">function test_UpdateReserveAuctionPriceAndCurrencyWithInvalidCallerReverts() public;
 </code></pre>
-<h3 id="testfuzz_settlereserveauctionsendswethfundstorecipients"><a class="header" href="#testfuzz_settlereserveauctionsendswethfundstorecipients">testFuzz_SettleReserveAuctionSendsWethFundsToRecipients</a></h3>
-<pre><code class="language-solidity">function testFuzz_SettleReserveAuctionSendsWethFundsToRecipients(uint256 _reservePrice, uint256 _bidAmount) public;
+<h3 id="testfuzz_settlereserveauctionsendsethfundstosplits"><a class="header" href="#testfuzz_settlereserveauctionsendsethfundstosplits">testFuzz_SettleReserveAuctionSendsEthFundsToSplits</a></h3>
+<pre><code class="language-solidity">function testFuzz_SettleReserveAuctionSendsEthFundsToSplits(uint256 _reservePrice, uint256 _bidAmount) public;
 </code></pre>
-<h3 id="testfuzz_settlereserveauctionsendserc20fundstorecipients"><a class="header" href="#testfuzz_settlereserveauctionsendserc20fundstorecipients">testFuzz_SettleReserveAuctionSendsERC20FundsToRecipients</a></h3>
-<pre><code class="language-solidity">function testFuzz_SettleReserveAuctionSendsERC20FundsToRecipients(uint256 _reservePrice, uint256 _bidAmount) public;
+<h3 id="testfuzz_settlereserveauctionsendserc20fundstosplits"><a class="header" href="#testfuzz_settlereserveauctionsendserc20fundstosplits">testFuzz_SettleReserveAuctionSendsERC20FundsToSplits</a></h3>
+<pre><code class="language-solidity">function testFuzz_SettleReserveAuctionSendsERC20FundsToSplits(uint256 _reservePrice, uint256 _bidAmount) public;
+</code></pre>
+<h3 id="testfuzz_sendethproceedstoartistaddress"><a class="header" href="#testfuzz_sendethproceedstoartistaddress">testFuzz_SendEthProceedsToArtistAddress</a></h3>
+<pre><code class="language-solidity">function testFuzz_SendEthProceedsToArtistAddress(uint256 _reservePrice, uint256 _bidAmount) public;
+</code></pre>
+<h3 id="testfuzz_settlereserveauctionsendserc20fundstoartistaddress"><a class="header" href="#testfuzz_settlereserveauctionsendserc20fundstoartistaddress">testFuzz_SettleReserveAuctionSendsERC20FundsToArtistAddress</a></h3>
+<pre><code class="language-solidity">function testFuzz_SettleReserveAuctionSendsERC20FundsToArtistAddress(uint256 _reservePrice, uint256 _bidAmount) public;
 </code></pre>
 <h3 id="test_contractbidderacceptsethrefunds"><a class="header" href="#test_contractbidderacceptsethrefunds">test_ContractBidderAcceptsEthRefunds</a></h3>
 <pre><code class="language-solidity">function test_ContractBidderAcceptsEthRefunds() public;
@@ -339,6 +360,15 @@
 </code></pre>
 <h3 id="test_cancelauctionthatsendedreverts"><a class="header" href="#test_cancelauctionthatsendedreverts">test_CancelAuctionThatsEndedReverts</a></h3>
 <pre><code class="language-solidity">function test_CancelAuctionThatsEndedReverts() public;
+</code></pre>
+<h3 id="_makedomainhash"><a class="header" href="#_makedomainhash">_makeDomainHash</a></h3>
+<pre><code class="language-solidity">function _makeDomainHash() private view returns (bytes32);
+</code></pre>
+<h3 id="_hashfrommemory"><a class="header" href="#_hashfrommemory">_hashFromMemory</a></h3>
+<pre><code class="language-solidity">function _hashFromMemory(MetadataBundle memory bundle) internal pure returns (bytes32);
+</code></pre>
+<h3 id="_getbundlehash"><a class="header" href="#_getbundlehash">_getBundleHash</a></h3>
+<pre><code class="language-solidity">function _getBundleHash(MetadataBundle memory _bundle) private view returns (bytes32);
 </code></pre>
 
                     </main>
