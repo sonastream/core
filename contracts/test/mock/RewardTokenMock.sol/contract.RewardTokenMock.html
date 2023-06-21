@@ -149,7 +149,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="rewardtokenmock"><a class="header" href="#rewardtokenmock">RewardTokenMock</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/290c0701abb4ee96e481f2ad69e45c2d1c09d270/contracts/test/mock/RewardTokenMock.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/682f502ebc72887f8fbc58b53a41c433f1790290/contracts/test/mock/RewardTokenMock.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 ERC721ConsecutiveEnumerableMock</p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
@@ -158,14 +158,22 @@ ERC721ConsecutiveEnumerableMock</p>
 </code></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="constructor"><a class="header" href="#constructor">constructor</a></h3>
-<pre><code class="language-solidity">constructor(string memory name, string memory symbol, address[] memory receivers, uint96[] memory amounts, address payable _altAddress)
-    ERC721ConsecutiveEnumerableMock(name, symbol, receivers, amounts);
+<pre><code class="language-solidity">constructor(
+    string memory name,
+    string memory symbol,
+    address[] memory receivers,
+    uint96[] memory amounts,
+    address payable _altAddress
+) ERC721ConsecutiveEnumerableMock(name, symbol, receivers, amounts);
 </code></pre>
 <h3 id="setsplitaddr"><a class="header" href="#setsplitaddr">setSplitAddr</a></h3>
 <pre><code class="language-solidity">function setSplitAddr(address payable _newSplit) public;
 </code></pre>
 <h3 id="getrewardtokenpayoutaddr"><a class="header" href="#getrewardtokenpayoutaddr">getRewardTokenPayoutAddr</a></h3>
-<pre><code class="language-solidity">function getRewardTokenPayoutAddr(uint256) external view returns (address payable splits);
+<pre><code class="language-solidity">function getRewardTokenPayoutAddr(uint256)
+    external
+    view
+    returns (address payable splits);
 </code></pre>
 
                     </main>

@@ -149,7 +149,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonatestrewards"><a class="header" href="#sonatestrewards">SonaTestRewards</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/290c0701abb4ee96e481f2ad69e45c2d1c09d270/contracts/test/SonaRewards.t.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/682f502ebc72887f8fbc58b53a41c433f1790290/contracts/test/SonaRewards.t.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/test/Util.sol/contract.Util.html">Util</a>, <a href="/contracts/SonaRewards.sol/contract.SonaRewards.html">SonaRewards</a></p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
@@ -187,7 +187,8 @@
 <pre><code class="language-solidity">Weth9Mock public mockWeth = new Weth9Mock();
 </code></pre>
 <h3 id="_holders"><a class="header" href="#_holders">_holders</a></h3>
-<pre><code class="language-solidity">address[] private _holders = [rewardHolder, rewardHolder, rewardHolder, rewardHolder];
+<pre><code class="language-solidity">address[] private _holders =
+    [rewardHolder, rewardHolder, rewardHolder, rewardHolder];
 </code></pre>
 <h3 id="_nftqtys"><a class="header" href="#_nftqtys">_nftQtys</a></h3>
 <pre><code class="language-solidity">uint96[] private _nftQtys = [1, 1, 1, 1];
@@ -196,7 +197,13 @@
 <pre><code class="language-solidity">string private _mockUrl = &quot;https://mockurl.com/{address}/{data}.json&quot;;
 </code></pre>
 <h3 id="mockrewardstoken"><a class="header" href="#mockrewardstoken">mockRewardsToken</a></h3>
-<pre><code class="language-solidity">MockRewardToken public mockRewardsToken = new MockRewardToken(&quot;Mock Tracks&quot;, &quot;MOCK&quot;, _holders, _nftQtys, payable(address(0)));
+<pre><code class="language-solidity">MockRewardToken public mockRewardsToken = new MockRewardToken(
+			&quot;Mock Tracks&quot;,
+			&quot;MOCK&quot;,
+			_holders,
+			_nftQtys,
+			payable(address(0))
+		);
 </code></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="setup"><a class="header" href="#setup">setUp</a></h3>
@@ -230,7 +237,14 @@
 <pre><code class="language-solidity">function test_ClaimLookup() public;
 </code></pre>
 <h3 id="_setupclaims"><a class="header" href="#_setupclaims">_setUpClaims</a></h3>
-<pre><code class="language-solidity">function _setUpClaims(SonaRewards _rewards) private returns (uint256 tokenId, uint256[] memory rootIds, bytes32[][] memory proofs, uint256[] memory amounts);
+<pre><code class="language-solidity">function _setUpClaims(SonaRewards _rewards)
+    private
+    returns (
+        uint256 tokenId,
+        uint256[] memory rootIds,
+        bytes32[][] memory proofs,
+        uint256[] memory amounts
+    );
 </code></pre>
 <h2 id="events"><a class="header" href="#events">Events</a></h2>
 <h3 id="transfer"><a class="header" href="#transfer">Transfer</a></h3>

@@ -149,22 +149,30 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="addressabletokenid"><a class="header" href="#addressabletokenid">AddressableTokenId</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/290c0701abb4ee96e481f2ad69e45c2d1c09d270/contracts/utils/AddressableTokenId.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/682f502ebc72887f8fbc58b53a41c433f1790290/contracts/utils/AddressableTokenId.sol">Git Source</a></p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
 <h3 id="_addressmask"><a class="header" href="#_addressmask">_ADDRESSMASK</a></h3>
-<pre><code class="language-solidity">uint256 private constant _ADDRESSMASK = 0xffffffffffffffffffffffffffffffffffffffff000000000000000000000000;
+<pre><code class="language-solidity">uint256 private constant _ADDRESSMASK =
+    0xffffffffffffffffffffffffffffffffffffffff000000000000000000000000;
 </code></pre>
 <h3 id="_idmask"><a class="header" href="#_idmask">_IDMASK</a></h3>
-<pre><code class="language-solidity">uint256 private constant _IDMASK = 0x0000000000000000000000000000000000000000ffffffffffffffffffffffff;
+<pre><code class="language-solidity">uint256 private constant _IDMASK =
+    0x0000000000000000000000000000000000000000ffffffffffffffffffffffff;
 </code></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="getaddress"><a class="header" href="#getaddress">getAddress</a></h3>
 <p><em>convert a tokenId to its artist's address</em></p>
-<pre><code class="language-solidity">function getAddress(uint256 tokenId) internal pure returns (address tokenAddress);
+<pre><code class="language-solidity">function getAddress(uint256 tokenId)
+    internal
+    pure
+    returns (address tokenAddress);
 </code></pre>
 <h3 id="getartistedition"><a class="header" href="#getartistedition">getArtistEdition</a></h3>
 <p><em>artistEditions are always even</em></p>
-<pre><code class="language-solidity">function getArtistEdition(uint256 tokenId) internal pure returns (uint256 artistTokenId);
+<pre><code class="language-solidity">function getArtistEdition(uint256 tokenId)
+    internal
+    pure
+    returns (uint256 artistTokenId);
 </code></pre>
 
                     </main>

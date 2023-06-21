@@ -149,10 +149,15 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="isonareserveauction"><a class="header" href="#isonareserveauction">ISonaReserveAuction</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/290c0701abb4ee96e481f2ad69e45c2d1c09d270/contracts/interfaces/ISonaReserveAuction.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/682f502ebc72887f8fbc58b53a41c433f1790290/contracts/interfaces/ISonaReserveAuction.sol">Git Source</a></p>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="createreserveauction"><a class="header" href="#createreserveauction">createReserveAuction</a></h3>
-<pre><code class="language-solidity">function createReserveAuction(MetadataBundle[2] calldata _bundles, Signature[2] calldata _signatures, address _currencyAddress, uint256 _reservePrice) external;
+<pre><code class="language-solidity">function createReserveAuction(
+    MetadataBundle[2] calldata _bundles,
+    Signature[2] calldata _signatures,
+    address _currencyAddress,
+    uint256 _reservePrice
+) external;
 </code></pre>
 <h3 id="cancelreserveauction"><a class="header" href="#cancelreserveauction">cancelReserveAuction</a></h3>
 <pre><code class="language-solidity">function cancelReserveAuction(uint256 _tokenId) external;
@@ -161,10 +166,15 @@
 <pre><code class="language-solidity">function settleReserveAuction(uint256 _tokenId) external;
 </code></pre>
 <h3 id="updatereserveauctionprice"><a class="header" href="#updatereserveauctionprice">updateReserveAuctionPrice</a></h3>
-<pre><code class="language-solidity">function updateReserveAuctionPrice(uint256 _tokenId, uint256 _reservePrice) external;
+<pre><code class="language-solidity">function updateReserveAuctionPrice(uint256 _tokenId, uint256 _reservePrice)
+    external;
 </code></pre>
 <h3 id="updatereserveauctionpriceandcurrency"><a class="header" href="#updatereserveauctionpriceandcurrency">updateReserveAuctionPriceAndCurrency</a></h3>
-<pre><code class="language-solidity">function updateReserveAuctionPriceAndCurrency(address _currency, uint256 _tokenId, uint256 _reservePrice) external;
+<pre><code class="language-solidity">function updateReserveAuctionPriceAndCurrency(
+    address _currency,
+    uint256 _tokenId,
+    uint256 _reservePrice
+) external;
 </code></pre>
 <h3 id="createbid"><a class="header" href="#createbid">createBid</a></h3>
 <pre><code class="language-solidity">function createBid(uint256 _tokenId, uint256 _bidAmount) external payable;
@@ -195,7 +205,9 @@
 </code></pre>
 <h3 id="reserveauctionpriceandcurrencyupdated"><a class="header" href="#reserveauctionpriceandcurrencyupdated">ReserveAuctionPriceAndCurrencyUpdated</a></h3>
 <p><em>Emitted when the currency of an auction is updated</em></p>
-<pre><code class="language-solidity">event ReserveAuctionPriceAndCurrencyUpdated(uint256 indexed tokenId, Auction auction);
+<pre><code class="language-solidity">event ReserveAuctionPriceAndCurrencyUpdated(
+    uint256 indexed tokenId, Auction auction
+);
 </code></pre>
 <h3 id="payoutaddressupdated"><a class="header" href="#payoutaddressupdated">PayoutAddressUpdated</a></h3>
 <p><em>Emitted when the payout address is updated. The address can be set to zero to payout the token holder</em></p>
