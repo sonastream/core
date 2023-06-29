@@ -1,0 +1,774 @@
+<!DOCTYPE HTML>
+<html lang="en" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>SplitMain - Sona Protocol</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="../../../favicon.svg">
+        <link rel="shortcut icon" href="../../../favicon.png">
+        <link rel="stylesheet" href="../../../css/variables.css">
+        <link rel="stylesheet" href="../../../css/general.css">
+        <link rel="stylesheet" href="../../../css/chrome.css">
+        <link rel="stylesheet" href="../../../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../../../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../../../highlight.css">
+        <link rel="stylesheet" href="../../../tomorrow-night.css">
+        <link rel="stylesheet" href="../../../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../../book.css">
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../../../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = null;
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item "><a href="../../../index.html">Home</a></li><li class="chapter-item affix "><li class="part-title">contracts</li><li class="chapter-item "><a href="../../../contracts/access/index.html">❱ access</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/access/SonaAdmin.sol/contract.SonaAdmin.html">SonaAdmin</a></li><li class="chapter-item "><a href="../../../contracts/access/SonaMinter.sol/abstract.SonaMinter.html">SonaMinter</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/interfaces/index.html">❱ interfaces</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/interfaces/IRewardGateway.sol/interface.IRewardGateway.html">IRewardGateway</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/ISonaReserveAuction.sol/interface.ISonaReserveAuction.html">ISonaReserveAuction</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/ISonaRewardToken.sol/interface.ISonaRewardToken.html">ISonaRewardToken</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/IWETH.sol/interface.IWETH.html">IWETH</a></li></ol></li><li class="chapter-item expanded "><a href="../../../contracts/payout/index.html">❱ payout</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/payout/interfaces/index.html">❱ interfaces</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/payout/interfaces/ISplitMain.sol/interface.ISplitMain.html">ISplitMain</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/error.Unauthorized.html">Unauthorized</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/error.InvalidSplit__TooFewAccounts.html">InvalidSplit__TooFewAccounts</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/error.InvalidSplit__AccountsAndAllocationsMismatch.html">InvalidSplit__AccountsAndAllocationsMismatch</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/error.InvalidSplit__InvalidAllocationsSum.html">InvalidSplit__InvalidAllocationsSum</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/error.InvalidSplit__AccountsOutOfOrder.html">InvalidSplit__AccountsOutOfOrder</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/error.InvalidSplit__AllocationMustBePositive.html">InvalidSplit__AllocationMustBePositive</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/error.InvalidSplit__InvalidDistributorFee.html">InvalidSplit__InvalidDistributorFee</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/error.InvalidSplit__InvalidHash.html">InvalidSplit__InvalidHash</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/error.InvalidNewController.html">InvalidNewController</a></li><li class="chapter-item expanded "><a href="../../../contracts/payout/SplitMain.sol/contract.SplitMain.html" class="active">SplitMain</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitWallet.sol/error.Unauthorized.html">Unauthorized</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitWallet.sol/contract.SplitWallet.html">SplitWallet</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/index.html">❱ test</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/access/index.html">❱ access</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/access/SonaAdmin.t.sol/contract.SonaAdminTest.html">SonaAdminTest</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/mock/index.html">❱ mock</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/mock/ContractBidderMock.sol/contract.ContractBidderMock.html">ContractBidderMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/ERC20Mock.sol/contract.ERC20ReturnTrueMock.html">ERC20ReturnTrueMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/ERC20Mock.sol/contract.ERC20ReturnFalseMock.html">ERC20ReturnFalseMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/ERC20Mock.sol/contract.ERC20NoReturnMock.html">ERC20NoReturnMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/RewardTokenMock.sol/contract.RewardTokenMock.html">RewardTokenMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/Weth9Mock.sol/contract.Weth9Mock.html">Weth9Mock</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/SonaReserveAuction.t.sol/contract.SonaReserveAuctionTest.html">SonaReserveAuctionTest</a></li><li class="chapter-item "><a href="../../../contracts/test/SonaRewardToken.t.sol/contract.SonaRewardTokenTest.html">SonaRewardTokenTest</a></li><li class="chapter-item "><a href="../../../contracts/test/SonaRewards.t.sol/contract.SonaTestRewards.html">SonaTestRewards</a></li><li class="chapter-item "><a href="../../../contracts/test/Util.sol/contract.Util.html">Util</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/utils/index.html">❱ utils</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/utils/AddressableTokenId.sol/library.AddressableTokenId.html">AddressableTokenId</a></li><li class="chapter-item "><a href="../../../contracts/utils/Clones.sol/error.CreateError.html">CreateError</a></li><li class="chapter-item "><a href="../../../contracts/utils/Clones.sol/error.Create2Error.html">Create2Error</a></li><li class="chapter-item "><a href="../../../contracts/utils/Clones.sol/library.Clones.html">Clones</a></li><li class="chapter-item "><a href="../../../contracts/utils/ZeroCheck.sol/library.ZeroCheck.html">ZeroCheck</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/SonaReserveAuction.sol/contract.SonaReserveAuction.html">SonaReserveAuction</a></li><li class="chapter-item "><a href="../../../contracts/SonaRewardToken.sol/contract.SonaRewardToken.html">SonaRewardToken</a></li><li class="chapter-item "><a href="../../../contracts/SonaRewards.sol/contract.SonaRewards.html">SonaRewards</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Sona Protocol</h1>
+
+                    <div class="right-buttons">
+                        <a href="../../../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/sonastream/core" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="splitmain"><a class="header" href="#splitmain">SplitMain</a></h1>
+<p><a href="https://github.com/sonastream/core/blob/7c2284c734e2c8a2224e94ea1880647f1e8a0962/contracts/payout/SplitMain.sol">Git Source</a></p>
+<p><strong>Inherits:</strong>
+<a href="/contracts/payout/interfaces/ISplitMain.sol/interface.ISplitMain.html">ISplitMain</a></p>
+<p><strong>Author:</strong>
+0xSplits <a href="mailto:will@0xSplits.xyz">will@0xSplits.xyz</a></p>
+<p>A composable and gas-efficient protocol for deploying splitter contracts.</p>
+<p><em>Split recipients, ownerships, and keeper fees are stored onchain as calldata &amp; re-passed as args / validated
+via hashing when needed. Each split gets its own address &amp; proxy for maximum composability with other contracts onchain.
+For these proxies, we extended EIP-1167 Minimal Proxy Contract to avoid <code>DELEGATECALL</code> inside <code>receive()</code> to accept
+hard gas-capped <code>sends</code> &amp; <code>transfers</code>.</em></p>
+<h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
+<h3 id="percentage_scale"><a class="header" href="#percentage_scale">PERCENTAGE_SCALE</a></h3>
+<p>constant to scale uints into percentages (1e6 == 100%)</p>
+<pre><code class="language-solidity">uint256 public constant PERCENTAGE_SCALE = 1e6;
+</code></pre>
+<h3 id="_max_distributor_fee"><a class="header" href="#_max_distributor_fee">_MAX_DISTRIBUTOR_FEE</a></h3>
+<p>maximum distributor fee; 1e5 = 10%/// PERCENTAGE_SCALE</p>
+<pre><code class="language-solidity">uint256 internal constant _MAX_DISTRIBUTOR_FEE = 1e5;
+</code></pre>
+<h3 id="walletimplementation"><a class="header" href="#walletimplementation">walletImplementation</a></h3>
+<p>address of wallet implementation for split proxies</p>
+<pre><code class="language-solidity">address public immutable override walletImplementation;
+</code></pre>
+<h3 id="_ethbalances"><a class="header" href="#_ethbalances">_ethBalances</a></h3>
+<p>mapping to account ETH balances</p>
+<pre><code class="language-solidity">mapping(address =&gt; uint256) internal _ethBalances;
+</code></pre>
+<h3 id="_erc20balances"><a class="header" href="#_erc20balances">_erc20Balances</a></h3>
+<p>mapping to account ERC20 balances</p>
+<pre><code class="language-solidity">mapping(ERC20 =&gt; mapping(address =&gt; uint256)) internal _erc20Balances;
+</code></pre>
+<h3 id="_splits"><a class="header" href="#_splits">_splits</a></h3>
+<p>mapping to Split metadata</p>
+<pre><code class="language-solidity">mapping(address =&gt; Split) internal _splits;
+</code></pre>
+<h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
+<h3 id="onlysplitcontroller"><a class="header" href="#onlysplitcontroller">onlySplitController</a></h3>
+<p>Reverts if the sender doesn't own the split <code>split</code></p>
+<pre><code class="language-solidity">modifier onlySplitController(address split);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address to check for control</td></tr>
+</tbody></table>
+</div>
+<h3 id="onlysplitnewpotentialcontroller"><a class="header" href="#onlysplitnewpotentialcontroller">onlySplitNewPotentialController</a></h3>
+<p>Reverts if the sender isn't the new potential controller of split <code>split</code></p>
+<pre><code class="language-solidity">modifier onlySplitNewPotentialController(address split);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address to check for new potential control</td></tr>
+</tbody></table>
+</div>
+<h3 id="validsplit"><a class="header" href="#validsplit">validSplit</a></h3>
+<p>Reverts if the split with recipients represented by <code>accounts</code> and <code>percentAllocations</code> is malformed</p>
+<pre><code class="language-solidity">modifier validSplit(
+    address[] memory accounts,
+    uint32[] memory percentAllocations,
+    uint32 distributorFee
+);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+</tbody></table>
+</div>
+<h3 id="validnewcontroller"><a class="header" href="#validnewcontroller">validNewController</a></h3>
+<p>Reverts if <code>newController</code> is the zero address</p>
+<pre><code class="language-solidity">modifier validNewController(address newController);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>newController</code></td><td><code>address</code></td><td>Proposed new controlling address</td></tr>
+</tbody></table>
+</div>
+<h3 id="constructor"><a class="header" href="#constructor">constructor</a></h3>
+<pre><code class="language-solidity">constructor();
+</code></pre>
+<h3 id="receive"><a class="header" href="#receive">receive</a></h3>
+<p>Receive ETH</p>
+<p><em>Used by split proxies in <code>distributeETH</code> to transfer ETH to <code>SplitMain</code>
+Funds sent outside of <code>distributeETH</code> will be unrecoverable</em></p>
+<pre><code class="language-solidity">receive() external payable;
+</code></pre>
+<h3 id="createsplit"><a class="header" href="#createsplit">createSplit</a></h3>
+<p>Creates a new split with recipients <code>accounts</code> with ownerships <code>percentAllocations</code>, a keeper fee for splitting of <code>distributorFee</code> and the controlling address <code>controller</code></p>
+<pre><code class="language-solidity">function createSplit(
+    address[] calldata accounts,
+    uint32[] calldata percentAllocations,
+    uint32 distributorFee,
+    address controller
+)
+    external
+    override
+    validSplit(accounts, percentAllocations, distributorFee)
+    returns (address split);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+<tr><td><code>controller</code></td><td><code>address</code></td><td>Controlling address (0x0 if immutable)</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of newly created split</td></tr>
+</tbody></table>
+</div>
+<h3 id="predictimmutablesplitaddress"><a class="header" href="#predictimmutablesplitaddress">predictImmutableSplitAddress</a></h3>
+<p>Predicts the address for an immutable split created with recipients <code>accounts</code> with ownerships <code>percentAllocations</code> and a keeper fee for splitting of <code>distributorFee</code></p>
+<pre><code class="language-solidity">function predictImmutableSplitAddress(
+    address[] calldata accounts,
+    uint32[] calldata percentAllocations,
+    uint32 distributorFee
+)
+    external
+    view
+    override
+    validSplit(accounts, percentAllocations, distributorFee)
+    returns (address split);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Predicted address of such an immutable split</td></tr>
+</tbody></table>
+</div>
+<h3 id="updatesplit"><a class="header" href="#updatesplit">updateSplit</a></h3>
+<p>Updates an existing split with recipients <code>accounts</code> with ownerships <code>percentAllocations</code> and a keeper fee for splitting of <code>distributorFee</code></p>
+<pre><code class="language-solidity">function updateSplit(
+    address split,
+    address[] calldata accounts,
+    uint32[] calldata percentAllocations,
+    uint32 distributorFee
+)
+    external
+    override
+    onlySplitController(split)
+    validSplit(accounts, percentAllocations, distributorFee);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of mutable split to update</td></tr>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+</tbody></table>
+</div>
+<h3 id="transfercontrol"><a class="header" href="#transfercontrol">transferControl</a></h3>
+<p>Begins transfer of the controlling address of mutable split <code>split</code> to <code>newController</code></p>
+<p><em>Two-step control transfer inspired by <a href="https://github.com/dharma-eng/dharma-smart-wallet/blob/master/contracts/helpers/TwoStepOwnable.sol">dharma</a></em></p>
+<pre><code class="language-solidity">function transferControl(address split, address newController)
+    external
+    override
+    onlySplitController(split)
+    validNewController(newController);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of mutable split to transfer control for</td></tr>
+<tr><td><code>newController</code></td><td><code>address</code></td><td>Address to begin transferring control to</td></tr>
+</tbody></table>
+</div>
+<h3 id="cancelcontroltransfer"><a class="header" href="#cancelcontroltransfer">cancelControlTransfer</a></h3>
+<p>Cancels transfer of the controlling address of mutable split <code>split</code></p>
+<pre><code class="language-solidity">function cancelControlTransfer(address split)
+    external
+    override
+    onlySplitController(split);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of mutable split to cancel control transfer for</td></tr>
+</tbody></table>
+</div>
+<h3 id="acceptcontrol"><a class="header" href="#acceptcontrol">acceptControl</a></h3>
+<p>Accepts transfer of the controlling address of mutable split <code>split</code></p>
+<pre><code class="language-solidity">function acceptControl(address split)
+    external
+    override
+    onlySplitNewPotentialController(split);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of mutable split to accept control transfer for</td></tr>
+</tbody></table>
+</div>
+<h3 id="makesplitimmutable"><a class="header" href="#makesplitimmutable">makeSplitImmutable</a></h3>
+<p>Turns mutable split <code>split</code> immutable</p>
+<pre><code class="language-solidity">function makeSplitImmutable(address split)
+    external
+    override
+    onlySplitController(split);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of mutable split to turn immutable</td></tr>
+</tbody></table>
+</div>
+<h3 id="distributeeth"><a class="header" href="#distributeeth">distributeETH</a></h3>
+<p>Distributes the ETH balance for split <code>split</code></p>
+<p><em><code>accounts</code>, <code>percentAllocations</code>, and <code>distributorFee</code> are verified by hashing
+&amp; comparing to the hash in storage associated with split <code>split</code></em></p>
+<pre><code class="language-solidity">function distributeETH(
+    address split,
+    address[] calldata accounts,
+    uint32[] calldata percentAllocations,
+    uint32 distributorFee,
+    address distributorAddress
+) external override validSplit(accounts, percentAllocations, distributorFee);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of split to distribute balance for</td></tr>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+<tr><td><code>distributorAddress</code></td><td><code>address</code></td><td>Address to pay <code>distributorFee</code> to</td></tr>
+</tbody></table>
+</div>
+<h3 id="updateanddistributeeth"><a class="header" href="#updateanddistributeeth">updateAndDistributeETH</a></h3>
+<p>Updates &amp; distributes the ETH balance for split <code>split</code></p>
+<p><em>only callable by SplitController</em></p>
+<pre><code class="language-solidity">function updateAndDistributeETH(
+    address split,
+    address[] calldata accounts,
+    uint32[] calldata percentAllocations,
+    uint32 distributorFee,
+    address distributorAddress
+)
+    external
+    override
+    onlySplitController(split)
+    validSplit(accounts, percentAllocations, distributorFee);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of split to distribute balance for</td></tr>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+<tr><td><code>distributorAddress</code></td><td><code>address</code></td><td>Address to pay <code>distributorFee</code> to</td></tr>
+</tbody></table>
+</div>
+<h3 id="distributeerc20"><a class="header" href="#distributeerc20">distributeERC20</a></h3>
+<p>Distributes the ERC20 <code>token</code> balance for split <code>split</code></p>
+<p><em><code>accounts</code>, <code>percentAllocations</code>, and <code>distributorFee</code> are verified by hashing
+&amp; comparing to the hash in storage associated with split <code>split</code></em></p>
+<p><em>pernicious ERC20s may cause overflow in this function inside
+_scaleAmountByPercentage, but results do not affect ETH &amp; other ERC20 balances</em></p>
+<pre><code class="language-solidity">function distributeERC20(
+    address split,
+    ERC20 token,
+    address[] calldata accounts,
+    uint32[] calldata percentAllocations,
+    uint32 distributorFee,
+    address distributorAddress
+) external override validSplit(accounts, percentAllocations, distributorFee);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of split to distribute balance for</td></tr>
+<tr><td><code>token</code></td><td><code>ERC20</code></td><td>Address of ERC20 to distribute balance for</td></tr>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+<tr><td><code>distributorAddress</code></td><td><code>address</code></td><td>Address to pay <code>distributorFee</code> to</td></tr>
+</tbody></table>
+</div>
+<h3 id="updateanddistributeerc20"><a class="header" href="#updateanddistributeerc20">updateAndDistributeERC20</a></h3>
+<p>Updates &amp; distributes the ERC20 <code>token</code> balance for split <code>split</code></p>
+<p><em>only callable by SplitController</em></p>
+<p><em>pernicious ERC20s may cause overflow in this function inside
+_scaleAmountByPercentage, but results do not affect ETH &amp; other ERC20 balances</em></p>
+<pre><code class="language-solidity">function updateAndDistributeERC20(
+    address split,
+    ERC20 token,
+    address[] calldata accounts,
+    uint32[] calldata percentAllocations,
+    uint32 distributorFee,
+    address distributorAddress
+)
+    external
+    override
+    onlySplitController(split)
+    validSplit(accounts, percentAllocations, distributorFee);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of split to distribute balance for</td></tr>
+<tr><td><code>token</code></td><td><code>ERC20</code></td><td>Address of ERC20 to distribute balance for</td></tr>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+<tr><td><code>distributorAddress</code></td><td><code>address</code></td><td>Address to pay <code>distributorFee</code> to</td></tr>
+</tbody></table>
+</div>
+<h3 id="withdraw"><a class="header" href="#withdraw">withdraw</a></h3>
+<p>Withdraw ETH &amp;/ ERC20 balances for account <code>account</code></p>
+<pre><code class="language-solidity">function withdraw(address account, uint256 withdrawETH, ERC20[] calldata tokens)
+    external
+    override;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>account</code></td><td><code>address</code></td><td>Address to withdraw on behalf of</td></tr>
+<tr><td><code>withdrawETH</code></td><td><code>uint256</code></td><td>Withdraw all ETH if nonzero</td></tr>
+<tr><td><code>tokens</code></td><td><code>ERC20[]</code></td><td>Addresses of ERC20s to withdraw</td></tr>
+</tbody></table>
+</div>
+<h3 id="gethash"><a class="header" href="#gethash">getHash</a></h3>
+<p>FUNCTIONS - VIEWS</p>
+<p>Returns the current hash of split <code>split</code></p>
+<pre><code class="language-solidity">function getHash(address split) external view returns (bytes32);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Split to return hash for</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>&lt;none&gt;</code></td><td><code>bytes32</code></td><td>Split's hash</td></tr>
+</tbody></table>
+</div>
+<h3 id="getcontroller"><a class="header" href="#getcontroller">getController</a></h3>
+<p>Returns the current controller of split <code>split</code></p>
+<pre><code class="language-solidity">function getController(address split) external view returns (address);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Split to return controller for</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>&lt;none&gt;</code></td><td><code>address</code></td><td>Split's controller</td></tr>
+</tbody></table>
+</div>
+<h3 id="getnewpotentialcontroller"><a class="header" href="#getnewpotentialcontroller">getNewPotentialController</a></h3>
+<p>Returns the current newPotentialController of split <code>split</code></p>
+<pre><code class="language-solidity">function getNewPotentialController(address split)
+    external
+    view
+    returns (address);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Split to return newPotentialController for</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>&lt;none&gt;</code></td><td><code>address</code></td><td>Split's newPotentialController</td></tr>
+</tbody></table>
+</div>
+<h3 id="getethbalance"><a class="header" href="#getethbalance">getETHBalance</a></h3>
+<p>Returns the current ETH balance of account <code>account</code></p>
+<pre><code class="language-solidity">function getETHBalance(address account) external view returns (uint256);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>account</code></td><td><code>address</code></td><td>Account to return ETH balance for</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Account's balance of ETH</td></tr>
+</tbody></table>
+</div>
+<h3 id="geterc20balance"><a class="header" href="#geterc20balance">getERC20Balance</a></h3>
+<p>Returns the ERC20 balance of token <code>token</code> for account <code>account</code></p>
+<pre><code class="language-solidity">function getERC20Balance(address account, ERC20 token)
+    external
+    view
+    returns (uint256);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>account</code></td><td><code>address</code></td><td>Account to return ERC20 <code>token</code> balance for</td></tr>
+<tr><td><code>token</code></td><td><code>ERC20</code></td><td>Token to return balance for</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td>Account's balance of <code>token</code></td></tr>
+</tbody></table>
+</div>
+<h3 id="_getsum"><a class="header" href="#_getsum">_getSum</a></h3>
+<p>FUNCTIONS - PRIVATE &amp; INTERNAL</p>
+<p>Sums array of uint32s</p>
+<pre><code class="language-solidity">function _getSum(uint32[] memory numbers) internal pure returns (uint32 sum);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>numbers</code></td><td><code>uint32[]</code></td><td>Array of uint32s to sum</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>sum</code></td><td><code>uint32</code></td><td>Sum of <code>numbers</code>.</td></tr>
+</tbody></table>
+</div>
+<h3 id="_hashsplit"><a class="header" href="#_hashsplit">_hashSplit</a></h3>
+<p>Hashes a split</p>
+<pre><code class="language-solidity">function _hashSplit(
+    address[] memory accounts,
+    uint32[] memory percentAllocations,
+    uint32 distributorFee
+) internal pure returns (bytes32);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>&lt;none&gt;</code></td><td><code>bytes32</code></td><td>computedHash Hash of the split.</td></tr>
+</tbody></table>
+</div>
+<h3 id="_updatesplit"><a class="header" href="#_updatesplit">_updateSplit</a></h3>
+<p>Updates an existing split with recipients <code>accounts</code> with ownerships <code>percentAllocations</code> and a keeper fee for splitting of <code>distributorFee</code></p>
+<pre><code class="language-solidity">function _updateSplit(
+    address split,
+    address[] calldata accounts,
+    uint32[] calldata percentAllocations,
+    uint32 distributorFee
+) internal;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of mutable split to update</td></tr>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+</tbody></table>
+</div>
+<h3 id="_validsplithash"><a class="header" href="#_validsplithash">_validSplitHash</a></h3>
+<p>Checks hash from <code>accounts</code>, <code>percentAllocations</code>, and <code>distributorFee</code> against the hash stored for <code>split</code></p>
+<pre><code class="language-solidity">function _validSplitHash(
+    address split,
+    address[] memory accounts,
+    uint32[] memory percentAllocations,
+    uint32 distributorFee
+) internal view;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of hash to check</td></tr>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+</tbody></table>
+</div>
+<h3 id="_distributeeth"><a class="header" href="#_distributeeth">_distributeETH</a></h3>
+<p>Distributes the ETH balance for split <code>split</code></p>
+<p><em><code>accounts</code>, <code>percentAllocations</code>, and <code>distributorFee</code> must be verified before calling</em></p>
+<pre><code class="language-solidity">function _distributeETH(
+    address split,
+    address[] memory accounts,
+    uint32[] memory percentAllocations,
+    uint32 distributorFee,
+    address distributorAddress
+) internal;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of split to distribute balance for</td></tr>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+<tr><td><code>distributorAddress</code></td><td><code>address</code></td><td>Address to pay <code>distributorFee</code> to</td></tr>
+</tbody></table>
+</div>
+<h3 id="_distributeerc20"><a class="header" href="#_distributeerc20">_distributeERC20</a></h3>
+<p>Distributes the ERC20 <code>token</code> balance for split <code>split</code></p>
+<p><em><code>accounts</code>, <code>percentAllocations</code>, and <code>distributorFee</code> must be verified before calling</em></p>
+<p><em>pernicious ERC20s may cause overflow in this function inside
+_scaleAmountByPercentage, but results do not affect ETH &amp; other ERC20 balances</em></p>
+<pre><code class="language-solidity">function _distributeERC20(
+    address split,
+    ERC20 token,
+    address[] memory accounts,
+    uint32[] memory percentAllocations,
+    uint32 distributorFee,
+    address distributorAddress
+) internal;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>split</code></td><td><code>address</code></td><td>Address of split to distribute balance for</td></tr>
+<tr><td><code>token</code></td><td><code>ERC20</code></td><td>Address of ERC20 to distribute balance for</td></tr>
+<tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
+<tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
+<tr><td><code>distributorFee</code></td><td><code>uint32</code></td><td>Keeper fee paid by split to cover gas costs of distribution</td></tr>
+<tr><td><code>distributorAddress</code></td><td><code>address</code></td><td>Address to pay <code>distributorFee</code> to</td></tr>
+</tbody></table>
+</div>
+<h3 id="_scaleamountbypercentage"><a class="header" href="#_scaleamountbypercentage">_scaleAmountByPercentage</a></h3>
+<p>Multiplies an amount by a scaled percentage</p>
+<pre><code class="language-solidity">function _scaleAmountByPercentage(uint256 amount, uint256 scaledPercent)
+    internal
+    pure
+    returns (uint256 scaledAmount);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>amount</code></td><td><code>uint256</code></td><td>Amount to get <code>scaledPercentage</code> of</td></tr>
+<tr><td><code>scaledPercent</code></td><td><code>uint256</code></td><td>Percent scaled by PERCENTAGE_SCALE</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>scaledAmount</code></td><td><code>uint256</code></td><td>Percent of <code>amount</code>.</td></tr>
+</tbody></table>
+</div>
+<h3 id="_withdraw"><a class="header" href="#_withdraw">_withdraw</a></h3>
+<p>Withdraw ETH for account <code>account</code></p>
+<pre><code class="language-solidity">function _withdraw(address account) internal returns (uint256 withdrawn);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>account</code></td><td><code>address</code></td><td>Account to withdrawn ETH for</td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>withdrawn</code></td><td><code>uint256</code></td><td>Amount of ETH withdrawn</td></tr>
+</tbody></table>
+</div>
+<h3 id="_withdrawerc20"><a class="header" href="#_withdrawerc20">_withdrawERC20</a></h3>
+<p>Withdraw ERC20 <code>token</code> for account <code>account</code></p>
+<pre><code class="language-solidity">function _withdrawERC20(address account, ERC20 token)
+    internal
+    returns (uint256 withdrawn);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>account</code></td><td><code>address</code></td><td>Account to withdrawn ERC20 <code>token</code> for</td></tr>
+<tr><td><code>token</code></td><td><code>ERC20</code></td><td></td></tr>
+</tbody></table>
+</div>
+<p><strong>Returns</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>withdrawn</code></td><td><code>uint256</code></td><td>Amount of ERC20 <code>token</code> withdrawn</td></tr>
+</tbody></table>
+</div>
+<h2 id="structs"><a class="header" href="#structs">Structs</a></h2>
+<h3 id="split"><a class="header" href="#split">Split</a></h3>
+<p>holds Split metadata</p>
+<pre><code class="language-solidity">struct Split {
+    bytes32 hash;
+    address controller;
+    address newPotentialController;
+}
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../../../contracts/payout/SplitMain.sol/error.InvalidNewController.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="../../../contracts/payout/SplitWallet.sol/error.Unauthorized.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../../../contracts/payout/SplitMain.sol/error.InvalidNewController.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="../../../contracts/payout/SplitWallet.sol/error.Unauthorized.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../../../elasticlunr.min.js"></script>
+        <script src="../../../mark.min.js"></script>
+        <script src="../../../searcher.js"></script>
+
+        <script src="../../../clipboard.min.js"></script>
+        <script src="../../../highlight.js"></script>
+        <script src="../../../book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="../../../solidity.min.js"></script>
+
+
+    </div>
+    </body>
+</html>
