@@ -171,7 +171,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonarewards"><a class="header" href="#sonarewards">SonaRewards</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/f467d688c07ed519cce56912a5bb65177d0ee32f/contracts/SonaRewards.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/805fae1096c3fc4f67098cc86cbd712a2ef8e216/contracts/SonaRewards.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 Initializable, <a href="/contracts/access/SonaAdmin.sol/contract.SonaAdmin.html">SonaAdmin</a></p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
@@ -204,6 +204,9 @@ Initializable, <a href="/contracts/access/SonaAdmin.sol/contract.SonaAdmin.html"
 <h3 id="_claimlookupurl"><a class="header" href="#_claimlookupurl">_claimLookupUrl</a></h3>
 <pre><code class="language-solidity">string private _claimLookupUrl;
 </code></pre>
+<h3 id="_splitmain"><a class="header" href="#_splitmain">_splitMain</a></h3>
+<pre><code class="language-solidity">ISplitMain private _splitMain;
+</code></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="constructor"><a class="header" href="#constructor">constructor</a></h3>
 <p><em>a proxiable base contract should not be initializable</em></p>
@@ -218,7 +221,8 @@ Initializable, <a href="/contracts/access/SonaAdmin.sol/contract.SonaAdmin.html"
     IERC20 paymentToken_,
     IWETH wETHToken_,
     address rewardVault_,
-    string calldata claimLookupUrl_
+    string calldata claimLookupUrl_,
+    ISplitMain splitMain_
 ) public initializer;
 </code></pre>
 <p><strong>Parameters</strong></p>
@@ -229,6 +233,7 @@ Initializable, <a href="/contracts/access/SonaAdmin.sol/contract.SonaAdmin.html"
 <tr><td><code>wETHToken_</code></td><td><code>IWETH</code></td><td>The address of the wETH token if Collectors and Artists earn ETH</td></tr>
 <tr><td><code>rewardVault_</code></td><td><code>address</code></td><td>The holder of the reward token that has granted this contract enough of an allowance to operate</td></tr>
 <tr><td><code>claimLookupUrl_</code></td><td><code>string</code></td><td>The templated url returned via <code>OffchainLookup</code>. Must be EIP-3668 compliant</td></tr>
+<tr><td><code>splitMain_</code></td><td><code>ISplitMain</code></td><td></td></tr>
 </tbody></table>
 </div>
 <h3 id="receive"><a class="header" href="#receive">receive</a></h3>
@@ -289,6 +294,16 @@ Initializable, <a href="/contracts/access/SonaAdmin.sol/contract.SonaAdmin.html"
 <tr><td><code>_amounts</code></td><td><code>uint256[]</code></td><td>the amounts to be claimed from each respective root</td></tr>
 </tbody></table>
 </div>
+<h3 id="claimrewardsanddistributepayout"><a class="header" href="#claimrewardsanddistributepayout">claimRewardsAndDistributePayout</a></h3>
+<pre><code class="language-solidity">function claimRewardsAndDistributePayout(
+    uint256 _tokenId,
+    uint256[] calldata _rootIds,
+    bytes32[][] calldata _proofs,
+    uint256[] calldata _amounts,
+    address[] calldata _accounts,
+    uint32[] calldata _percentAllocations
+) public;
+</code></pre>
 <h3 id="updateintegrations"><a class="header" href="#updateintegrations">updateIntegrations</a></h3>
 <p>the contract owner can update state variables</p>
 <pre><code class="language-solidity">function updateIntegrations(
@@ -296,7 +311,8 @@ Initializable, <a href="/contracts/access/SonaAdmin.sol/contract.SonaAdmin.html"
     IERC20 paymentToken_,
     IWETH wETHToken_,
     address rewardVault_,
-    string calldata claimLookupUrl_
+    string calldata claimLookupUrl_,
+    ISplitMain splitMain_
 ) public onlySonaAdmin;
 </code></pre>
 <p><strong>Parameters</strong></p>
@@ -306,6 +322,7 @@ Initializable, <a href="/contracts/access/SonaAdmin.sol/contract.SonaAdmin.html"
 <tr><td><code>wETHToken_</code></td><td><code>IWETH</code></td><td>The address of the wETH token if Collectors and Artists earn ETH</td></tr>
 <tr><td><code>rewardVault_</code></td><td><code>address</code></td><td>The holder of the reward token that has granted this contract enough of an allowance to operate</td></tr>
 <tr><td><code>claimLookupUrl_</code></td><td><code>string</code></td><td>The templated url returned via <code>OffchainLookup</code>. Must be EIP-3668 compliant</td></tr>
+<tr><td><code>splitMain_</code></td><td><code>ISplitMain</code></td><td></td></tr>
 </tbody></table>
 </div>
 <h3 id="_claimrewardsone"><a class="header" href="#_claimrewardsone">_claimRewardsOne</a></h3>
@@ -316,13 +333,31 @@ Initializable, <a href="/contracts/access/SonaAdmin.sol/contract.SonaAdmin.html"
     uint256 _amount
 ) internal;
 </code></pre>
+<h3 id="_claimrewards"><a class="header" href="#_claimrewards">_claimRewards</a></h3>
+<p>collect tokens by presenting valid proofs and owning token number <code>_tokenId</code></p>
+<pre><code class="language-solidity">function _claimRewards(
+    uint256 _tokenId,
+    uint256[] calldata _rootIds,
+    bytes32[][] calldata _proofs,
+    uint256[] calldata _amounts
+) internal;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The SonaRewardToken for which rewards are being claimed</td></tr>
+<tr><td><code>_rootIds</code></td><td><code>uint256[]</code></td><td>the index numbers of the roots to prove against</td></tr>
+<tr><td><code>_proofs</code></td><td><code>bytes32[][]</code></td><td>the proofs for each respective root</td></tr>
+<tr><td><code>_amounts</code></td><td><code>uint256[]</code></td><td>the amounts to be claimed from each respective root</td></tr>
+</tbody></table>
+</div>
 <h3 id="_updateintegrations"><a class="header" href="#_updateintegrations">_updateIntegrations</a></h3>
 <pre><code class="language-solidity">function _updateIntegrations(
     SonaRewardToken sonaRewardToken_,
     IERC20 paymentToken_,
     IWETH wETHToken_,
     address rewardVault_,
-    string calldata claimLookupUrl_
+    string calldata claimLookupUrl_,
+    ISplitMain splitMain_
 ) internal;
 </code></pre>
 <h3 id="_getpayoutaddress"><a class="header" href="#_getpayoutaddress">_getPayoutAddress</a></h3>
@@ -338,7 +373,8 @@ Initializable, <a href="/contracts/access/SonaAdmin.sol/contract.SonaAdmin.html"
     address paymentToken,
     address wETHToken,
     address rewardVault,
-    string claimLookupUrl
+    string claimLookupUrl,
+    ISplitMain splitMain
 );
 </code></pre>
 <h3 id="rewardrootcreated"><a class="header" href="#rewardrootcreated">RewardRootCreated</a></h3>

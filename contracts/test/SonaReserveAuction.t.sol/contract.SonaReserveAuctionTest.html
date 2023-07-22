@@ -171,7 +171,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonareserveauctiontest"><a class="header" href="#sonareserveauctiontest">SonaReserveAuctionTest</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/f467d688c07ed519cce56912a5bb65177d0ee32f/contracts/test/SonaReserveAuction.t.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/805fae1096c3fc4f67098cc86cbd712a2ef8e216/contracts/test/SonaReserveAuction.t.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/test/Util.sol/contract.Util.html">Util</a>, <a href="/contracts/SonaReserveAuction.sol/contract.SonaReserveAuction.html">SonaReserveAuction</a>, <a href="/contracts/test/util/SplitHelpers.t.sol/contract.SplitHelpers.html">SplitHelpers</a></p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
@@ -201,6 +201,9 @@
 </code></pre>
 <h3 id="artistpayout"><a class="header" href="#artistpayout">artistPayout</a></h3>
 <pre><code class="language-solidity">address payable public artistPayout = payable(address(25));
+</code></pre>
+<h3 id="zeropayout"><a class="header" href="#zeropayout">zeroPayout</a></h3>
+<pre><code class="language-solidity">address payable public zeroPayout = payable(address(0));
 </code></pre>
 <h3 id="tokenid"><a class="header" href="#tokenid">tokenId</a></h3>
 <pre><code class="language-solidity">uint256 public tokenId = (uint256(uint160(trackMinter)) &lt;&lt; 96) | 69;
@@ -312,6 +315,9 @@
 <h3 id="test_createduplicatefailsaftersettlement"><a class="header" href="#test_createduplicatefailsaftersettlement">test_CreateDuplicateFailsAfterSettlement</a></h3>
 <pre><code class="language-solidity">function test_CreateDuplicateFailsAfterSettlement() public;
 </code></pre>
+<h3 id="test_settlereserveauctionwithrewardspayoutset"><a class="header" href="#test_settlereserveauctionwithrewardspayoutset">test_SettleReserveAuctionWithrewardsPayoutSet</a></h3>
+<pre><code class="language-solidity">function test_SettleReserveAuctionWithrewardsPayoutSet() public;
+</code></pre>
 <h3 id="test_settlereserveauction"><a class="header" href="#test_settlereserveauction">test_SettleReserveAuction</a></h3>
 <pre><code class="language-solidity">function test_SettleReserveAuction() public;
 </code></pre>
@@ -418,6 +424,12 @@
     private
     view
     returns (bytes32);
+</code></pre>
+<h2 id="events"><a class="header" href="#events">Events</a></h2>
+<h3 id="rewardtokenmetadataupdated"><a class="header" href="#rewardtokenmetadataupdated">RewardTokenMetadataUpdated</a></h3>
+<pre><code class="language-solidity">event RewardTokenMetadataUpdated(
+    uint256 indexed tokenId, string txId, address payout
+);
 </code></pre>
 
                     </main>
