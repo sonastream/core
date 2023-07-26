@@ -171,7 +171,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="splitmain"><a class="header" href="#splitmain">SplitMain</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/9284226309bb42b6ccda5cc49f04a61e5949c0a9/contracts/payout/SplitMain.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/7e5f89eca398de2523c5c87e449edb580e422e06/contracts/payout/SplitMain.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/payout/interfaces/ISplitMain.sol/interface.ISplitMain.html">ISplitMain</a></p>
 <p><strong>Author:</strong>
@@ -194,16 +194,6 @@ hard gas-capped <code>sends</code> &amp; <code>transfers</code>.</em></p>
 <p>address of wallet implementation for split proxies</p>
 <pre><code class="language-solidity">address public immutable override walletImplementation;
 </code></pre>
-<h3 id="_eip712domain_typehash"><a class="header" href="#_eip712domain_typehash">_EIP712DOMAIN_TYPEHASH</a></h3>
-<pre><code class="language-solidity">bytes32 private constant _EIP712DOMAIN_TYPEHASH = keccak256(
-    &quot;EIP712Domain(string name,string version,uint256 chainId,address verifyingContract)&quot;
-);
-</code></pre>
-<h3 id="_split_typehash"><a class="header" href="#_split_typehash">_SPLIT_TYPEHASH</a></h3>
-<pre><code class="language-solidity">bytes32 private constant _SPLIT_TYPEHASH = keccak256(
-    &quot;SplitConfig(address split,address[] accounts,uint32[] percentAllocations)&quot;
-);
-</code></pre>
 <h3 id="_ethbalances"><a class="header" href="#_ethbalances">_ethBalances</a></h3>
 <p>mapping to account ETH balances</p>
 <pre><code class="language-solidity">mapping(address =&gt; uint256) internal _ethBalances;
@@ -216,23 +206,7 @@ hard gas-capped <code>sends</code> &amp; <code>transfers</code>.</em></p>
 <p>mapping to Split metadata</p>
 <pre><code class="language-solidity">mapping(address =&gt; Split) internal _splits;
 </code></pre>
-<h3 id="_domain_separator"><a class="header" href="#_domain_separator">_DOMAIN_SEPARATOR</a></h3>
-<p><em>part of the EIP-712 standard for structured data hashes</em></p>
-<pre><code class="language-solidity">bytes32 private _DOMAIN_SEPARATOR;
-</code></pre>
-<h3 id="_authorizer"><a class="header" href="#_authorizer">_authorizer</a></h3>
-<p><em>the address of the authorizing signer</em></p>
-<pre><code class="language-solidity">address private _authorizer;
-</code></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
-<h3 id="checkupdatesignature"><a class="header" href="#checkupdatesignature">checkUpdateSignature</a></h3>
-<pre><code class="language-solidity">modifier checkUpdateSignature(
-    address split,
-    address[] calldata accounts,
-    uint32[] calldata percentAllocations,
-    Signature calldata sig
-);
-</code></pre>
 <h3 id="onlysplitcontroller"><a class="header" href="#onlysplitcontroller">onlySplitController</a></h3>
 <p>Reverts if the sender doesn't own the split <code>split</code></p>
 <pre><code class="language-solidity">modifier onlySplitController(address split);
@@ -264,8 +238,17 @@ hard gas-capped <code>sends</code> &amp; <code>transfers</code>.</em></p>
 <tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
 </tbody></table>
 </div>
+<h3 id="validnewcontroller"><a class="header" href="#validnewcontroller">validNewController</a></h3>
+<p>Reverts if <code>newController</code> is the zero address</p>
+<pre><code class="language-solidity">modifier validNewController(address newController);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>newController</code></td><td><code>address</code></td><td>Proposed new controlling address</td></tr>
+</tbody></table>
+</div>
 <h3 id="constructor"><a class="header" href="#constructor">constructor</a></h3>
-<pre><code class="language-solidity">constructor(address authorizer_);
+<pre><code class="language-solidity">constructor();
 </code></pre>
 <h3 id="receive"><a class="header" href="#receive">receive</a></h3>
 <p>Receive ETH</p>
@@ -300,13 +283,11 @@ Funds sent outside of <code>distributeETH</code> will be unrecoverable</em></p>
 <pre><code class="language-solidity">function updateSplit(
     address split,
     address[] calldata accounts,
-    uint32[] calldata percentAllocations,
-    Signature calldata sig
+    uint32[] calldata percentAllocations
 )
     external
     override
     onlySplitController(split)
-    checkUpdateSignature(split, accounts, percentAllocations, sig)
     validSplit(accounts, percentAllocations);
 </code></pre>
 <p><strong>Parameters</strong></p>
@@ -314,7 +295,6 @@ Funds sent outside of <code>distributeETH</code> will be unrecoverable</em></p>
 <tr><td><code>split</code></td><td><code>address</code></td><td>Address of mutable split to update</td></tr>
 <tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
 <tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
-<tr><td><code>sig</code></td><td><code>Signature</code></td><td></td></tr>
 </tbody></table>
 </div>
 <h3 id="distributeeth"><a class="header" href="#distributeeth">distributeETH</a></h3>
@@ -340,12 +320,10 @@ Funds sent outside of <code>distributeETH</code> will be unrecoverable</em></p>
 <pre><code class="language-solidity">function updateAndDistributeETH(
     address split,
     address[] calldata accounts,
-    uint32[] calldata percentAllocations,
-    Signature calldata sig
+    uint32[] calldata percentAllocations
 )
     external
     override
-    checkUpdateSignature(split, accounts, percentAllocations, sig)
     onlySplitController(split)
     validSplit(accounts, percentAllocations);
 </code></pre>
@@ -354,7 +332,6 @@ Funds sent outside of <code>distributeETH</code> will be unrecoverable</em></p>
 <tr><td><code>split</code></td><td><code>address</code></td><td>Address of split to distribute balance for</td></tr>
 <tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
 <tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
-<tr><td><code>sig</code></td><td><code>Signature</code></td><td></td></tr>
 </tbody></table>
 </div>
 <h3 id="distributeerc20"><a class="header" href="#distributeerc20">distributeERC20</a></h3>
@@ -387,13 +364,12 @@ _scaleAmountByPercentage, but results do not affect ETH &amp; other ERC20 balanc
     address split,
     IERC20 token,
     address[] calldata accounts,
-    uint32[] calldata percentAllocations,
-    Signature calldata sig
+    uint32[] calldata percentAllocations
 )
     external
     override
     onlySplitController(split)
-    checkUpdateSignature(split, accounts, percentAllocations, sig);
+    validSplit(accounts, percentAllocations);
 </code></pre>
 <p><strong>Parameters</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
@@ -401,7 +377,6 @@ _scaleAmountByPercentage, but results do not affect ETH &amp; other ERC20 balanc
 <tr><td><code>token</code></td><td><code>IERC20</code></td><td>Address of ERC20 to distribute balance for</td></tr>
 <tr><td><code>accounts</code></td><td><code>address[]</code></td><td>Ordered, unique list of addresses with ownership in the split</td></tr>
 <tr><td><code>percentAllocations</code></td><td><code>uint32[]</code></td><td>Percent allocations associated with each address</td></tr>
-<tr><td><code>sig</code></td><td><code>Signature</code></td><td></td></tr>
 </tbody></table>
 </div>
 <h3 id="withdraw"><a class="header" href="#withdraw">withdraw</a></h3>
@@ -446,23 +421,6 @@ _scaleAmountByPercentage, but results do not affect ETH &amp; other ERC20 balanc
 <p><strong>Returns</strong></p>
 <div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
 <tr><td><code>&lt;none&gt;</code></td><td><code>address</code></td><td>Split's controller</td></tr>
-</tbody></table>
-</div>
-<h3 id="getnewpotentialcontroller"><a class="header" href="#getnewpotentialcontroller">getNewPotentialController</a></h3>
-<p>Returns the current newPotentialController of split <code>split</code></p>
-<pre><code class="language-solidity">function getNewPotentialController(address split)
-    external
-    view
-    returns (address);
-</code></pre>
-<p><strong>Parameters</strong></p>
-<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>split</code></td><td><code>address</code></td><td>Split to return newPotentialController for</td></tr>
-</tbody></table>
-</div>
-<p><strong>Returns</strong></p>
-<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
-<tr><td><code>&lt;none&gt;</code></td><td><code>address</code></td><td>Split's newPotentialController</td></tr>
 </tbody></table>
 </div>
 <h3 id="getethbalance"><a class="header" href="#getethbalance">getETHBalance</a></h3>
@@ -670,33 +628,6 @@ _scaleAmountByPercentage, but results do not affect ETH &amp; other ERC20 balanc
 <tr><td><code>withdrawn</code></td><td><code>uint256</code></td><td>Amount of ERC20 <code>token</code> withdrawn</td></tr>
 </tbody></table>
 </div>
-<h3 id="_verify"><a class="header" href="#_verify">_verify</a></h3>
-<pre><code class="language-solidity">function _verify(
-    address split,
-    address[] calldata accounts,
-    uint32[] calldata percentAllocations,
-    uint8 v,
-    bytes32 r,
-    bytes32 s
-) internal view returns (bool valid);
-</code></pre>
-<h3 id="_recoveraddress"><a class="header" href="#_recoveraddress">_recoverAddress</a></h3>
-<pre><code class="language-solidity">function _recoverAddress(
-    address split,
-    address[] calldata accounts,
-    uint32[] calldata percentAllocations,
-    uint8 v,
-    bytes32 r,
-    bytes32 s
-) internal view returns (address recovered);
-</code></pre>
-<h3 id="_hashsplitconfig"><a class="header" href="#_hashsplitconfig">_hashSplitConfig</a></h3>
-<pre><code class="language-solidity">function _hashSplitConfig(
-    address split,
-    address[] calldata accounts,
-    uint32[] calldata percentAllocations
-) internal pure returns (bytes32);
-</code></pre>
 <h2 id="errors"><a class="header" href="#errors">Errors</a></h2>
 <h3 id="unauthorized"><a class="header" href="#unauthorized">Unauthorized</a></h3>
 <p>ERRORS</p>
