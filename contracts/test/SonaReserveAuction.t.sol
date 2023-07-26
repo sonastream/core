@@ -53,7 +53,7 @@ contract SonaReserveAuctionTest is Util, SonaReserveAuction, SplitHelpers {
 	ContractBidderMock public contractBidder;
 
 	function setUp() public {
-		splitMainImpl = new SplitMain(authorizer);
+		splitMainImpl = new SplitMain();
 		vm.startPrank(rootOwner);
 		// WARNING: deployment order matters for the signatures below
 		SonaRewardToken rewardTokenBase = new SonaRewardToken();
@@ -262,7 +262,9 @@ contract SonaReserveAuctionTest is Util, SonaReserveAuction, SplitHelpers {
 		signatures[0].v = 69;
 
 		vm.startPrank(trackMinter);
-		vm.expectRevert(ISonaAuthorizer.SonaAuthorizer_InvalidSignature.selector);
+		vm.expectRevert(
+			ISonaAuthorizer.SonaAuthorizer_InvalidSignature.selector
+		);
 		auction.createReserveAuction(bundles, signatures, address(0), 1 ether);
 	}
 
@@ -274,7 +276,9 @@ contract SonaReserveAuctionTest is Util, SonaReserveAuction, SplitHelpers {
 		signatures[1].v = 69;
 
 		vm.startPrank(trackMinter);
-		vm.expectRevert(ISonaAuthorizer.SonaAuthorizer_InvalidSignature.selector);
+		vm.expectRevert(
+			ISonaAuthorizer.SonaAuthorizer_InvalidSignature.selector
+		);
 		auction.createReserveAuction(bundles, signatures, address(0), 1 ether);
 	}
 
