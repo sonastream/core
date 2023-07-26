@@ -113,5 +113,4 @@ contract SonaTestSplits is SplitHelpers {
 		assertEq(finalBalance2 - initialBalance2, 0);
 		assertEq(finalBalance1 - initialBalance1, 0);
 	}
-
 }
