@@ -555,7 +555,7 @@ contract SplitMain is ISplitMain {
 		// pernicious ERC20s may cause overflow, but results do not affect ETH & other ERC20 balances
 
 		// solhint-disable-next-line no-inline-assembly
-		assembly {
+		assembly ("memory-safe") {
 			/* eg (100/// 2*1e4) / (1e6) */
 			scaledAmount := div(mul(amount, scaledPercent), PERCENTAGE_SCALE)
 		}
