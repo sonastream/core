@@ -21,8 +21,9 @@ contract SonaTestRewards is Util, SonaRewards, SplitHelpers {
 
 	SonaRewards public rewardsBase;
 	SonaRewards public rewards;
+	SonaRewards public rewardsNoHolders;
+	SonaRewards public wEthRewardsNoHolders;
 	ERC1967Proxy public proxy;
-	SonaRewards public wEthRewardsBase;
 	SonaRewards public wEthRewards;
 	ERC1967Proxy public wEthProxy;
 	address public rewardAdmin = makeAddr("rewardAdmin");
@@ -48,6 +49,17 @@ contract SonaTestRewards is Util, SonaRewards, SplitHelpers {
 			payable(address(0))
 		);
 
+	address [] private _zeroHolders;
+	uint96 [] private _zeroQtys;
+	MockRewardToken public mockRewardsTokenNoHolders =
+		new MockRewardToken(
+			"Mock Tracks",
+			"MOCK",
+			_zeroHolders,
+			_zeroQtys,
+			payable(address(0))
+		);
+
 	function setUp() public {
 		splitMainImpl = new SplitMain();
 		rewardsBase = new SonaRewards();
@@ -69,7 +81,22 @@ contract SonaTestRewards is Util, SonaRewards, SplitHelpers {
 
 		rewards = SonaRewards(payable(proxy));
 
-		wEthRewardsBase = new SonaRewards();
+		proxy = new ERC1967Proxy(
+			address(rewardsBase),
+			abi.encodeWithSelector(
+				SonaRewards.initialize.selector,
+				rewardAdmin,
+				mockRewardsTokenNoHolders,
+				mockPaymentToken,
+				address(0),
+				address(0),
+				_mockUrl,
+				splitMainImpl
+			)
+		);
+
+		rewardsNoHolders = SonaRewards(payable(proxy));
+
 		wEthProxy = new ERC1967Proxy(
 			address(rewardsBase),
 			abi.encodeWithSelector(
@@ -84,6 +111,22 @@ contract SonaTestRewards is Util, SonaRewards, SplitHelpers {
 			)
 		);
 		wEthRewards = SonaRewards(payable(wEthProxy));
+
+		proxy = new ERC1967Proxy(
+			address(rewardsBase),
+			abi.encodeWithSelector(
+				SonaRewards.initialize.selector,
+				rewardAdmin,
+				mockRewardsTokenNoHolders,
+				address(0),
+				mockWeth,
+				address(0),
+				_mockUrl,
+				splitMainImpl
+			)
+		);
+
+		wEthRewardsNoHolders = SonaRewards(payable(proxy));
 	}
 
 	function test_InitFail() public {
@@ -175,6 +218,47 @@ contract SonaTestRewards is Util, SonaRewards, SplitHelpers {
 		vm.resumeGasMetering();
 		vm.prank(rewardHolder);
 		rewards.claimRewards(tokenId, rootIds, proofs, amounts);
+	}
+
+	function test_ClaimRewardsUnminted() public {
+		address creatorHolder = address(0);
+		mockRewardsTokenNoHolders.setExists(false);
+		// can claim ERC20 funds
+		(
+			uint256 tokenId,
+			uint256[] memory rootIds,
+			bytes32[][] memory proofs,
+			uint256[] memory amounts
+		) = _setUpClaims(rewardsNoHolders);
+		vm.prank(creatorHolder);
+		vm.expectEmit(true, true, true, true, address(rewardsNoHolders));
+		emit RewardsClaimed(tokenId, creatorHolder, rootIds[0], amounts[0]);
+		vm.expectEmit(true, true, true, true, address(rewardsNoHolders));
+		emit RewardsClaimed(tokenId, creatorHolder, rootIds[1], amounts[1]);
+		vm.expectEmit(true, true, false, true, address(mockPaymentToken));
+		emit Transfer(address(0), creatorHolder, amounts[0] + amounts[1]);
+		rewardsNoHolders.unmintedClaimRewards(tokenId, creatorHolder,rootIds, proofs, amounts);
+
+		//revert on multiple claim attempts on the same roots
+		vm.prank(creatorHolder);
+		vm.expectRevert(InvalidClaimAttempt.selector);
+		rewardsNoHolders.unmintedClaimRewards(tokenId, creatorHolder, rootIds, proofs, amounts);
+
+		// can claim WETH funds
+		assertEq(creatorHolder.balance, 0);
+		assertEq(address(mockWeth).balance, 0);
+		(tokenId, rootIds, proofs, amounts) = _setUpClaims(wEthRewardsNoHolders);
+		payable(address(mockWeth)).transfer(amounts[0] + amounts[1]);
+		assertEq(address(mockWeth).balance, amounts[0] + amounts[1]);
+		vm.expectEmit(true, true, true, true, address(wEthRewardsNoHolders));
+		emit RewardsClaimed(tokenId, creatorHolder, rootIds[0], amounts[0]);
+		vm.expectEmit(true, true, true, true, address(wEthRewardsNoHolders));
+		emit RewardsClaimed(tokenId, creatorHolder, rootIds[1], amounts[1]);
+		vm.expectEmit(true, true, false, true, address(mockWeth));
+		emit Transfer(address(0), address(wEthRewardsNoHolders), amounts[0] + amounts[1]);
+		vm.prank(creatorHolder);
+		wEthRewardsNoHolders.unmintedClaimRewards(tokenId, creatorHolder, rootIds, proofs, amounts);
+		assertEq(creatorHolder.balance, amounts[0] + amounts[1]);
 	}
 
 	function test_ClaimRewards() public {

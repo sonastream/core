@@ -5,6 +5,7 @@ import { ERC721ConsecutiveEnumerableMock } from "openzeppelin/mocks/token/ERC721
 
 contract RewardTokenMock is ERC721ConsecutiveEnumerableMock {
 	address payable public altAddress;
+	bool public exists = true;
 
 	constructor(
 		string memory name,
@@ -24,5 +25,13 @@ contract RewardTokenMock is ERC721ConsecutiveEnumerableMock {
 		uint256 /*tokenId*/
 	) external view returns (address payable splits) {
 		return altAddress;
+	}
+
+	function setExists(bool _exists) public {
+		exists = _exists;
+	}
+
+	function tokenIdExists(uint256 /* tokenId */) public view returns (bool tokenIdIsPresent) {
+		return exists;
 	}
 }

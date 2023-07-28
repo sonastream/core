@@ -9,17 +9,19 @@ pragma solidity ^0.8.16;
 
 import { SonaAdmin } from "./access/SonaAdmin.sol";
 import { UUPSUpgradeable } from "openzeppelin-upgradeable/proxy/utils/UUPSUpgradeable.sol";
+import { Initializable } from "openzeppelin-upgradeable/proxy/utils/Initializable.sol";
 import { MerkleProofLib } from "solady/utils/MerkleProofLib.sol";
 import { SonaRewardToken } from "./SonaRewardToken.sol";
 import { IERC20Upgradeable as IERC20 } from "openzeppelin-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 import { ISplitMain } from "./payout/interfaces/ISplitMain.sol";
 import { IRewardGateway } from "./interfaces/IRewardGateway.sol";
 import { IWETH } from "./interfaces/IWETH.sol";
-import { Initializable } from "openzeppelin-upgradeable/proxy/utils/Initializable.sol";
+import { AddressableTokenId } from "./utils/AddressableTokenId.sol";
 import { ZeroCheck } from "./utils/ZeroCheck.sol";
 
 /// @title The interface for Track Collectors and Artists to claim Rewards
 contract SonaRewards is Initializable, SonaAdmin {
+	using AddressableTokenId for uint256;
 	using MerkleProofLib for bytes32[];
 	using ZeroCheck for address;
 	using ZeroCheck for address payable;
@@ -94,6 +96,8 @@ contract SonaRewards is Initializable, SonaAdmin {
 	error ClaimLengthMismatch();
 	error InvalidProof();
 	error InvalidClaimAttempt();
+	error RewardTokenMinted(uint256 tokenId);
+	error ClaimantNotCreator(address claimant, uint256 tokenId);
 	error StartNotBeforeEnd(uint64 start, uint64 end);
 	error RewardTransferFailed();
 	error InvalidTokenInputs(address paymentToken, address wETHToken);
@@ -224,7 +228,24 @@ contract SonaRewards is Initializable, SonaAdmin {
 		bytes32[][] calldata _proofs,
 		uint256[] calldata _amounts
 	) public {
-		_claimRewards(_tokenId, _rootIds, _proofs, _amounts);
+		_checkMinted(_tokenId);
+		_claimRewards(_tokenId, msg.sender, _rootIds, _proofs, _amounts);
+	}
+
+	/// @notice collect tokens by presenting valid proofs and owning token number `_tokenId`
+	/// @param _tokenId The SonaRewardToken for which rewards are being claimed
+	/// @param _rootIds the index numbers of the roots to prove against
+	/// @param _proofs the proofs for each respective root
+	/// @param _amounts the amounts to be claimed from each respective root
+	function unmintedClaimRewards(
+		uint256 _tokenId,
+		address _payout,
+		uint256[] calldata _rootIds,
+		bytes32[][] calldata _proofs,
+		uint256[] calldata _amounts
+	) public {
+		_checkUnminted(_tokenId);
+		_claimRewards(_tokenId, _payout, _rootIds, _proofs, _amounts);
 	}
 
 	function claimRewardsAndDistributePayout(
@@ -235,14 +256,51 @@ contract SonaRewards is Initializable, SonaAdmin {
 		address[] calldata _accounts,
 		uint32[] calldata _percentAllocations
 	) public {
-		_claimRewards(_tokenId, _rootIds, _proofs, _amounts);
+		_checkMinted(_tokenId);
+		_claimRewards(_tokenId, msg.sender, _rootIds, _proofs, _amounts);
 		address payable payout = _getPayoutAddress(_tokenId, msg.sender);
 
+		_distributePayout(payout, _accounts, _percentAllocations);
+	}
+
+	function unmintedClaimRewardsAndDistributePayout(
+		uint256 _tokenId,
+		address _payout,
+		uint256[] calldata _rootIds,
+		bytes32[][] calldata _proofs,
+		uint256[] calldata _amounts,
+		address[] calldata _accounts,
+		uint32[] calldata _percentAllocations
+	) public {
+		_checkUnminted(_tokenId);
+
+		_claimRewards(_tokenId, _payout, _rootIds, _proofs, _amounts);
+
+		_distributePayout(_payout, _accounts, _percentAllocations);
+	}
+
+	function _checkUnminted(uint256 _tokenId) internal view {
+		if (_sonaRewardToken.tokenIdExists(_tokenId))
+			revert RewardTokenMinted(_tokenId);
+		if (_tokenId.getAddress() != msg.sender)
+			revert ClaimantNotCreator(msg.sender, _tokenId);
+	}
+
+	function _checkMinted(uint256 _tokenId) internal view {
+		if (_sonaRewardToken.ownerOf(_tokenId) != msg.sender)
+			revert ClaimantNotHolder(msg.sender, _tokenId);
+	}
+
+	function _distributePayout(
+		address _payout,
+		address[] calldata _accounts,
+		uint32[] calldata _percentAllocations
+	) internal {
 		if (address(_paymentToken).isZero()) {
-			_splitMain.distributeETH(payout, _accounts, _percentAllocations);
+			_splitMain.distributeETH(_payout, _accounts, _percentAllocations);
 		} else {
 			_splitMain.distributeERC20(
-				payout,
+				_payout,
 				IERC20(_paymentToken),
 				_accounts,
 				_percentAllocations
@@ -306,12 +364,11 @@ contract SonaRewards is Initializable, SonaAdmin {
 	/// @param _amounts the amounts to be claimed from each respective root
 	function _claimRewards(
 		uint256 _tokenId,
+		address _defaultPayout,
 		uint256[] calldata _rootIds,
 		bytes32[][] calldata _proofs,
 		uint256[] calldata _amounts
 	) internal {
-		if (_sonaRewardToken.ownerOf(_tokenId) != msg.sender)
-			revert ClaimantNotHolder(msg.sender, _tokenId);
 		if (_rootIds.length != _proofs.length || _rootIds.length != _amounts.length)
 			revert ClaimLengthMismatch();
 
@@ -321,7 +378,7 @@ contract SonaRewards is Initializable, SonaAdmin {
 			_claimRewardsOne(_tokenId, _rootIds[i], _proofs[i], _amounts[i]);
 			transferAmount += _amounts[i];
 		}
-		address payoutAddress = _getPayoutAddress(_tokenId, msg.sender);
+		address payoutAddress = _getPayoutAddress(_tokenId, _defaultPayout);
 		if (address(_paymentToken).isNotZero()) {
 			if (
 				!_paymentToken.transferFrom(_rewardVault, payoutAddress, transferAmount)
