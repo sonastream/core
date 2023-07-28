@@ -29,7 +29,7 @@ contract SonaTestRewards is Util, SonaRewards, SplitHelpers {
 	address public rewardHolder = makeAddr("rewardHolder");
 
 	Merkle public m = new Merkle();
-	ERC20ReturnTrueMock public mockRewardToken = new ERC20ReturnTrueMock();
+	ERC20ReturnTrueMock public mockPaymentToken = new ERC20ReturnTrueMock();
 	Weth9Mock public mockWeth = new Weth9Mock();
 	address[] private _holders = [
 		rewardHolder,
@@ -59,7 +59,7 @@ contract SonaTestRewards is Util, SonaRewards, SplitHelpers {
 				SonaRewards.initialize.selector,
 				rewardAdmin,
 				mockRewardsToken,
-				mockRewardToken,
+				mockPaymentToken,
 				address(0),
 				address(0),
 				_mockUrl,
@@ -190,7 +190,7 @@ contract SonaTestRewards is Util, SonaRewards, SplitHelpers {
 		emit RewardsClaimed(tokenId, rewardHolder, rootIds[0], amounts[0]);
 		vm.expectEmit(true, true, true, true, address(rewards));
 		emit RewardsClaimed(tokenId, rewardHolder, rootIds[1], amounts[1]);
-		vm.expectEmit(true, true, false, true, address(mockRewardToken));
+		vm.expectEmit(true, true, false, true, address(mockPaymentToken));
 		emit Transfer(address(0), rewardHolder, amounts[0] + amounts[1]);
 		rewards.claimRewards(tokenId, rootIds, proofs, amounts);
 
@@ -232,7 +232,7 @@ contract SonaTestRewards is Util, SonaRewards, SplitHelpers {
 		emit RewardsClaimed(tokenId, rewardHolder, rootIds[0], amounts[0]);
 		vm.expectEmit(true, true, true, true, address(rewards));
 		emit RewardsClaimed(tokenId, rewardHolder, rootIds[1], amounts[1]);
-		vm.expectEmit(true, true, false, true, address(mockRewardToken));
+		vm.expectEmit(true, true, false, true, address(mockPaymentToken));
 		emit Transfer(address(0), splitsAddress, amounts[0] + amounts[1]);
 		rewards.claimRewards(tokenId, rootIds, proofs, amounts);
 
@@ -277,9 +277,9 @@ contract SonaTestRewards is Util, SonaRewards, SplitHelpers {
 		emit RewardsClaimed(tokenId, rewardHolder, rootIds[0], amounts[0]);
 		vm.expectEmit(true, true, true, true, address(rewards));
 		emit RewardsClaimed(tokenId, rewardHolder, rootIds[1], amounts[1]);
-		vm.expectEmit(true, true, false, true, address(mockRewardToken));
+		vm.expectEmit(true, true, false, true, address(mockPaymentToken));
 		emit Transfer(address(splitMainImpl), accounts[0], amounts[0] - 1);
-		vm.expectEmit(true, true, false, true, address(mockRewardToken));
+		vm.expectEmit(true, true, false, true, address(mockPaymentToken));
 		emit Transfer(address(splitMainImpl), accounts[1], amounts[1] - 1);
 		rewards.claimRewardsAndDistributePayout(
 			tokenId,
