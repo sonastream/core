@@ -171,10 +171,37 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonareserveauctiontest"><a class="header" href="#sonareserveauctiontest">SonaReserveAuctionTest</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/891cc8cf472fcee50d7921bbc69e426c98f29d6b/contracts/test/SonaReserveAuction.t.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/b3948e50dd862aad47e35bdbee362af4d0ec5015/contracts/test/SonaReserveAuction.t.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/test/util/SplitHelpers.t.sol/contract.SplitHelpers.html">SplitHelpers</a></p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
+<h3 id="swapaddr"><a class="header" href="#swapaddr">swapAddr</a></h3>
+<pre><code class="language-solidity">address public swapAddr;
+</code></pre>
+<h3 id="auctionbase"><a class="header" href="#auctionbase">auctionBase</a></h3>
+<pre><code class="language-solidity">SonaReserveAuction public auctionBase;
+</code></pre>
+<h3 id="rewardtokenbase"><a class="header" href="#rewardtokenbase">rewardTokenBase</a></h3>
+<pre><code class="language-solidity">SonaRewardToken public rewardTokenBase;
+</code></pre>
+<h3 id="mainnetfork"><a class="header" href="#mainnetfork">mainnetFork</a></h3>
+<pre><code class="language-solidity">uint256 public mainnetFork;
+</code></pre>
+<h3 id="mainnet_rpc_url"><a class="header" href="#mainnet_rpc_url">MAINNET_RPC_URL</a></h3>
+<pre><code class="language-solidity">string public MAINNET_RPC_URL = vm.envString(&quot;MAINNET_FORK_RPC_URL&quot;);
+</code></pre>
+<h3 id="datafeed"><a class="header" href="#datafeed">dataFeed</a></h3>
+<pre><code class="language-solidity">address public constant dataFeed = 0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419;
+</code></pre>
+<h3 id="weth9"><a class="header" href="#weth9">WETH9</a></h3>
+<pre><code class="language-solidity">IWETH public constant WETH9 = IWETH(0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2);
+</code></pre>
+<h3 id="router"><a class="header" href="#router">router</a></h3>
+<pre><code class="language-solidity">address public constant router = 0xE592427A0AEce92De3Edee1F18E0157C05861564;
+</code></pre>
+<h3 id="usdc"><a class="header" href="#usdc">USDC</a></h3>
+<pre><code class="language-solidity">address public constant USDC = 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48;
+</code></pre>
 <h3 id="treasuryrecipient"><a class="header" href="#treasuryrecipient">treasuryRecipient</a></h3>
 <pre><code class="language-solidity">address public treasuryRecipient = makeAddr(&quot;treasuryRecipient&quot;);
 </code></pre>
@@ -207,6 +234,9 @@
 </code></pre>
 <h3 id="mockweth"><a class="header" href="#mockweth">mockWeth</a></h3>
 <pre><code class="language-solidity">Weth9Mock public mockWeth = new Weth9Mock();
+</code></pre>
+<h3 id="mockusdc"><a class="header" href="#mockusdc">mockUSDC</a></h3>
+<pre><code class="language-solidity">MockERC20 public mockUSDC = new MockERC20(&quot;Mock Token&quot;, &quot;USDC&quot;, 6);
 </code></pre>
 <h3 id="contractbidder"><a class="header" href="#contractbidder">contractBidder</a></h3>
 <pre><code class="language-solidity">ContractBidderMock public contractBidder;

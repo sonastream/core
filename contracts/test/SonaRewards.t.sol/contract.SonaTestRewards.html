@@ -171,7 +171,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonatestrewards"><a class="header" href="#sonatestrewards">SonaTestRewards</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/891cc8cf472fcee50d7921bbc69e426c98f29d6b/contracts/test/SonaRewards.t.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/b3948e50dd862aad47e35bdbee362af4d0ec5015/contracts/test/SonaRewards.t.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/test/Util.sol/contract.Util.html">Util</a>, <a href="/contracts/SonaRewards.sol/contract.SonaRewards.html">SonaRewards</a>, <a href="/contracts/test/util/SplitHelpers.t.sol/contract.SplitHelpers.html">SplitHelpers</a></p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
@@ -207,6 +207,9 @@
 </code></pre>
 <h3 id="mockweth"><a class="header" href="#mockweth">mockWeth</a></h3>
 <pre><code class="language-solidity">Weth9Mock public mockWeth = new Weth9Mock();
+</code></pre>
+<h3 id="mockusdc"><a class="header" href="#mockusdc">mockUSDC</a></h3>
+<pre><code class="language-solidity">MockERC20 public mockUSDC = new MockERC20(&quot;Mock Token&quot;, &quot;USDC&quot;, 6);
 </code></pre>
 <h3 id="_holders"><a class="header" href="#_holders">_holders</a></h3>
 <pre><code class="language-solidity">address[] private _holders =
