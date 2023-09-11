@@ -177,7 +177,7 @@
       Website
     </a>
     <span> | </span>
-    <a href="https://docs.sona.stream">
+    <a href="https://contracts.sona.stream">
       Documentation
     </a>
     <span> | </span>
@@ -190,10 +190,6 @@
     </a>
   </h4>
 </div>
-<blockquote>
-<p><strong>Warning</strong></p>
-<p>These contracts are <strong>unaudited</strong> and are not recommended for a mainnet deploy unless otherwise stated.</p>
-</blockquote>
 <h2 id="table-of-contents"><a class="header" href="#table-of-contents">Table of Contents</a></h2>
 <ul>
 <li><a href="#sona-protocol-">Sona Protocol </a>
@@ -227,7 +223,7 @@
 <li>git</li>
 <li>make</li>
 <li><a href="https://github.com/crytic/slither">Slither</a></li>
-<li>Solc 0.8.16</li>
+<li>Solc 0.8.18</li>
 <li>Rust</li>
 <li><a href="https://github.com/0xKitsune/solstat#currently-identified-optimizations-vulnerabilities-and-qa">Solstat</a></li>
 </ul>
@@ -281,26 +277,20 @@
 <p>To get the test coverage, run <code>make cover</code></p>
 <h3 id="environment"><a class="header" href="#environment">Environment</a></h3>
 <p>Fill in your <code>.env</code> at your root with:</p>
-<pre><code>RPC_URL=
-OWNER=
+<pre><code>MNEMONIC=
 ETHERSCAN_KEY=
 TREASURY=
 REDISTRIBUTION=
 AUTHORIZER=
-PRIVATE_KEY=
+RPC_URL_GOERLI=
+RPC_URL_SEPOLIA=
 </code></pre>
 <h3 id="deploying"><a class="header" href="#deploying">Deploying</a></h3>
 <div class="table-wrapper"><table><thead><tr><th>Command</th><th>Environment</th></tr></thead><tbody>
-<tr><td>make deploy_local</td><td>Local anvil (http://localhost:8545)</td></tr>
-<tr><td>make deploy_testnet</td><td>Testnet</td></tr>
-<tr><td>make deploy</td><td>Mainnet</td></tr>
-<tr><td>make deploy_goerli</td><td>Goerli</td></tr>
+<tr><td>make deploy_local</td><td>Local anvil (http://localhost:8546)</td></tr>
+<tr><td>make deploy_sepolia</td><td>Sepolia</td></tr>
 </tbody></table>
 </div>
-<blockquote>
-<p><strong>Important</strong></p>
-<p>To see more <code>make</code> command definitions, check out this <a href="./Makefile.html">document</a></p>
-</blockquote>
 <h3 id="foundry-and-type-definitions"><a class="header" href="#foundry-and-type-definitions">Foundry and type definitions</a></h3>
 <p>When updating foundry modules, commit your changes locally and run <code>forge install &lt;package-name&gt;</code>. Then, update the remappings across the following files to allow builds, security scanning and goto definitions to work properly:</p>
 <ul>
@@ -309,14 +299,14 @@ PRIVATE_KEY=
 <li>remappings.txt</li>
 </ul>
 <h2 id="analyzers"><a class="header" href="#analyzers">Analyzers</a></h2>
-<p>The repo comes with two static analyzers for checking for security vulnerabiltiies and gas optimizations
-| Command | Environment |
-|---------|-------------|
-| make analyze | Runs solstat and outputs a report to <code>reports/solstat_report.md</code> |
-| make sec | Runs slither and outputs a report to stdout |</p>
+<p>The repo comes with two static analyzers for checking for security vulnerabiltiies and gas optimizations</p>
+<div class="table-wrapper"><table><thead><tr><th>Command</th><th>Environment</th></tr></thead><tbody>
+<tr><td>make analyze</td><td>Runs solstat and outputs a report to <code>reports/solstat_report.md</code></td></tr>
+<tr><td>make sec</td><td>Runs slither and outputs a report to stdout</td></tr>
+</tbody></table>
+</div>
 <h2 id="maintainers"><a class="header" href="#maintainers">Maintainers</a></h2>
 <ul>
-<li><a href="https://github.com/mudrush">@mudrush</a></li>
 <li><a href="https://github.com/topocount">@topocount</a></li>
 </ul>
 
