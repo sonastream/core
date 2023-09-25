@@ -171,7 +171,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="isonarewardtoken"><a class="header" href="#isonarewardtoken">ISonaRewardToken</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/f5e8242c1351cf4986780b72d3d975b802fbe4f6/contracts/interfaces/ISonaRewardToken.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/db6d6ade69fd14d5ec7a86ee57c0296f6e4230d8/contracts/interfaces/ISonaRewardToken.sol">Git Source</a></p>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="mint"><a class="header" href="#mint">mint</a></h3>
 <pre><code class="language-solidity">function mint(
@@ -206,17 +206,14 @@
 <pre><code class="language-solidity">function initialize(
     string memory _name,
     string memory _symbol,
-    address _eoaAdmin
+    address _eoaAdmin,
+    address _royaltyRecipient
 ) external;
 </code></pre>
 <h3 id="tokenidexists"><a class="header" href="#tokenidexists">tokenIdExists</a></h3>
 <pre><code class="language-solidity">function tokenIdExists(uint256 _tokenId) external view returns (bool exists);
 </code></pre>
 <h2 id="events"><a class="header" href="#events">Events</a></h2>
-<h3 id="rewardtokenminted"><a class="header" href="#rewardtokenminted">RewardTokenMinted</a></h3>
-<p><em>Emitted when a new RewardToken is minted.</em></p>
-<pre><code class="language-solidity">event RewardTokenMinted(uint256 indexed tokenId, string cid);
-</code></pre>
 <h3 id="rewardtokenarweavetxidupdated"><a class="header" href="#rewardtokenarweavetxidupdated">RewardTokenArweaveTxIdUpdated</a></h3>
 <p><em>Emitted when a RewardToken's metadata is changed.</em></p>
 <pre><code class="language-solidity">event RewardTokenArweaveTxIdUpdated(uint256 tokenId, string txId);

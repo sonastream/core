@@ -171,9 +171,11 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonatokenauthorizer"><a class="header" href="#sonatokenauthorizer">SonaTokenAuthorizer</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/f5e8242c1351cf4986780b72d3d975b802fbe4f6/contracts/SonaTokenAuthorizer.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/db6d6ade69fd14d5ec7a86ee57c0296f6e4230d8/contracts/SonaTokenAuthorizer.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/interfaces/ISonaTokenAuthorizer.sol/interface.ISonaTokenAuthorizer.html">ISonaTokenAuthorizer</a></p>
+<p><strong>Author:</strong>
+@SonaEngineering</p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
 <h3 id="_eip712domain_typehash"><a class="header" href="#_eip712domain_typehash">_EIP712DOMAIN_TYPEHASH</a></h3>
 <p><em>The signature of the Domain separator typehash</em></p>
@@ -220,7 +222,7 @@ initialized to 0xdead to prevent uninitialized authorization</em></p>
 ) internal view returns (address recovered);
 </code></pre>
 <h3 id="_hash"><a class="header" href="#_hash">_hash</a></h3>
-<pre><code class="language-solidity">function _hash(ISonaRewardToken.TokenMetadata calldata _bundle)
+<pre><code class="language-solidity">function _hash(ISonaRewardToken.TokenMetadata calldata _metadata)
     internal
     pure
     returns (bytes32);

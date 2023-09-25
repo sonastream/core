@@ -171,15 +171,18 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonadirectmint"><a class="header" href="#sonadirectmint">SonaDirectMint</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/f5e8242c1351cf4986780b72d3d975b802fbe4f6/contracts/SonaDirectMint.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/db6d6ade69fd14d5ec7a86ee57c0296f6e4230d8/contracts/SonaDirectMint.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/SonaTokenAuthorizer.sol/contract.SonaTokenAuthorizer.html">SonaTokenAuthorizer</a></p>
+<p><strong>Author:</strong>
+@SonaEngineering</p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
 <h3 id="token"><a class="header" href="#token">token</a></h3>
 <pre><code class="language-solidity">ISonaRewardToken public token;
 </code></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="bundlesauthorized"><a class="header" href="#bundlesauthorized">bundlesAuthorized</a></h3>
+<p><em>ensure the provided signature is from the authorizer</em></p>
 <pre><code class="language-solidity">modifier bundlesAuthorized(
     ISonaRewardToken.TokenMetadata[] calldata _metadatas,
     Signature calldata _signature
@@ -189,12 +192,18 @@
 <pre><code class="language-solidity">constructor(ISonaRewardToken _token, address authorizer_);
 </code></pre>
 <h3 id="mint"><a class="header" href="#mint">mint</a></h3>
+<p>mint multiple SonaRewardTokens</p>
 <pre><code class="language-solidity">function mint(
     ISonaRewardToken.TokenMetadata[] calldata _metadatas,
     Signature calldata _signature
 ) external bundlesAuthorized(_metadatas, _signature);
 </code></pre>
-
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_metadatas</code></td><td><code>ISonaRewardToken.TokenMetadata[]</code></td><td>array of tokens and info to be minted</td></tr>
+<tr><td><code>_signature</code></td><td><code>Signature</code></td><td>the signature of the array of TokenMetadata objects</td></tr>
+</tbody></table>
+</div>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">

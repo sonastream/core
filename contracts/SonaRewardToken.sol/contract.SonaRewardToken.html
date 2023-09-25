@@ -171,19 +171,29 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonarewardtoken"><a class="header" href="#sonarewardtoken">SonaRewardToken</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/f5e8242c1351cf4986780b72d3d975b802fbe4f6/contracts/SonaRewardToken.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/db6d6ade69fd14d5ec7a86ee57c0296f6e4230d8/contracts/SonaRewardToken.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
-<a href="/contracts/access/SonaMinter.sol/abstract.SonaMinter.html">SonaMinter</a>, <a href="/contracts/interfaces/ISonaRewardToken.sol/interface.ISonaRewardToken.html">ISonaRewardToken</a></p>
+<a href="/contracts/access/SonaMinter.sol/abstract.SonaMinter.html">SonaMinter</a>, <a href="/contracts/interfaces/ISonaRewardToken.sol/interface.ISonaRewardToken.html">ISonaRewardToken</a>, IERC2981</p>
+<p><strong>Author:</strong>
+@SonaEngineering</p>
+<p>The NFTs that represent rewards claims for a given track
+in the Sona protocol</p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
+<h3 id="_royaltyrecipient"><a class="header" href="#_royaltyrecipient">_royaltyRecipient</a></h3>
+<p><em>the address specified by ERC 2981 that royalties should be sent to</em></p>
+<pre><code class="language-solidity">address internal _royaltyRecipient;
+</code></pre>
 <h3 id="rewardtokens"><a class="header" href="#rewardtokens">rewardTokens</a></h3>
 <pre><code class="language-solidity">mapping(uint256 =&gt; ISonaRewardToken.RewardToken) public rewardTokens;
 </code></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="onlysonaadminorcreator"><a class="header" href="#onlysonaadminorcreator">onlySonaAdminOrCreator</a></h3>
-<p><em>Modifier that ensures the calling contract has the admin role</em></p>
+<p><em>Modifier that ensures the calling contract has the admin role
+or is the artist of the SONA</em></p>
 <pre><code class="language-solidity">modifier onlySonaAdminOrCreator(uint256 _tokenId);
 </code></pre>
 <h3 id="onlytokenholder"><a class="header" href="#onlytokenholder">onlyTokenHolder</a></h3>
+<p><em>Modifier that only allows the current holder of a token</em></p>
 <pre><code class="language-solidity">modifier onlyTokenHolder(uint256 _tokenId);
 </code></pre>
 <h3 id="checkexists"><a class="header" href="#checkexists">checkExists</a></h3>
@@ -194,16 +204,25 @@
 <pre><code class="language-solidity">constructor() ERC721(&quot;&quot;, &quot;&quot;);
 </code></pre>
 <h3 id="initialize"><a class="header" href="#initialize">initialize</a></h3>
-<p><em>Initializes the contract</em></p>
+<p><em>Initializes the contract during proxy construction</em></p>
 <pre><code class="language-solidity">function initialize(
     string calldata _name,
     string calldata _symbol,
-    address _eoaAdmin
+    address _eoaAdmin,
+    address royaltyRecipient_
 ) external override initializer;
 </code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_name</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>_symbol</code></td><td><code>string</code></td><td></td></tr>
+<tr><td><code>_eoaAdmin</code></td><td><code>address</code></td><td>the AccessControl admin</td></tr>
+<tr><td><code>royaltyRecipient_</code></td><td><code>address</code></td><td>the location to send NFT royalties as specified in ERC2981</td></tr>
+</tbody></table>
+</div>
 <h3 id="mint"><a class="header" href="#mint">mint</a></h3>
 <p>auth-guarded mint function</p>
-<p><em>This is meant to be pluggable and allow for the evolution of mint
+<p><em>This is meant to be pluggable and allow for the updates to mint
 logic as the protocol evolves</em></p>
 <pre><code class="language-solidity">function mint(
     address _owner,
@@ -233,7 +252,8 @@ logic as the protocol evolves</em></p>
 </tbody></table>
 </div>
 <h3 id="updatearweavetxid"><a class="header" href="#updatearweavetxid">updateArweaveTxId</a></h3>
-<p><em>Updates the IPFS CID for the metadata for a given RewardToken</em></p>
+<p>Updates the arweave transaction ID for the metadata for a given RewardToken</p>
+<p><em>the arweave transaction id is returned by the tokenURI function</em></p>
 <pre><code class="language-solidity">function updateArweaveTxId(uint256 _tokenId, string calldata _txId)
     external
     checkExists(_tokenId)
@@ -246,7 +266,8 @@ logic as the protocol evolves</em></p>
 </tbody></table>
 </div>
 <h3 id="updatepayoutaddress"><a class="header" href="#updatepayoutaddress">updatePayoutAddress</a></h3>
-<p><em>Updates the Payout address for a token</em></p>
+<p>Updates the Payout address for a token <code>token</code> to <code>_payout</code></p>
+<p><em>the payoutAddress is utlized as a delegated recipient of rewards</em></p>
 <pre><code class="language-solidity">function updatePayoutAddress(uint256 _tokenId, address payable _payout)
     external
     checkExists(_tokenId)
@@ -259,7 +280,7 @@ logic as the protocol evolves</em></p>
 </tbody></table>
 </div>
 <h3 id="tokenuri"><a class="header" href="#tokenuri">tokenURI</a></h3>
-<p><em>Get a RewardToken's metadata from IPFS</em></p>
+<p>Get a RewardToken's metadata from arweave for token <code>_tokenId</code></p>
 <pre><code class="language-solidity">function tokenURI(uint256 _tokenId)
     public
     view
@@ -273,7 +294,7 @@ logic as the protocol evolves</em></p>
 </tbody></table>
 </div>
 <h3 id="getrewardtokenmetadata"><a class="header" href="#getrewardtokenmetadata">getRewardTokenMetadata</a></h3>
-<p><em>Returns the metadata of the RewardToken</em></p>
+<p>Returns the metadata of the token <code>_tokenId</code></p>
 <pre><code class="language-solidity">function getRewardTokenMetadata(uint256 _tokenId)
     external
     view
@@ -286,7 +307,7 @@ logic as the protocol evolves</em></p>
 </tbody></table>
 </div>
 <h3 id="getrewardtokenpayoutaddr"><a class="header" href="#getrewardtokenpayoutaddr">getRewardTokenPayoutAddr</a></h3>
-<p><em>Returns the splits address of the RewardToken</em></p>
+<p>Returns the splits address of the RewardToken</p>
 <pre><code class="language-solidity">function getRewardTokenPayoutAddr(uint256 _tokenId)
     external
     view
@@ -312,6 +333,28 @@ logic as the protocol evolves</em></p>
 <tr><td><code>exists</code></td><td><code>bool</code></td><td>a boolean</td></tr>
 </tbody></table>
 </div>
+<h3 id="royaltyinfo"><a class="header" href="#royaltyinfo">royaltyInfo</a></h3>
+<p>returns ERC 2981 recipient address and amount owed for a
+given sale price</p>
+<pre><code class="language-solidity">function royaltyInfo(uint256, uint256 _salePrice)
+    external
+    view
+    returns (address receiver, uint256 royaltyAmount);
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>&lt;none&gt;</code></td><td><code>uint256</code></td><td></td></tr>
+<tr><td><code>_salePrice</code></td><td><code>uint256</code></td><td>The amount a token was sold for</td></tr>
+</tbody></table>
+</div>
+<h3 id="supportsinterface"><a class="header" href="#supportsinterface">supportsInterface</a></h3>
+<p><em>check if an interface specification is supported by this contract</em></p>
+<pre><code class="language-solidity">function supportsInterface(bytes4 _interfaceId)
+    public
+    view
+    override(SonaMinter, IERC165)
+    returns (bool supported);
+</code></pre>
 <h3 id="_updatearweavetxid"><a class="header" href="#_updatearweavetxid">_updateArweaveTxId</a></h3>
 <pre><code class="language-solidity">function _updateArweaveTxId(uint256 _tokenId, string calldata _txId) internal;
 </code></pre>
