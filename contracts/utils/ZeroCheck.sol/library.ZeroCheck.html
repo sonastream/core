@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="sidebar-visible no-js light">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -10,7 +10,7 @@
         
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#ffffff">
 
         <link rel="icon" href="../../../favicon.svg">
         <link rel="shortcut icon" href="../../../favicon.png">
@@ -32,7 +32,7 @@
         <link rel="stylesheet" href="../../../book.css">
 
     </head>
-    <body>
+    <body class="sidebar-visible no-js">
     <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
@@ -62,29 +62,34 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             var html = document.querySelector('html');
-            html.classList.remove('no-js')
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add('js');
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var html = document.querySelector('html');
+            var body = document.querySelector('body');
             var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
             }
-            html.classList.remove('sidebar-visible');
-            html.classList.add("sidebar-" + sidebar);
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item "><a href="../../../index.html">Home</a></li><li class="chapter-item affix "><li class="part-title">contracts</li><li class="chapter-item "><a href="../../../contracts/access/index.html">❱ access</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/access/SonaAdmin.sol/contract.SonaAdmin.html">SonaAdmin</a></li><li class="chapter-item "><a href="../../../contracts/access/SonaMinter.sol/abstract.SonaMinter.html">SonaMinter</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/interfaces/index.html">❱ interfaces</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/interfaces/IRewardGateway.sol/interface.IRewardGateway.html">IRewardGateway</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/ISonaReserveAuction.sol/interface.ISonaReserveAuction.html">ISonaReserveAuction</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/ISonaRewardToken.sol/interface.ISonaRewardToken.html">ISonaRewardToken</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/ISonaTokenAuthorizer.sol/interface.ISonaTokenAuthorizer.html">ISonaTokenAuthorizer</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/IWETH.sol/interface.IWETH.html">IWETH</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/payout/index.html">❱ payout</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/payout/interfaces/index.html">❱ interfaces</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/payout/interfaces/ISplitMain.sol/interface.ISplitMain.html">ISplitMain</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/contract.SplitMain.html">SplitMain</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitWallet.sol/error.Unauthorized.html">Unauthorized</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitWallet.sol/contract.SplitWallet.html">SplitWallet</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/index.html">❱ test</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/access/index.html">❱ access</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/access/SonaAdmin.t.sol/contract.SonaAdminTest.html">SonaAdminTest</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/mock/index.html">❱ mock</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/mock/ContractBidderMock.sol/contract.ContractBidderMock.html">ContractBidderMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/ERC20Mock.sol/contract.ERC20ReturnTrueMock.html">ERC20ReturnTrueMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/ERC20Mock.sol/contract.ERC20ReturnFalseMock.html">ERC20ReturnFalseMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/ERC20Mock.sol/contract.ERC20NoReturnMock.html">ERC20NoReturnMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/RewardTokenMock.sol/contract.RewardTokenMock.html">RewardTokenMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/Weth9Mock.sol/contract.Weth9Mock.html">Weth9Mock</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/payout/index.html">❱ payout</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/payout/SplitMain.t.sol/contract.SonaTestSplits.html">SonaTestSplits</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/util/index.html">❱ util</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/util/MinterSigner.sol/abstract.MinterSigner.html">MinterSigner</a></li><li class="chapter-item "><a href="../../../contracts/test/util/SplitHelpers.t.sol/contract.SplitHelpers.html">SplitHelpers</a></li><li class="chapter-item "><a href="../../../contracts/test/util/SplitHelpers.t.sol/contract.NonReceiver.html">NonReceiver</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/SonaDirectMint.t.sol/contract.SonaDirectMintTest.html">SonaDirectMintTest</a></li><li class="chapter-item "><a href="../../../contracts/test/SonaReserveAuction.t.sol/contract.SonaReserveAuctionTest.html">SonaReserveAuctionTest</a></li><li class="chapter-item "><a href="../../../contracts/test/SonaRewardToken.t.sol/contract.SonaRewardTokenTest.html">SonaRewardTokenTest</a></li><li class="chapter-item "><a href="../../../contracts/test/SonaRewards.t.sol/contract.SonaTestRewards.html">SonaTestRewards</a></li><li class="chapter-item "><a href="../../../contracts/test/Util.sol/contract.Util.html">Util</a></li></ol></li><li class="chapter-item expanded "><a href="../../../contracts/utils/index.html">❱ utils</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/utils/AddressableTokenId.sol/library.AddressableTokenId.html">AddressableTokenId</a></li><li class="chapter-item "><a href="../../../contracts/utils/Clones.sol/error.CreateError.html">CreateError</a></li><li class="chapter-item "><a href="../../../contracts/utils/Clones.sol/error.Create2Error.html">Create2Error</a></li><li class="chapter-item "><a href="../../../contracts/utils/Clones.sol/library.Clones.html">Clones</a></li><li class="chapter-item expanded "><a href="../../../contracts/utils/ZeroCheck.sol/library.ZeroCheck.html" class="active">ZeroCheck</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/SonaDirectMint.sol/contract.SonaDirectMint.html">SonaDirectMint</a></li><li class="chapter-item "><a href="../../../contracts/SonaReserveAuction.sol/contract.SonaReserveAuction.html">SonaReserveAuction</a></li><li class="chapter-item "><a href="../../../contracts/SonaRewardToken.sol/contract.SonaRewardToken.html">SonaRewardToken</a></li><li class="chapter-item "><a href="../../../contracts/SonaRewards.sol/contract.SonaRewards.html">SonaRewards</a></li><li class="chapter-item "><a href="../../../contracts/SonaTokenAuthorizer.sol/contract.SonaTokenAuthorizer.html">SonaTokenAuthorizer</a></li></ol>
+                <ol class="chapter"><li class="chapter-item "><a href="../../../index.html">Home</a></li><li class="chapter-item affix "><li class="part-title">contracts</li><li class="chapter-item "><a href="../../../contracts/access/index.html">❱ access</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/access/SonaAdmin.sol/contract.SonaAdmin.html">SonaAdmin</a></li><li class="chapter-item "><a href="../../../contracts/access/SonaMinter.sol/abstract.SonaMinter.html">SonaMinter</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/interfaces/index.html">❱ interfaces</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/interfaces/IBlockListRegistry.sol/interface.IBlockListRegistry.html">IBlockListRegistry</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/IRewardGateway.sol/interface.IRewardGateway.html">IRewardGateway</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/ISonaReserveAuction.sol/interface.ISonaReserveAuction.html">ISonaReserveAuction</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/ISonaRewardToken.sol/interface.ISonaRewardToken.html">ISonaRewardToken</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/ISonaTokenAuthorizor.sol/interface.ISonaTokenAuthorizor.html">ISonaTokenAuthorizor</a></li><li class="chapter-item "><a href="../../../contracts/interfaces/IWETH.sol/interface.IWETH.html">IWETH</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/payout/index.html">❱ payout</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/payout/interfaces/index.html">❱ interfaces</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/payout/interfaces/ISplitMain.sol/interface.ISplitMain.html">ISplitMain</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/payout/SplitMain.sol/contract.SplitMain.html">SplitMain</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitWallet.sol/error.Unauthorized.html">Unauthorized</a></li><li class="chapter-item "><a href="../../../contracts/payout/SplitWallet.sol/contract.SplitWallet.html">SplitWallet</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/index.html">❱ test</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/access/index.html">❱ access</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/access/SonaAdmin.t.sol/contract.SonaAdminTest.html">SonaAdminTest</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/mock/index.html">❱ mock</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/mock/ContractBidderMock.sol/contract.ContractBidderMock.html">ContractBidderMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/ERC20Mock.sol/contract.ERC20ReturnTrueMock.html">ERC20ReturnTrueMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/ERC20Mock.sol/contract.ERC20ReturnFalseMock.html">ERC20ReturnFalseMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/ERC20Mock.sol/contract.ERC20NoReturnMock.html">ERC20NoReturnMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/ERC20Mock.sol/contract.ERC20Mock.html">ERC20Mock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/RewardTokenMock.sol/contract.RewardTokenMock.html">RewardTokenMock</a></li><li class="chapter-item "><a href="../../../contracts/test/mock/Weth9Mock.sol/contract.Weth9Mock.html">Weth9Mock</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/payout/index.html">❱ payout</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/payout/SplitMain.t.sol/contract.SonaTestSplits.html">SonaTestSplits</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/util/index.html">❱ util</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/test/util/MinterSigner.sol/abstract.MinterSigner.html">MinterSigner</a></li><li class="chapter-item "><a href="../../../contracts/test/util/SplitHelpers.t.sol/contract.SplitHelpers.html">SplitHelpers</a></li><li class="chapter-item "><a href="../../../contracts/test/util/SplitHelpers.t.sol/contract.NonReceiver.html">NonReceiver</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/test/SonaDirectMint.t.sol/contract.SonaDirectMintTest.html">SonaDirectMintTest</a></li><li class="chapter-item "><a href="../../../contracts/test/SonaReserveAuction.t.sol/contract.SonaReserveAuctionTest.html">SonaReserveAuctionTest</a></li><li class="chapter-item "><a href="../../../contracts/test/SonaRewardToken.t.sol/contract.SonaRewardTokenTest.html">SonaRewardTokenTest</a></li><li class="chapter-item "><a href="../../../contracts/test/SonaRewards.t.sol/contract.SonaTestRewards.html">SonaTestRewards</a></li><li class="chapter-item "><a href="../../../contracts/test/Util.sol/contract.Util.html">Util</a></li></ol></li><li class="chapter-item expanded "><a href="../../../contracts/utils/index.html">❱ utils</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="../../../contracts/utils/AddressableTokenId.sol/library.AddressableTokenId.html">AddressableTokenId</a></li><li class="chapter-item "><a href="../../../contracts/utils/Clones.sol/error.CreateError.html">CreateError</a></li><li class="chapter-item "><a href="../../../contracts/utils/Clones.sol/error.Create2Error.html">Create2Error</a></li><li class="chapter-item "><a href="../../../contracts/utils/Clones.sol/library.Clones.html">Clones</a></li><li class="chapter-item expanded "><a href="../../../contracts/utils/ZeroCheck.sol/library.ZeroCheck.html" class="active">ZeroCheck</a></li></ol></li><li class="chapter-item "><a href="../../../contracts/SonaDirectMint.sol/contract.SonaDirectMint.html">SonaDirectMint</a></li><li class="chapter-item "><a href="../../../contracts/SonaReserveAuction.sol/contract.SonaReserveAuction.html">SonaReserveAuction</a></li><li class="chapter-item "><a href="../../../contracts/SonaRewardToken.sol/contract.SonaRewardToken.html">SonaRewardToken</a></li><li class="chapter-item "><a href="../../../contracts/SonaRewards.sol/contract.SonaRewards.html">SonaRewards</a></li><li class="chapter-item "><a href="../../../contracts/SonaTokenAuthorizer.sol/contract.SonaTokenAuthorizor.html">SonaTokenAuthorizor</a></li><li class="chapter-item "><a href="../../../contracts/SonaTokenAuthorizor.sol/contract.SonaTokenAuthorizor.html">SonaTokenAuthorizor</a></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -117,9 +122,9 @@
                                 <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
                             <i class="fa fa-bars"></i>
-                        </button>
+                        </label>
                         <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
                             <i class="fa fa-paint-brush"></i>
                         </button>
@@ -171,7 +176,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="zerocheck"><a class="header" href="#zerocheck">ZeroCheck</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/db6d6ade69fd14d5ec7a86ee57c0296f6e4230d8/contracts/utils/ZeroCheck.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/148a10fa6cc1426d62233a17ec5b0012a1221598/contracts/utils/ZeroCheck.sol">Git Source</a></p>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="iszero"><a class="header" href="#iszero">isZero</a></h3>
 <pre><code class="language-solidity">function isZero(address _addr) public pure returns (bool isAddrZero);
@@ -191,7 +196,7 @@
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next" href="../../../contracts/SonaDirectMint.sol/contract.SonaDirectMint.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../../contracts/SonaDirectMint.sol/contract.SonaDirectMint.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -205,7 +210,7 @@
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next" href="../../../contracts/SonaDirectMint.sol/contract.SonaDirectMint.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../../contracts/SonaDirectMint.sol/contract.SonaDirectMint.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
