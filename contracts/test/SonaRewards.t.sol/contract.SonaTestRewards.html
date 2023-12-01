@@ -176,7 +176,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonatestrewards"><a class="header" href="#sonatestrewards">SonaTestRewards</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/b2dd21a04f2ff3d02793c76733a20bf69681868b/contracts/test/SonaRewards.t.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/9bdcb47bffd35b4477e6ab55cf2cbdc6769c99d3/contracts/test/SonaRewards.t.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/test/Util.sol/contract.Util.html">Util</a>, <a href="/contracts/SonaRewards.sol/contract.SonaRewards.html">SonaRewards</a>, <a href="/contracts/test/util/SplitHelpers.t.sol/contract.SplitHelpers.html">SplitHelpers</a></p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
@@ -228,12 +228,8 @@
 </code></pre>
 <h3 id="mockrewardstoken"><a class="header" href="#mockrewardstoken">mockRewardsToken</a></h3>
 <pre><code class="language-solidity">MockRewardToken public mockRewardsToken = new MockRewardToken(
-			&quot;Mock Tracks&quot;,
-			&quot;MOCK&quot;,
-			_holders,
-			_nftQtys,
-			payable(address(0))
-		);
+    &quot;Mock Tracks&quot;, &quot;MOCK&quot;, _holders, _nftQtys, payable(address(0))
+);
 </code></pre>
 <h2 id="functions"><a class="header" href="#functions">Functions</a></h2>
 <h3 id="setup"><a class="header" href="#setup">setUp</a></h3>

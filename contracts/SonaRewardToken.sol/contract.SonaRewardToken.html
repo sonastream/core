@@ -176,7 +176,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="sonarewardtoken"><a class="header" href="#sonarewardtoken">SonaRewardToken</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/b2dd21a04f2ff3d02793c76733a20bf69681868b/contracts/SonaRewardToken.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/9bdcb47bffd35b4477e6ab55cf2cbdc6769c99d3/contracts/SonaRewardToken.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/access/SonaMinter.sol/abstract.SonaMinter.html">SonaMinter</a>, <a href="/contracts/interfaces/ISonaRewardToken.sol/interface.ISonaRewardToken.html">ISonaRewardToken</a>, IERC2981</p>
 <p><strong>Author:</strong>
@@ -316,8 +316,23 @@ logic as the protocol evolves</em></p>
 </tbody></table>
 </div>
 <h3 id="updateblocklistaddress"><a class="header" href="#updateblocklistaddress">updateBlockListAddress</a></h3>
+<p>Updates the blocklist address to <code>_newList</code></p>
 <pre><code class="language-solidity">function updateBlockListAddress(address _newList) external onlySonaAdmin;
 </code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>_newList</code></td><td><code>address</code></td><td>the new blocklist address</td></tr>
+</tbody></table>
+</div>
+<h3 id="updateuribase"><a class="header" href="#updateuribase">updateUriBase</a></h3>
+<p>Updates the URI base string</p>
+<pre><code class="language-solidity">function updateUriBase(string calldata uriBase_) external onlySonaAdmin;
+</code></pre>
+<p><strong>Parameters</strong></p>
+<div class="table-wrapper"><table><thead><tr><th>Name</th><th>Type</th><th>Description</th></tr></thead><tbody>
+<tr><td><code>uriBase_</code></td><td><code>string</code></td><td>the string,starting with &quot;https://&quot; and <em>not</em> terminated with a trailing slash</td></tr>
+</tbody></table>
+</div>
 <h3 id="tokenuri"><a class="header" href="#tokenuri">tokenURI</a></h3>
 <p>Get a RewardToken's metadata from arweave for token <code>_tokenId</code></p>
 <pre><code class="language-solidity">function tokenURI(uint256 _tokenId)
@@ -332,6 +347,9 @@ logic as the protocol evolves</em></p>
 <tr><td><code>_tokenId</code></td><td><code>uint256</code></td><td>The ID of the token to fetch</td></tr>
 </tbody></table>
 </div>
+<h3 id="contracturi"><a class="header" href="#contracturi">contractURI</a></h3>
+<pre><code class="language-solidity">function contractURI() public view returns (string memory);
+</code></pre>
 <h3 id="getrewardtokenmetadata"><a class="header" href="#getrewardtokenmetadata">getRewardTokenMetadata</a></h3>
 <p>Returns the metadata of the token <code>_tokenId</code></p>
 <pre><code class="language-solidity">function getRewardTokenMetadata(uint256 _tokenId)

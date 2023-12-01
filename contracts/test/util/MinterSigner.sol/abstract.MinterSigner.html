@@ -176,7 +176,7 @@
                 <div id="content" class="content">
                     <main>
                         <h1 id="mintersigner"><a class="header" href="#mintersigner">MinterSigner</a></h1>
-<p><a href="https://github.com/sonastream/core/blob/b2dd21a04f2ff3d02793c76733a20bf69681868b/contracts/test/util/MinterSigner.sol">Git Source</a></p>
+<p><a href="https://github.com/sonastream/core/blob/9bdcb47bffd35b4477e6ab55cf2cbdc6769c99d3/contracts/test/util/MinterSigner.sol">Git Source</a></p>
 <p><strong>Inherits:</strong>
 <a href="/contracts/SonaTokenAuthorizor.sol/contract.SonaTokenAuthorizor.html">SonaTokenAuthorizor</a></p>
 <h2 id="state-variables"><a class="header" href="#state-variables">State Variables</a></h2>
@@ -191,11 +191,11 @@
 <pre><code class="language-solidity">string public mnemonic =
     &quot;test test test test test test test test test test test junk&quot;;
 </code></pre>
-<h3 id="authorizerkey"><a class="header" href="#authorizerkey">authorizerKey</a></h3>
-<pre><code class="language-solidity">uint256 public authorizerKey = _vmLocal.deriveKey(mnemonic, 0);
+<h3 id="authorizorkey"><a class="header" href="#authorizorkey">authorizorKey</a></h3>
+<pre><code class="language-solidity">uint256 public authorizorKey = _vmLocal.deriveKey(mnemonic, 0);
 </code></pre>
-<h3 id="authorizer"><a class="header" href="#authorizer">authorizer</a></h3>
-<pre><code class="language-solidity">address public authorizer = _vmLocal.addr(authorizerKey);
+<h3 id="authorizor"><a class="header" href="#authorizor">authorizor</a></h3>
+<pre><code class="language-solidity">address public authorizor = _vmLocal.addr(authorizorKey);
 </code></pre>
 <h3 id="domainseparator"><a class="header" href="#domainseparator">domainSeparator</a></h3>
 <pre><code class="language-solidity">bytes32 public domainSeparator;
