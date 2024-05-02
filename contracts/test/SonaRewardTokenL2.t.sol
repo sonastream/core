@@ -6,7 +6,7 @@ pragma solidity ^0.8.16;
 // \__ \ )(_)(  )  (  /(__)\   \__ \  )(   )   / )__)  /(__)\  )    (
 // (___/(_____)(_)\_)(__)(__)  (___/ (__) (_)\_)(____)(__)(__)(_/\/\_)
 
-import { SonaRewardTokenL2 as SonaRewardToken, AddressableTokenId } from "../SonaRewardTokenL2.sol";
+import { SonaRewardTokenL2 as SonaRewardToken, AddressableTokenId, IOptimismMintableERC721 } from "../SonaRewardTokenL2.sol";
 import { SonaReserveAuction } from "../SonaReserveAuction.sol";
 import { IERC721AUpgradeable } from "erc721a-upgradeable/IERC721AUpgradeable.sol";
 import { ERC721Holder } from "openzeppelin/token/ERC721/utils/ERC721Holder.sol";
@@ -34,10 +34,14 @@ contract SonaRewardTokenL2Test is Util, ERC721Holder, SonaRewardToken {
 	SonaRewardToken public rewardToken;
 
 	uint256 public mainnetFork;
+	address public bridgeAddr = makeAddr("bridge_address");
 	string public MAINNET_RPC_URL = vm.envString("MAINNET_FORK_RPC_URL");
 
+	// solhint-disable no-empty-blocks
+	constructor() SonaRewardToken(0, address(0)) {}
+
 	function setUp() public {
-		SonaRewardToken rewardTokenBase = new SonaRewardToken();
+		SonaRewardToken rewardTokenBase = new SonaRewardToken(31337, bridgeAddr);
 		ERC1967Proxy proxy = new ERC1967Proxy(
 			address(rewardTokenBase),
 			abi.encodeWithSelector(
@@ -53,6 +57,13 @@ contract SonaRewardTokenL2Test is Util, ERC721Holder, SonaRewardToken {
 		rewardToken = SonaRewardToken(address(proxy));
 		hoax(tokenAdmin);
 		rewardToken.grantRole(keccak256("MINTER_ROLE"), address(this));
+	}
+
+	function test_OptimismInterface() public {
+		bool isInterfaceSupported = rewardToken.supportsInterface(
+			type(IOptimismMintableERC721).interfaceId
+		);
+		assertTrue(isInterfaceSupported);
 	}
 
 	function test_UnauthorizedMintReverts(address badMinter) public {
@@ -78,9 +89,22 @@ contract SonaRewardTokenL2Test is Util, ERC721Holder, SonaRewardToken {
 	}
 
 	function test_initializedParams() public {
-		rewardToken.name;
 		assertEq(rewardToken.name(), "SonaRewardToken");
 		assertEq(rewardToken.symbol(), "SRT");
+	}
+
+	function test_reinitialize() public {
+		address remoteToken = makeAddr("remote token");
+		hoax(tokenAdmin);
+		rewardToken.setRemoteTokenAddress(remoteToken);
+		assertEq(rewardToken.REMOTE_TOKEN(), remoteToken);
+		bool isMinterRoleGranted = rewardToken.hasRole(_MINTER_ROLE, bridgeAddr);
+		assertTrue(isMinterRoleGranted);
+	}
+
+	function test_reinitializeProtection() public {
+		vm.expectRevert();
+		rewardToken.setRemoteTokenAddress(address(5));
 	}
 
 	function test_InvalidTokenIDOnTokenURIExistsReverts() public {

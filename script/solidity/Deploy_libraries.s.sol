@@ -7,7 +7,7 @@ import { ZeroCheck } from "../../contracts/utils/ZeroCheck.sol";
 import { AddressableTokenId } from "../../contracts/utils/AddressableTokenId.sol";
 
 contract Deployer is Script {
-	function run() external {
+	function run() external virtual {
 		string memory mnemonic = vm.envString("MNEMONIC");
 		uint256 key = vm.deriveKey(mnemonic, 0);
 		address deployer = vm.addr(key);
