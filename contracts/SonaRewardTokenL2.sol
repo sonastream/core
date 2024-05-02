@@ -32,16 +32,8 @@ contract SonaRewardTokenL2 is
 	using ZeroCheck for address;
 
 	/*//////////////////////////////////////////////////////////////
-	/                         IMMUTABLE
-	//////////////////////////////////////////////////////////////*/
-
-	uint256 public immutable REMOTE_CHAIN_ID;
-	address public immutable REMOTE_TOKEN;
-	address public immutable BRIDGE;
-
-	/*//////////////////////////////////////////////////////////////
-	/                         STATE
-	//////////////////////////////////////////////////////////////*/
+    /                         STATE
+    //////////////////////////////////////////////////////////////*/
 
 	/// @dev the address specified by ERC 2981 that royalties should be sent to
 	address internal _royaltyRecipient;
@@ -49,27 +41,40 @@ contract SonaRewardTokenL2 is
 	address internal _blockListRegistry;
 	string internal _uriBase;
 
+	/// required by IOptimismMintableERC721
+	address public REMOTE_TOKEN;
+
 	/*//////////////////////////////////////////////////////////////
-	/                         MAPPINGS
-	//////////////////////////////////////////////////////////////*/
+    /                         MAPPINGS
+    //////////////////////////////////////////////////////////////*/
 
 	mapping(uint256 => ISonaRewardToken.RewardToken) public rewardTokens;
 
 	/*//////////////////////////////////////////////////////////////
-	/	                        MODIFIERS
-	//////////////////////////////////////////////////////////////*/
+    /                         IMMUTABLES
+    //////////////////////////////////////////////////////////////*/
+
+	uint256 public immutable REMOTE_CHAIN_ID;
+	address public immutable BRIDGE;
+
+	/*//////////////////////////////////////////////////////////////
+    /	                        MODIFIERS
+    //////////////////////////////////////////////////////////////*/
 
 	/// @dev Modifier that ensures the calling contract has the admin role
 	///				or is the artist of the SONA
 	modifier onlySonaAdminOrCreator(uint256 _tokenId) {
-		if (_tokenId.getAddress() != msg.sender && !isSonaAdmin(msg.sender))
+		if (_tokenId.getAddress() != msg.sender && !isSonaAdmin(msg.sender)) {
 			revert SonaRewardToken_Unauthorized();
+		}
 		_;
 	}
 
 	/// @dev Modifier that only allows the current holder of a token
 	modifier onlyTokenHolder(uint256 _tokenId) {
-		if (_ownerOf(_tokenId) != msg.sender) revert SonaRewardToken_Unauthorized();
+		if (_ownerOf(_tokenId) != msg.sender) {
+			revert SonaRewardToken_Unauthorized();
+		}
 		_;
 	}
 
@@ -83,19 +88,18 @@ contract SonaRewardTokenL2 is
 	}
 
 	/*//////////////////////////////////////////////////////////////
-	/                         CONSTRUCTOR
-	//////////////////////////////////////////////////////////////*/
+    /                         CONSTRUCTOR
+    //////////////////////////////////////////////////////////////*/
 	// TODO make remote token a param
-	constructor() {
+	constructor(uint256 _remote_chainId, address _bridge) {
 		_disableInitializers();
-		REMOTE_CHAIN_ID = 1;
-		REMOTE_TOKEN = 0x4a006BBbFAddFF8b042edb3fFc1D8E72a27b7B89;
-		BRIDGE = 0x4200000000000000000000000000000000000014;
+		REMOTE_CHAIN_ID = _remote_chainId;
+		BRIDGE = _bridge;
 	}
 
 	/*//////////////////////////////////////////////////////////////
-	/                         FUNCTIONS
-	//////////////////////////////////////////////////////////////*/
+    /                         FUNCTIONS
+    //////////////////////////////////////////////////////////////*/
 
 	/// @dev Initializes the contract during proxy construction
 	/// @param _eoaAdmin the AccessControl admin
@@ -116,6 +120,11 @@ contract SonaRewardTokenL2 is
 		// Initialize ERC721
 		_royaltyRecipient = royaltyRecipient_;
 		_uriBase = uriBase_;
+	}
+
+	function setRemoteTokenAddress(address _newToken) external reinitializer(2) {
+		REMOTE_TOKEN = _newToken;
+		_grantRole(_MINTER_ROLE, BRIDGE);
 	}
 
 	/// @notice auth-guarded mint function
@@ -295,6 +304,7 @@ contract SonaRewardTokenL2 is
 	) public view override(SonaMinter, IERC165) returns (bool supported) {
 		return
 			SonaMinter.supportsInterface(_interfaceId) ||
+			_interfaceId == type(IOptimismMintableERC721).interfaceId ||
 			_interfaceId == type(IERC2981).interfaceId;
 	}
 

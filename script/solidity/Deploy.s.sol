@@ -138,9 +138,9 @@ contract Deployer is Script {
 			SonaRewards(payable(rewards)).grantRole(ADMIN_ROLE, _OWNER[i]);
 			vm.stopBroadcast();
 		}
-			vm.startBroadcast(pk);
-			SonaRewards(payable(rewards)).renounceRole(ADMIN_ROLE, deployer);
-			vm.stopBroadcast();
+		vm.startBroadcast(pk);
+		SonaRewards(payable(rewards)).renounceRole(ADMIN_ROLE, deployer);
+		vm.stopBroadcast();
 	}
 
 	function deploySplitMain(

@@ -36,8 +36,10 @@ contract SonaRewardTokenL2Test is Util, ERC721Holder, SonaRewardToken {
 	uint256 public mainnetFork;
 	string public MAINNET_RPC_URL = vm.envString("MAINNET_FORK_RPC_URL");
 
+	constructor() SonaRewardToken(31337, address(0)) {}
+
 	function setUp() public {
-		SonaRewardToken rewardTokenBase = new SonaRewardToken();
+		SonaRewardToken rewardTokenBase = new SonaRewardToken(31337, address(0));
 		ERC1967Proxy proxy = new ERC1967Proxy(
 			address(rewardTokenBase),
 			abi.encodeWithSelector(
