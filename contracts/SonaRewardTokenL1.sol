@@ -185,7 +185,7 @@ contract SonaRewardTokenL1 is SonaMinter, ISonaRewardToken, IERC2981 {
 				address(this),
 				msg.sender,
 				tokenId,
-				100_000,
+				350_000,
 				""
 			);
 		}
